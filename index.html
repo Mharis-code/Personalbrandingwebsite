@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Haris — Digital Marketer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+      --dim:     rgba(26,26,26,0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────────
+       PRELOADER
+    ───────────────────────────────────────────── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: preloaderFadeOut 0.6s ease 2.8s forwards;
+    }
+
+    #preloader.hidden { display: none; }
+
+    .preloader-text {
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      color: #fff;
+      text-align: center;
+      animation: preloaderTextIn 1.2s ease 0.3s both;
+    }
+
+    .preloader-text span {
+      display: block;
+      font-size: clamp(0.75rem, 2vw, 1rem);
+      letter-spacing: 0.6em;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.6rem;
+      font-weight: 300;
+    }
+
+    @keyframes preloaderTextIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @keyframes preloaderFadeOut {
+      0%   { opacity: 1; transform: translateY(0);     }
+      100% { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       FLOATING PILL NAVBAR
+    ───────────────────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      transition: opacity 0.3s;
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px clamp(24px, 5vw, 80px) 100px;
+      position: relative;
+      background: var(--white);
+    }
+
+    /* Two-column split */
+    .hero-split {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-labels {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 3.2s forwards;
+    }
+
+    /* Name — left-aligned, stacked */
+    .hero-firstname,
+    .hero-lastname {
+      font-size: clamp(3.2rem, 8vw, 8rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-align: left;
+      color: var(--navy);
+      text-transform: uppercase;
+      display: block;
+      opacity: 0;
+    }
+    .hero-firstname { animation: fadeUp 0.9s ease 3.3s forwards; }
+    .hero-lastname  { animation: fadeUp 0.9s ease 3.4s forwards; margin-bottom: 28px; }
+
+    /* Card wrapper — perspective for scroll flip */
+    .hero-card-wrap {
+      perspective: 900px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 3.5s forwards;
+    }
+
+    /* Portrait card — larger as a standalone feature */
+    .hero-card {
+      width: clamp(220px, 28vw, 380px);
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #d1d5db;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.16);
+      position: relative;
+      transform-origin: center center;
+      transform-style: preserve-3d;
+    }
+
+    /* Replace #portrait with actual image */
+    #portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #c8cdd6 0%, #a8b0bc 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      gap: 10px;
+    }
+
+    .portrait-placeholder svg { opacity: 0.5; }
+
+    .hero-location {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #666;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 3.6s forwards;
+    }
+
+    .hero-location::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      display: inline-block;
+    }
+
+    .hero-tagline {
+      max-width: 480px;
+      text-align: left;
+      font-size: clamp(0.85rem, 1.4vw, 1rem);
+      font-weight: 400;
+      color: #555;
+      line-height: 1.7;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 3.7s forwards;
+    }
+
+    /* Stats bar */
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 3.8s forwards;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #888;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SECTION BASE
+    ───────────────────────────────────────────── */
+    section { padding: 100px 24px; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────────
+       SKILLS SECTION — STACKING CARDS
+    ───────────────────────────────────────────── */
+    #skills {
+      background: var(--navy);
+      color: var(--white);
+      padding: 120px 24px 200px;
+    }
+
+    .skills-stacking-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Stacking cards column */
+    .skill-stack-area {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-stack-card {
+      position: sticky;
+      background: var(--white);
+      color: var(--navy);
+      border-radius: 20px;
+      padding: 34px 38px;
+      margin-bottom: 18px;
+      transform-origin: top center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+      will-change: transform;
+    }
+
+    /* Incrementing top offsets — creates the visual stack */
+    .skill-stack-card:nth-child(1) { top: 80px; }
+    .skill-stack-card:nth-child(2) { top: 96px; }
+    .skill-stack-card:nth-child(3) { top: 112px; }
+    .skill-stack-card:nth-child(4) { top: 128px; }
+    .skill-stack-card:nth-child(5) { top: 144px; }
+    .skill-stack-card:nth-child(6) { top: 160px; }
+    .skill-stack-card:nth-child(7) { top: 176px; }
+    .skill-stack-card:nth-child(8) { top: 192px; }
+
+    .skill-stack-num {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .skill-stack-title {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .skill-stack-desc {
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.68;
+    }
+
+    /* Sticky heading on right */
+    .skills-sticky-head {
+      position: sticky;
+      top: 80px;
+    }
+
+    .skills-sticky-head .section-label { color: var(--gold); }
+    .skills-sticky-head .section-title { color: var(--white); }
+    .skills-sticky-head .section-subtitle { color: rgba(255,255,255,0.55); margin-top: 16px; }
+
+    /* ─────────────────────────────────────────────
+       EXPERTISE
+    ───────────────────────────────────────────── */
+    #expertise { background: var(--white); }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 56px auto 0;
+    }
+
+    .expertise-card {
+      background: var(--gray-bg);
+      border-radius: 20px;
+      padding: 28px 30px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .expertise-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+
+    .expertise-card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .tool-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .badge {
+      background: var(--white);
+      border: 1px solid #e5e7eb;
+      color: var(--navy);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROJECTS
+    ───────────────────────────────────────────── */
+    #projects { background: var(--gray-bg); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 56px auto 0;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .project-tag {
+      display: inline-block;
+      background: rgba(27,108,168,0.1);
+      color: var(--blue);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+    }
+
+    .project-client {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .project-role {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .project-results { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .project-results li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .project-results li::before {
+      content: '';
+      width: 18px; height: 18px;
+      min-width: 18px;
+      border-radius: 50%;
+      background: rgba(27,108,168,0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%231B6CA8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 2px;
+    }
+
+    .project-stat-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .project-stat { text-align: center; flex: 1; }
+
+    .project-stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .project-stat-label {
+      font-size: 0.65rem;
+      color: #999;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ─────────────────────────────────────────────
+       WORK EXPERIENCE
+    ───────────────────────────────────────────── */
+    #experience { background: var(--white); }
+
+    .experience-list {
+      max-width: 860px;
+      margin: 56px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      padding: 40px 0;
+      border-top: 1px solid #ebebeb;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+    }
+
+    .exp-item:last-child { border-bottom: 1px solid #ebebeb; }
+
+    .exp-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #999;
+      padding-top: 4px;
+    }
+
+    /* text-materialise effect */
+    .exp-body { color: #ccc; transition: color 0.8s ease; }
+    .exp-body.materialized { color: var(--navy); }
+
+    .exp-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 14px;
+      transition: color 0.8s ease;
+    }
+
+    .exp-body.materialized .exp-company { color: var(--blue); }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-bullets li {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* ─────────────────────────────────────────────
+       EDUCATION & CERTIFICATIONS
+    ───────────────────────────────────────────── */
+    #education {
+      background: var(--gray-bg);
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 1100px;
+      margin: 56px auto 0;
+    }
+
+    .edu-block {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 36px;
+    }
+
+    .edu-block-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+
+    .edu-item + .edu-item { margin-top: 20px; padding-top: 20px; border-top: 1px solid #f0f0f0; }
+
+    .edu-degree {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .edu-school {
+      font-size: 0.82rem;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .edu-year {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .cert-item + .cert-item { margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0f0f0; }
+
+    .cert-name { font-size: 0.9rem; font-weight: 600; color: var(--navy); }
+    .cert-issuer { font-size: 0.78rem; color: #888; margin-top: 2px; }
+    .cert-year { font-size: 0.72rem; color: var(--blue); font-weight: 600; margin-top: 4px; }
+
+    /* ─────────────────────────────────────────────
+       CONTACT CTA
+    ───────────────────────────────────────────── */
+    #contact {
+      background: var(--navy);
+      text-align: center;
+      padding: 120px 24px 160px;
+    }
+
+    #contact .section-label { color: var(--gold); }
+
+    #contact .section-title {
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    #contact .section-subtitle {
+      color: rgba(255,255,255,0.5);
+      margin: 0 auto 44px;
+      max-width: 480px;
+    }
+
+    .cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(27,108,168,0.4);
+    }
+    .btn-primary:hover { background: #155a90; box-shadow: 0 10px 32px rgba(27,108,168,0.5); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.06); }
+
+    /* ─────────────────────────────────────────────
+       SHARED KEYFRAMES
+    ───────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ─────────────────────────────────────────────
+       MOBILE RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      #hero { padding: 80px 24px 100px; }
+
+      .hero-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      /* On mobile: portrait above, text below */
+      .hero-right { order: -1; }
+
+      .hero-left { align-items: center; text-align: center; }
+
+      .hero-firstname,
+      .hero-lastname { text-align: center; font-size: clamp(2.8rem, 14vw, 5rem); }
+
+      .hero-tagline { text-align: center; }
+
+      .hero-card { width: clamp(160px, 50vw, 240px); }
+
+      .hero-stats { gap: 24px; }
+
+      .skills-stacking-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .skills-sticky-head {
+        position: static;
+        margin-bottom: 48px;
+        order: -1;
+      }
+      /* Disable sticky stacking on small screens — just show cards normally */
+      .skill-stack-card { position: relative !important; top: auto !important; }
+
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .exp-date { padding-top: 0; }
+
+      .edu-grid { grid-template-columns: 1fr; }
+
+      #pill-nav { padding: 8px 12px; gap: 2px; }
+      #pill-nav a { font-size: 0.7rem; padding: 6px 10px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-labels { display: none; }
+      section { padding: 72px 20px; }
+    }
+
+    /* ─────────────────────────────────────────────
+       MARQUEE TICKER STRIP
+    ───────────────────────────────────────────── */
+    .marquee-strip {
+      background: var(--navy);
+      padding: 17px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-inner {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .marquee-item {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      padding: 0 32px;
+      white-space: nowrap;
+      cursor: default;
+      transition: color 0.25s ease;
+    }
+
+    .marquee-item:hover { color: var(--gold); }
+
+    .marquee-sep {
+      color: var(--gold);
+      font-size: 0.55rem;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─────────────────────────────────────────────
+       BUTTON SLIDE-FILL HOVER (directional sweep)
+    ───────────────────────────────────────────── */
+    .btn {
+      background-size: 201% 100%;
+      background-position: right center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+                  background-position 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .btn-primary {
+      background-image: linear-gradient(to right, #155a90 50%, var(--blue) 50%);
+    }
+
+    .btn-primary:hover {
+      background-image: linear-gradient(to right, #155a90 50%, var(--blue) 50%);
+      background-position: left center;
+      background-size: 201% 100%;
+      background-color: transparent;
+      box-shadow: 0 10px 32px rgba(27,108,168,0.5);
+    }
+
+    .btn-outline {
+      background-image: linear-gradient(to right, rgba(255,255,255,0.1) 50%, transparent 50%);
+    }
+
+    .btn-outline:hover {
+      background-image: linear-gradient(to right, rgba(255,255,255,0.1) 50%, transparent 50%);
+      background-position: left center;
+      background-size: 201% 100%;
+      background-color: transparent;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO CARD — MOUSE PARALLAX
+    ───────────────────────────────────────────── */
+    .hero-card {
+      will-change: transform;
+      transition: transform 0.12s ease-out, box-shadow 0.25s ease;
+    }
+
+    /* ─────────────────────────────────────────────
+       STAT NUMBER — COUNT-UP ANIMATION
+    ───────────────────────────────────────────── */
+    .stat-number[data-counted] {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       PRELOADER
+  ══════════════════════════════════════════ -->
+  <div id="preloader">
+    <div class="preloader-text">
+      أهلاً وسهلاً
+      <span>Welcome</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FLOATING PILL NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-split">
+
+      <!-- Left: name, tagline, stats -->
+      <div class="hero-left">
+        <div class="hero-labels">
+          <span class="hero-label">Digital Marketer</span>
+          <span class="hero-label">12 Years Experience</span>
+        </div>
+
+        <h1 class="hero-firstname">Muhammad</h1>
+        <h1 class="hero-lastname">Haris</h1>
+
+        <p class="hero-location">Brampton, ON &nbsp;·&nbsp; Available for Work</p>
+
+        <p class="hero-tagline">
+          A results-driven Marketing Expert with 12 years of experience in developing
+          and executing digital marketing strategies that drive brand visibility, growth and revenue.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">16</div>
+            <div class="stat-label">Years in Design</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30K</div>
+            <div class="stat-label">LinkedIn Followers Built</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: portrait card -->
+      <div class="hero-right">
+        <div class="hero-card-wrap">
+          <div class="hero-card" id="heroFloatingCard">
+            <div class="portrait-placeholder" id="portrait">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+              <span>Portrait Photo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MARQUEE TICKER
+  ══════════════════════════════════════════ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <span class="marquee-item">Digital Marketing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Content Strategy</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">SEO &amp; Analytics</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Email Marketing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Brand Building</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Graphic Design</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Copywriting</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Video Editing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Workflows</span><span class="marquee-sep">◆</span>
+      </div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-inner">
+        <span class="marquee-item">Digital Marketing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Content Strategy</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">SEO &amp; Analytics</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Email Marketing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Brand Building</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Graphic Design</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Copywriting</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Video Editing</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Workflows</span><span class="marquee-sep">◆</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="skills-stacking-layout">
+
+      <!-- Stacking skill cards (left column) -->
+      <div class="skill-stack-area">
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">01</span>
+          <h3 class="skill-stack-title">Graphic Design</h3>
+          <p class="skill-stack-desc">16 years crafting visual identities, marketing materials, and brand assets using Canva and Adobe Illustrator.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">02</span>
+          <h3 class="skill-stack-title">Writing &amp; Copywriting</h3>
+          <p class="skill-stack-desc">12 years writing long-form articles, email sequences, landing pages, and social copy that converts.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">03</span>
+          <h3 class="skill-stack-title">Content Creation &amp; Marketing</h3>
+          <p class="skill-stack-desc">10 years building full content strategies and execution pipelines across every major channel.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">04</span>
+          <h3 class="skill-stack-title">Web, SEO &amp; Analytics</h3>
+          <p class="skill-stack-desc">8 years driving organic growth with GA4, Google Search Console, and data-led optimisation cycles.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">05</span>
+          <h3 class="skill-stack-title">Marketing Automation &amp; CRM</h3>
+          <p class="skill-stack-desc">8 years building automated funnels and CRM workflows in HubSpot, Salesforce, and Kajabi.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">06</span>
+          <h3 class="skill-stack-title">Email Marketing</h3>
+          <p class="skill-stack-desc">Designing, segmenting, and optimising campaigns in Mailchimp and Klaviyo for maximum open and click rates.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">07</span>
+          <h3 class="skill-stack-title">Video Editing</h3>
+          <p class="skill-stack-desc">Producing engaging short and long-form video content using Adobe Premiere, CapCut, and Opus Clips.</p>
+        </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">08</span>
+          <h3 class="skill-stack-title">AI Workflows</h3>
+          <p class="skill-stack-desc">Designing automation systems and prompt engineering pipelines that multiply marketing output with less effort.</p>
+        </div>
+
+      </div>
+
+      <!-- Sticky section heading (right column) -->
+      <div class="skills-sticky-head">
+        <p class="section-label">What I Bring</p>
+        <h2 class="section-title">Core<br>Skills</h2>
+        <p class="section-subtitle">A decade-plus of hands-on expertise across every major marketing discipline.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       EXPERTISE
+  ══════════════════════════════════════════ -->
+  <section id="expertise">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-label reveal">Tool Stack</p>
+      <h2 class="section-title reveal">Areas of Expertise</h2>
+      <p class="section-subtitle reveal">The platforms and tools I work with every day.</p>
+
+      <div class="expertise-grid">
+        <div class="expertise-card reveal">
+          <div class="expertise-card-title">Design</div>
+          <div class="tool-badges">
+            <span class="badge">Canva</span>
+            <span class="badge">Adobe Illustrator</span>
+          </div>
+        </div>
+        <div class="expertise-card reveal" style="transition-delay:0.1s">
+          <div class="expertise-card-title">Newsletter & Publishing</div>
+          <div class="tool-badges">
+            <span class="badge">LinkedIn</span>
+            <span class="badge">Kit</span>
+            <span class="badge">Substack</span>
+          </div>
+        </div>
+        <div class="expertise-card reveal" style="transition-delay:0.2s">
+          <div class="expertise-card-title">Web & Analytics</div>
+          <div class="tool-badges">
+            <span class="badge">Google Analytics (GA4)</span>
+            <span class="badge">Google Search Console</span>
+          </div>
+        </div>
+        <div class="expertise-card reveal" style="transition-delay:0.3s">
+          <div class="expertise-card-title">Automation & CRM</div>
+          <div class="tool-badges">
+            <span class="badge">HubSpot</span>
+            <span class="badge">Salesforce</span>
+            <span class="badge">Kajabi</span>
+          </div>
+        </div>
+        <div class="expertise-card reveal" style="transition-delay:0.4s">
+          <div class="expertise-card-title">Email Marketing</div>
+          <div class="tool-badges">
+            <span class="badge">Mailchimp</span>
+            <span class="badge">Klaviyo</span>
+          </div>
+        </div>
+        <div class="expertise-card reveal" style="transition-delay:0.5s">
+          <div class="expertise-card-title">Video Editing</div>
+          <div class="tool-badges">
+            <span class="badge">Adobe Premiere</span>
+            <span class="badge">CapCut</span>
+            <span class="badge">Opus Clips</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PROJECTS
+  ══════════════════════════════════════════ -->
+  <section id="projects">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-label reveal">Case Studies</p>
+      <h2 class="section-title reveal">Recent Projects</h2>
+      <p class="section-subtitle reveal">Real results for real clients.</p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card reveal">
+          <span class="project-tag">Aug – Nov 2025</span>
+          <div class="project-client">Ron Monteiro</div>
+          <div class="project-role">Solopreneur · Personal Brand Build</div>
+          <ul class="project-results">
+            <li>Built full personal brand website from ground up</li>
+            <li>Improved inquiry submissions by 40%</li>
+            <li>Increased video watch time by 45%</li>
+            <li>Achieved 69% improvement in conversion rates</li>
+          </ul>
+          <div class="project-stat-row">
+            <div class="project-stat">
+              <div class="project-stat-num">40%</div>
+              <div class="project-stat-label">More Inquiries</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-num">45%</div>
+              <div class="project-stat-label">Watch Time</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-num">69%</div>
+              <div class="project-stat-label">Conversions</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal" style="transition-delay:0.15s">
+          <span class="project-tag">Jan – Oct 2025</span>
+          <div class="project-client">Sutra Tech Inc.</div>
+          <div class="project-role">Startup · Course Launch & Growth</div>
+          <ul class="project-results">
+            <li>Led course launch generating 65% sign-up increase</li>
+            <li>Built full Kajabi marketing automation</li>
+            <li>Achieved 42% email open rate</li>
+            <li>Drove 35% enrollment boost through campaigns</li>
+          </ul>
+          <div class="project-stat-row">
+            <div class="project-stat">
+              <div class="project-stat-num">65%</div>
+              <div class="project-stat-label">Sign-ups ↑</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-num">42%</div>
+              <div class="project-stat-label">Email Open Rate</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-num">35%</div>
+              <div class="project-stat-label">Enrollment ↑</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       WORK EXPERIENCE
+  ══════════════════════════════════════════ -->
+  <section id="experience">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-label reveal">Career Path</p>
+      <h2 class="section-title reveal">Work Experience</h2>
+    </div>
+
+    <div class="experience-list">
+
+      <div class="exp-item">
+        <div class="exp-date">July 2024 – Present</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Marketing Manager</div>
+          <div class="exp-company">Dalton Pharma Services</div>
+          <ul class="exp-bullets">
+            <li>100% engagement rate increase across digital channels</li>
+            <li>Drove 15% new business growth through targeted campaigns</li>
+            <li>Achieved 69% conversion rate improvement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Aug 2023 – June 2024</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Marketing &amp; Administration Coordinator</div>
+          <div class="exp-company">Dalton Pharma Services</div>
+          <ul class="exp-bullets">
+            <li>Supported full-funnel marketing operations and cross-functional coordination</li>
+            <li>Managed content calendars, email campaigns, and reporting dashboards</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Nov 2022 – July 2023</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Associate Brand Manager</div>
+          <div class="exp-company">United West</div>
+          <ul class="exp-bullets">
+            <li>Developed and executed integrated brand campaigns</li>
+            <li>Managed creative production and agency relationships</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jan 2020 – Sep 2022</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Business Unit Manager</div>
+          <div class="exp-company">Galaxy Pharma</div>
+          <ul class="exp-bullets">
+            <li>Scaled LinkedIn presence from 0 to 30,000 followers organically</li>
+            <li>Generated 2,000+ LMS enrollments through content marketing</li>
+            <li>Oversaw cross-functional P&amp;L and go-to-market strategy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Sep 2017 – Dec 2019</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Group Product Manager</div>
+          <div class="exp-company">Galaxy Pharma</div>
+          <ul class="exp-bullets">
+            <li>Led portfolio strategy across multiple product lines</li>
+            <li>Managed cross-functional teams and stakeholder communications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Nov 2015 – Aug 2017</div>
+        <div class="exp-body" data-materialize>
+          <div class="exp-role">Product Manager</div>
+          <div class="exp-company">Galaxy Pharma</div>
+          <ul class="exp-bullets">
+            <li>Delivered 40% cost savings through vendor negotiations and process optimization</li>
+            <li>Increased lead conversion by 55% through targeted outreach programs</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       EDUCATION & CERTIFICATIONS
+  ══════════════════════════════════════════ -->
+  <section id="education">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-label reveal">Learning</p>
+      <h2 class="section-title reveal">Education &amp; Certifications</h2>
+
+      <div class="edu-grid">
+
+        <div class="edu-block reveal">
+          <div class="edu-block-title">Education</div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Social Media &amp; Web Marketing</div>
+            <div class="edu-school">CDI College</div>
+            <div class="edu-year">2023 – 2024</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Doctor of Pharmacy (Pharm-D)</div>
+            <div class="edu-school">Ziauddin Medical University</div>
+            <div class="edu-year">2009 – 2013</div>
+          </div>
+        </div>
+
+        <div class="edu-block reveal" style="transition-delay:0.15s">
+          <div class="edu-block-title">Certifications</div>
+
+          <div class="cert-item">
+            <div class="cert-name">The LinkedIn Operating System</div>
+            <div class="cert-issuer">Justin Welsh</div>
+            <div class="cert-year">2024</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-name">Content Marketing</div>
+            <div class="cert-issuer">HubSpot Academy</div>
+            <div class="cert-year">2024</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-name">Foundations of Digital Marketing &amp; Ecommerce</div>
+            <div class="cert-issuer">Google</div>
+            <div class="cert-year">2023</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-name">Write to Ignite – Copywriting</div>
+            <div class="cert-issuer">Udemy</div>
+            <div class="cert-year">2022</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CONTACT CTA
+  ══════════════════════════════════════════ -->
+  <section id="contact">
+    <p class="section-label reveal">Let's Work Together</p>
+    <h2 class="section-title reveal">Ready to grow<br>your brand?</h2>
+    <p class="section-subtitle reveal">
+      I'm currently available for freelance projects, consulting, and full-time roles.
+    </p>
+    <div class="cta-group reveal">
+      <a href="mailto:hello@muhammadharis.com" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        Send Me an Email
+      </a>
+      <a href="https://www.linkedin.com/in/muhammadharis" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════ -->
+  <script>
+    /* ── 1. PRELOADER ──────────────────────────── */
+    const preloader = document.getElementById('preloader');
+    // Remove from DOM after animation completes (2.8s delay + 0.6s duration)
+    preloader.addEventListener('animationend', () => {
+      preloader.classList.add('hidden');
+    });
+
+    /* ── 2. INTERSECTION OBSERVER — REVEAL ─────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ── 3. TEXT MATERIALISE — WORK EXPERIENCE ──── */
+    const materializeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('materialized');
+          materializeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-materialize]').forEach(el => materializeObserver.observe(el));
+
+    /* ── 4. HERO CARD — SCROLL-DRIVEN ANIMATION ────
+       Card drifts right and flips (rotateY) as hero scrolls out */
+    const heroFloatingCard = document.getElementById('heroFloatingCard');
+    const heroEl = document.getElementById('hero');
+
+    function updateHeroCardScroll() {
+      if (!heroFloatingCard || !heroEl || window.innerWidth <= 768) return;
+      const scrollY = window.scrollY;
+      const viewH   = window.innerHeight;
+      // progress 0→1 over the first viewport-height of scroll
+      const progress = Math.min(1, scrollY / (viewH * 0.75));
+
+      if (progress === 0) {
+        heroFloatingCard.style.transform = '';
+        heroFloatingCard.style.opacity   = '';
+        return;
+      }
+
+      const tx      = progress * 160;         // drift right (already on right side)
+      const ty      = progress * 80;          // drift slightly down
+      const rotY    = progress * 180;         // full flip
+      const scale   = 1 - progress * 0.1;
+      const opacity = progress > 0.75 ? 1 - (progress - 0.75) / 0.25 : 1;
+
+      heroFloatingCard.style.transform =
+        `translate(${tx}px, ${ty}px) rotateY(${rotY}deg) scale(${scale})`;
+      heroFloatingCard.style.opacity = opacity;
+    }
+
+    window.addEventListener('scroll', updateHeroCardScroll, { passive: true });
+    updateHeroCardScroll();
+
+    /* ── 5. STACKING CARDS — DEPTH SCALE ──────────
+       Cards that are stuck get scaled down slightly to show layering */
+    const stackCards = document.querySelectorAll('.skill-stack-card');
+
+    function updateStackDepth() {
+      if (!stackCards.length || window.innerWidth <= 768) return;
+      stackCards.forEach((card, i) => {
+        const stickyTop = parseInt(getComputedStyle(card).top, 10) || 80;
+        const rect = card.getBoundingClientRect();
+        const isStuck = rect.top <= stickyTop + 1;
+
+        if (isStuck) {
+          // Count how many cards ahead of this one are also stuck
+          let depth = 0;
+          for (let j = i + 1; j < stackCards.length; j++) {
+            const jr   = stackCards[j].getBoundingClientRect();
+            const jTop = parseInt(getComputedStyle(stackCards[j]).top, 10) || 80;
+            if (jr.top <= jTop + 1) depth++;
+          }
+          const scale = 1 - depth * 0.022;
+          card.style.transform = `scale(${scale})`;
+        } else {
+          card.style.transform = '';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateStackDepth, { passive: true });
+
+    /* ── 6. PILL NAV — ACTIVE SECTION HIGHLIGHT ─── */
+    const navLinks = document.querySelectorAll('#pill-nav a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => navObserver.observe(s));
+
+    /* ── 7. SMOOTH SCROLL (fallback) ────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ── 8. STAGGERED LIST ITEM ANIMATION ─────────
+       Adds individual delays to li items inside .reveal containers once visible */
+    const listRevealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('li').forEach((li, i) => {
+            li.style.transitionDelay = `${i * 100}ms`;
+            li.style.opacity = '0';
+            li.style.transform = 'translateY(12px)';
+            li.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            // force reflow
+            li.offsetHeight;
+            li.style.opacity = '1';
+            li.style.transform = 'translateY(0)';
+          });
+          listRevealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.project-card, .exp-item').forEach(el => listRevealObserver.observe(el));
+
+    /* ── 9. STAT COUNT-UP ─────────────────────────
+       Animates numbers from 0 to target on scroll */
+    function parseStatValue(text) {
+      const m = text.trim().match(/^(\d+)(.*)$/);
+      return m ? { num: parseInt(m[1], 10), suffix: m[2] } : null;
+    }
+
+    function runCountUp(el, target, suffix, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const parsed = parseStatValue(el.textContent);
+          if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(el => {
+      el.setAttribute('data-counted', '');
+      statObserver.observe(el);
+    });
+
+    /* ── 10. HERO — subtle mouse tilt on card (only when not scrolled) ── */
+    const heroSectionEl = document.getElementById('hero');
+
+    if (heroSectionEl && heroFloatingCard) {
+      heroSectionEl.addEventListener('mousemove', (e) => {
+        if (window.scrollY > 60) return; // skip when scroll animation is active
+        const rect = heroSectionEl.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = (e.clientX - cx) / (rect.width  / 2);
+        const dy = (e.clientY - cy) / (rect.height / 2);
+        heroFloatingCard.style.transform =
+          `translate(${dx * 8}px, ${dy * 5}px) rotateX(${dy * -5}deg) rotateY(${dx * 7}deg)`;
+      }, { passive: true });
+
+      heroSectionEl.addEventListener('mouseleave', () => {
+        if (window.scrollY <= 60) heroFloatingCard.style.transform = '';
+      });
+    }
+  </script>
+
+</body>
+</html>
