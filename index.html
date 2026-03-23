@@ -126,7 +126,36 @@
       justify-content: center;
       padding: 80px clamp(24px, 5vw, 80px) 100px;
       position: relative;
-      background: var(--white);
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+      z-index: 1;
+    }
+
+    .hero-feather {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent 0%, #1a1a1a 100%);
+      z-index: 2;
+      pointer-events: none;
     }
 
     /* Two-column split */
@@ -137,6 +166,8 @@
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 60px;
+      position: relative;
+      z-index: 3;
     }
 
     .hero-left {
@@ -163,7 +194,7 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: rgba(255,255,255,0.85);
       opacity: 0;
       animation: fadeUp 0.7s ease 3.2s forwards;
     }
@@ -176,7 +207,7 @@
       line-height: 0.88;
       letter-spacing: -0.03em;
       text-align: left;
-      color: var(--navy);
+      color: var(--white);
       text-transform: uppercase;
       display: block;
       opacity: 0;
@@ -232,7 +263,7 @@
     .hero-location {
       font-size: 0.82rem;
       font-weight: 500;
-      color: #666;
+      color: rgba(255,255,255,0.75);
       letter-spacing: 0.06em;
       display: flex;
       align-items: center;
@@ -253,8 +284,9 @@
       max-width: 480px;
       text-align: left;
       font-size: clamp(0.85rem, 1.4vw, 1rem);
-      font-weight: 400;
-      color: #555;
+      font-weight: 500;
+      color: rgba(255,255,255,0.97);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.65);
       line-height: 1.7;
       margin-top: 16px;
       opacity: 0;
@@ -277,14 +309,14 @@
     .stat-number {
       font-size: clamp(2rem, 4.5vw, 3.2rem);
       font-weight: 800;
-      color: var(--navy);
+      color: var(--white);
       line-height: 1;
     }
 
     .stat-label {
       font-size: 0.72rem;
       font-weight: 500;
-      color: #888;
+      color: rgba(255,255,255,0.6);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-top: 4px;
@@ -334,8 +366,7 @@
        SKILLS SECTION — STACKING CARDS
     ───────────────────────────────────────────── */
     #skills {
-      background: var(--navy);
-      color: var(--white);
+      background: var(--white);
       padding: 120px 24px 200px;
     }
 
@@ -409,51 +440,181 @@
     .skills-sticky-head .section-title { color: var(--white); }
     .skills-sticky-head .section-subtitle { color: rgba(255,255,255,0.55); margin-top: 16px; }
 
+    /* Portrait card that lands below the skills subtitle — JS-driven */
+    #portrait-landing {
+      margin-top: 28px;
+      width: clamp(140px, 18vw, 220px);
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #d1d5db;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.3);
+      opacity: 0; /* shown by JS cross-fade */
+    }
+
+    #portrait-landing img,
+    #portrait-landing video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* ─────────────────────────────────────────────
-       EXPERTISE
+       EXPERTISE — EXPAND CARDS
     ───────────────────────────────────────────── */
-    #expertise { background: var(--white); }
+    #expertise { background: var(--navy); color: var(--white); }
 
-    .expertise-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 56px auto 0;
+    .expand-cards-row {
+      display: flex;
+      gap: 10px;
+      height: 360px;
+      margin-top: 56px;
+      overflow: hidden;
     }
 
-    .expertise-card {
-      background: var(--gray-bg);
+    .expand-card {
+      flex: 0 0 74px;
+      min-width: 74px;
+      height: 100%;
+      background: var(--navy);
       border-radius: 20px;
-      padding: 28px 30px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border-top: 3px solid var(--card-accent, var(--blue));
     }
 
-    .expertise-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    .expand-card.is-active { flex: 1 0 320px; }
+
+    /* ── Collapsed side strip ── */
+    .expand-card-side {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0 22px;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
     }
 
-    .expertise-card-title {
-      font-size: 0.7rem;
+    .expand-card.is-active .expand-card-side { opacity: 0; }
+
+    .expand-card-num {
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 16px;
+      letter-spacing: 0.08em;
+      color: var(--card-accent, var(--blue));
     }
 
-    .tool-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .expand-card-label-vert {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+    }
+
+    /* ── Expanded content ── */
+    .expand-card-content {
+      position: absolute;
+      inset: 0;
+      padding: 28px 28px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      transform: translateX(14px);
+      transition: opacity 0.28s ease 0.2s, transform 0.28s ease 0.2s;
+      pointer-events: none;
+      min-width: 260px;
+    }
+
+    .expand-card.is-active .expand-card-content {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .expand-card-cat {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--blue));
+      margin-bottom: 8px;
+    }
+
+    .expand-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .tool-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .badge {
-      background: var(--white);
-      border: 1px solid #e5e7eb;
-      color: var(--navy);
-      font-size: 0.78rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.75rem;
       font-weight: 500;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 100px;
       letter-spacing: 0.02em;
+    }
+
+    /* ── Mobile: vertical stack ── */
+    @media (max-width: 768px) {
+      .expand-cards-row {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+      }
+
+      .expand-card {
+        flex: 0 0 58px !important;
+        min-width: unset;
+        width: 100%;
+        border-top: none;
+        border-left: 3px solid var(--card-accent, var(--blue));
+        border-radius: 16px;
+      }
+
+      .expand-card.is-active { flex: 0 0 190px !important; }
+
+      .expand-card-side {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 20px;
+        gap: 14px;
+      }
+
+      .expand-card-label-vert {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 0.72rem;
+      }
+
+      .expand-card-content {
+        min-width: unset;
+        padding: 18px 20px 22px;
+        transform: translateY(10px);
+      }
+
+      .expand-card.is-active .expand-card-content { transform: translateY(0); }
+
+      .expand-card-title { font-size: 1rem; margin-bottom: 12px; }
     }
 
     /* ─────────────────────────────────────────────
@@ -928,6 +1089,11 @@
        HERO
   ══════════════════════════════════════════ -->
   <section id="hero">
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="24714-345209728.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-feather"></div>
     <div class="hero-split">
 
       <!-- Left: name, tagline, stats -->
@@ -1022,68 +1188,118 @@
        SKILLS
   ══════════════════════════════════════════ -->
   <section id="skills">
-    <div class="skills-stacking-layout">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-label reveal">What I Bring</p>
+      <h2 class="section-title reveal">Core Skills</h2>
+      <p class="section-subtitle reveal">A decade-plus of hands-on expertise across every major marketing discipline.</p>
 
-      <!-- Stacking skill cards (left column) -->
-      <div class="skill-stack-area">
+      <div class="expand-cards-row">
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">01</span>
-          <h3 class="skill-stack-title">Graphic Design</h3>
-          <p class="skill-stack-desc">16 years crafting visual identities, marketing materials, and brand assets using Canva and Adobe Illustrator.</p>
+        <!-- 1. Graphic Design -->
+        <div class="expand-card is-active" style="--card-accent:#A78BFA;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">01</span>
+            <span class="expand-card-label-vert">Design</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">01 — Visual</span>
+            <div class="expand-card-title">Graphic Design</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">16 years crafting visual identities, marketing materials, and brand assets.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">02</span>
-          <h3 class="skill-stack-title">Writing &amp; Copywriting</h3>
-          <p class="skill-stack-desc">12 years writing long-form articles, email sequences, landing pages, and social copy that converts.</p>
+        <!-- 2. Writing & Copywriting -->
+        <div class="expand-card" style="--card-accent:#34D399;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">02</span>
+            <span class="expand-card-label-vert">Writing</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">02 — Copy</span>
+            <div class="expand-card-title">Writing &amp;<br>Copywriting</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">12 years writing articles, email sequences, landing pages, and social copy that converts.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">03</span>
-          <h3 class="skill-stack-title">Content Creation &amp; Marketing</h3>
-          <p class="skill-stack-desc">10 years building full content strategies and execution pipelines across every major channel.</p>
+        <!-- 3. Content Creation & Marketing -->
+        <div class="expand-card" style="--card-accent:#60A5FA;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">03</span>
+            <span class="expand-card-label-vert">Content</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">03 — Strategy</span>
+            <div class="expand-card-title">Content<br>Marketing</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">10 years building full content strategies and execution pipelines across every major channel.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">04</span>
-          <h3 class="skill-stack-title">Web, SEO &amp; Analytics</h3>
-          <p class="skill-stack-desc">8 years driving organic growth with GA4, Google Search Console, and data-led optimisation cycles.</p>
+        <!-- 4. Web, SEO & Analytics -->
+        <div class="expand-card" style="--card-accent:#FBBF24;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">04</span>
+            <span class="expand-card-label-vert">SEO</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">04 — Growth</span>
+            <div class="expand-card-title">Web, SEO &amp;<br>Analytics</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">8 years driving organic growth with GA4, Search Console, and data-led optimisation.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">05</span>
-          <h3 class="skill-stack-title">Marketing Automation &amp; CRM</h3>
-          <p class="skill-stack-desc">8 years building automated funnels and CRM workflows in HubSpot, Salesforce, and Kajabi.</p>
+        <!-- 5. Marketing Automation & CRM -->
+        <div class="expand-card" style="--card-accent:#F87171;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">05</span>
+            <span class="expand-card-label-vert">CRM</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">05 — Automation</span>
+            <div class="expand-card-title">Marketing<br>Automation &amp; CRM</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">8 years building automated funnels and CRM workflows in HubSpot, Salesforce, and Kajabi.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">06</span>
-          <h3 class="skill-stack-title">Email Marketing</h3>
-          <p class="skill-stack-desc">Designing, segmenting, and optimising campaigns in Mailchimp and Klaviyo for maximum open and click rates.</p>
+        <!-- 6. Email Marketing -->
+        <div class="expand-card" style="--card-accent:#F472B6;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">06</span>
+            <span class="expand-card-label-vert">Email</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">06 — Campaigns</span>
+            <div class="expand-card-title">Email<br>Marketing</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Designing, segmenting, and optimising campaigns in Mailchimp and Klaviyo.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">07</span>
-          <h3 class="skill-stack-title">Video Editing</h3>
-          <p class="skill-stack-desc">Producing engaging short and long-form video content using Adobe Premiere, CapCut, and Opus Clips.</p>
+        <!-- 7. Video Editing -->
+        <div class="expand-card" style="--card-accent:#38BDF8;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">07</span>
+            <span class="expand-card-label-vert">Video</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">07 — Production</span>
+            <div class="expand-card-title">Video<br>Editing</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Engaging short and long-form video using Adobe Premiere, CapCut, and Opus Clips.</p>
+          </div>
         </div>
 
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">08</span>
-          <h3 class="skill-stack-title">AI Workflows</h3>
-          <p class="skill-stack-desc">Designing automation systems and prompt engineering pipelines that multiply marketing output with less effort.</p>
+        <!-- 8. AI Workflows -->
+        <div class="expand-card" style="--card-accent:#4ADE80;">
+          <div class="expand-card-side">
+            <span class="expand-card-num">08</span>
+            <span class="expand-card-label-vert">AI</span>
+          </div>
+          <div class="expand-card-content">
+            <span class="expand-card-cat">08 — Systems</span>
+            <div class="expand-card-title">AI<br>Workflows</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Automation systems and prompt engineering pipelines that multiply marketing output.</p>
+          </div>
         </div>
 
       </div>
-
-      <!-- Sticky section heading (right column) -->
-      <div class="skills-sticky-head">
-        <p class="section-label">What I Bring</p>
-        <h2 class="section-title">Core<br>Skills</h2>
-        <p class="section-subtitle">A decade-plus of hands-on expertise across every major marketing discipline.</p>
-      </div>
-
     </div>
   </section>
 
@@ -1091,58 +1307,64 @@
        EXPERTISE
   ══════════════════════════════════════════ -->
   <section id="expertise">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">Tool Stack</p>
-      <h2 class="section-title reveal">Areas of Expertise</h2>
-      <p class="section-subtitle reveal">The platforms and tools I work with every day.</p>
+    <div class="skills-stacking-layout">
 
-      <div class="expertise-grid">
-        <div class="expertise-card reveal">
-          <div class="expertise-card-title">Design</div>
-          <div class="tool-badges">
-            <span class="badge">Canva</span>
-            <span class="badge">Adobe Illustrator</span>
-          </div>
+      <!-- Stacking tool cards (left column) -->
+      <div class="skill-stack-area">
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">01</span>
+          <h3 class="skill-stack-title">Design</h3>
+          <p class="skill-stack-desc">Canva · Adobe Illustrator</p>
         </div>
-        <div class="expertise-card reveal" style="transition-delay:0.1s">
-          <div class="expertise-card-title">Newsletter & Publishing</div>
-          <div class="tool-badges">
-            <span class="badge">LinkedIn</span>
-            <span class="badge">Kit</span>
-            <span class="badge">Substack</span>
-          </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">02</span>
+          <h3 class="skill-stack-title">Newsletter &amp; Publishing</h3>
+          <p class="skill-stack-desc">LinkedIn · Kit · Substack</p>
         </div>
-        <div class="expertise-card reveal" style="transition-delay:0.2s">
-          <div class="expertise-card-title">Web & Analytics</div>
-          <div class="tool-badges">
-            <span class="badge">Google Analytics (GA4)</span>
-            <span class="badge">Google Search Console</span>
-          </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">03</span>
+          <h3 class="skill-stack-title">Web &amp; Analytics</h3>
+          <p class="skill-stack-desc">Google Analytics GA4 · Google Search Console</p>
         </div>
-        <div class="expertise-card reveal" style="transition-delay:0.3s">
-          <div class="expertise-card-title">Automation & CRM</div>
-          <div class="tool-badges">
-            <span class="badge">HubSpot</span>
-            <span class="badge">Salesforce</span>
-            <span class="badge">Kajabi</span>
-          </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">04</span>
+          <h3 class="skill-stack-title">Automation &amp; CRM</h3>
+          <p class="skill-stack-desc">HubSpot · Salesforce · Kajabi</p>
         </div>
-        <div class="expertise-card reveal" style="transition-delay:0.4s">
-          <div class="expertise-card-title">Email Marketing</div>
-          <div class="tool-badges">
-            <span class="badge">Mailchimp</span>
-            <span class="badge">Klaviyo</span>
-          </div>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">05</span>
+          <h3 class="skill-stack-title">Email Marketing</h3>
+          <p class="skill-stack-desc">Mailchimp · Klaviyo</p>
         </div>
-        <div class="expertise-card reveal" style="transition-delay:0.5s">
-          <div class="expertise-card-title">Video Editing</div>
-          <div class="tool-badges">
-            <span class="badge">Adobe Premiere</span>
-            <span class="badge">CapCut</span>
-            <span class="badge">Opus Clips</span>
+
+        <div class="skill-stack-card">
+          <span class="skill-stack-num">06</span>
+          <h3 class="skill-stack-title">Video Editing</h3>
+          <p class="skill-stack-desc">Adobe Premiere · CapCut · Opus Clips</p>
+        </div>
+
+      </div>
+
+      <!-- Sticky section heading (right column) -->
+      <div class="skills-sticky-head">
+        <p class="section-label">Tool Stack</p>
+        <h2 class="section-title">Areas of<br>Expertise</h2>
+        <p class="section-subtitle">The platforms and tools I work with every day.</p>
+        <div id="portrait-landing">
+          <div class="portrait-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1424,37 +1646,103 @@
 
     document.querySelectorAll('[data-materialize]').forEach(el => materializeObserver.observe(el));
 
-    /* ── 4. HERO CARD — SCROLL-DRIVEN ANIMATION ────
-       Card drifts right and flips (rotateY) as hero scrolls out */
+    /* ── 4. HERO CARD — 3-STEP SCROLL ANIMATION ───
+       Step 1: Card sits in hero (normal flow)
+       Step 2: User scrolls → card flips (rotateY 0→180°)
+       Step 3: Flip done → card lifts to fixed, flies down to
+               the Core Skills portrait slot, cross-fades in */
     const heroFloatingCard = document.getElementById('heroFloatingCard');
-    const heroEl = document.getElementById('hero');
+    const heroCardWrap     = heroFloatingCard?.closest('.hero-card-wrap');
+    const heroEl           = document.getElementById('hero');
+    const portraitLanding  = document.getElementById('portrait-landing');
 
-    function updateHeroCardScroll() {
-      if (!heroFloatingCard || !heroEl || window.innerWidth <= 768) return;
-      const scrollY = window.scrollY;
-      const viewH   = window.innerHeight;
-      // progress 0→1 over the first viewport-height of scroll
-      const progress = Math.min(1, scrollY / (viewH * 0.75));
+    let p2Active    = false;
+    let snapRect    = null;
+    let snapScrollY = null;
+    let endTravelY  = null;
 
-      if (progress === 0) {
-        heroFloatingCard.style.transform = '';
-        heroFloatingCard.style.opacity   = '';
+    function updateHeroCard() {
+      if (!heroFloatingCard || !heroEl || !heroCardWrap || window.innerWidth <= 768) return;
+
+      const scrollY  = window.scrollY;
+      const heroTop  = heroEl.offsetTop;
+      const heroH    = heroEl.offsetHeight;
+      // Flip completes when user has scrolled 55% of the hero's height
+      const flipEndY = heroTop + heroH * 0.55;
+
+      /* ── Phase 1: Flip ── */
+      if (scrollY < flipEndY) {
+        // User scrolled back from phase 2 — restore card to normal flow
+        if (p2Active) {
+          heroFloatingCard.style.cssText  = '';
+          heroCardWrap.style.visibility   = '';
+          portraitLanding.style.opacity   = '0';
+          p2Active    = false;
+          snapRect    = null;
+          snapScrollY = null;
+          endTravelY  = null;
+        }
+        const flipProg = Math.max(0, Math.min(1, scrollY / flipEndY));
+        heroFloatingCard.style.transform = `perspective(900px) rotateY(${flipProg * 180}deg)`;
+        heroFloatingCard.style.opacity   = '1';
         return;
       }
 
-      const tx      = progress * 160;         // drift right (already on right side)
-      const ty      = progress * 80;          // drift slightly down
-      const rotY    = progress * 180;         // full flip
-      const scale   = 1 - progress * 0.1;
-      const opacity = progress > 0.75 ? 1 - (progress - 0.75) / 0.25 : 1;
+      /* ── Phase 2: Fly to portrait-landing slot ── */
+      if (!p2Active) {
+        snapRect    = heroFloatingCard.getBoundingClientRect();
+        snapScrollY = scrollY;
 
-      heroFloatingCard.style.transform =
-        `translate(${tx}px, ${ty}px) rotateY(${rotY}deg) scale(${scale})`;
-      heroFloatingCard.style.opacity = opacity;
+        // Absolute page-top of the landing slot
+        const slotAbsTop = scrollY + portraitLanding.getBoundingClientRect().top;
+        // Arrive when slot is ~35% down the viewport
+        endTravelY = slotAbsTop - window.innerHeight * 0.35;
+        if (endTravelY <= snapScrollY) endTravelY = snapScrollY + 1;
+
+        // Lift card out of normal flow into fixed
+        heroFloatingCard.style.position  = 'fixed';
+        heroFloatingCard.style.top       = snapRect.top    + 'px';
+        heroFloatingCard.style.left      = snapRect.left   + 'px';
+        heroFloatingCard.style.width     = snapRect.width  + 'px';
+        heroFloatingCard.style.height    = snapRect.height + 'px';
+        heroFloatingCard.style.zIndex    = '500';
+        heroFloatingCard.style.margin    = '0';
+        heroFloatingCard.style.transform = 'perspective(900px) rotateY(180deg)';
+        heroFloatingCard.style.opacity   = '1';
+
+        // Keep hero layout stable while card is flying
+        heroCardWrap.style.visibility = 'hidden';
+        p2Active = true;
+      }
+
+      const travelRange = Math.max(1, endTravelY - snapScrollY);
+      const tp    = Math.max(0, Math.min(1, (scrollY - snapScrollY) / travelRange));
+      const eased = 1 - Math.pow(1 - tp, 3); // ease-out cubic
+
+      const slotRect = portraitLanding.getBoundingClientRect();
+      const curTop   = snapRect.top   + (slotRect.top   - snapRect.top)   * eased;
+      const curLeft  = snapRect.left  + (slotRect.left  - snapRect.left)  * eased;
+      const curW     = snapRect.width + (slotRect.width - snapRect.width) * eased;
+
+      heroFloatingCard.style.top    = curTop         + 'px';
+      heroFloatingCard.style.left   = curLeft        + 'px';
+      heroFloatingCard.style.width  = curW           + 'px';
+      heroFloatingCard.style.height = (curW * 4 / 3) + 'px';
+
+      // Cross-fade: flying card out, landing slot in (last 20% of travel)
+      const fadeStart = 0.8;
+      if (tp > fadeStart) {
+        const t = (tp - fadeStart) / (1 - fadeStart);
+        heroFloatingCard.style.opacity = (1 - t).toFixed(3);
+        portraitLanding.style.opacity  = t.toFixed(3);
+      } else {
+        heroFloatingCard.style.opacity = '1';
+        portraitLanding.style.opacity  = '0';
+      }
     }
 
-    window.addEventListener('scroll', updateHeroCardScroll, { passive: true });
-    updateHeroCardScroll();
+    window.addEventListener('scroll', updateHeroCard, { passive: true });
+    updateHeroCard();
 
     /* ── 5. STACKING CARDS — DEPTH SCALE ──────────
        Cards that are stuck get scaled down slightly to show layering */
@@ -1557,8 +1845,13 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const parsed = parseStatValue(el.textContent);
-          if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
+          // Hero stats are visible immediately on load — delay to match their CSS animation (3.8s)
+          const inHero = el.closest('#hero');
+          const delay = inHero ? 3900 : 0;
+          setTimeout(() => {
+            const parsed = parseStatValue(el.textContent);
+            if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
+          }, delay);
           statObserver.unobserve(el);
         }
       });
@@ -1569,7 +1862,35 @@
       statObserver.observe(el);
     });
 
-    /* ── 10. HERO — subtle mouse tilt on card (only when not scrolled) ── */
+    /* ── 10. EXPERTISE — EXPAND CARDS ─────────────
+       Hover (desktop) or tap (mobile) to expand a card.
+       Defaults to first card open; resets on mouse-leave. */
+    const expandCards = document.querySelectorAll('.expand-card');
+    const expandRow   = document.querySelector('.expand-cards-row');
+
+    function activateCard(card) {
+      expandCards.forEach(c => c.classList.remove('is-active'));
+      card.classList.add('is-active');
+    }
+
+    expandCards.forEach(card => {
+      // Desktop: hover
+      card.addEventListener('mouseenter', () => activateCard(card));
+      // Mobile: tap toggle
+      card.addEventListener('click', () => {
+        if (window.innerWidth <= 768) activateCard(card);
+      });
+    });
+
+    // Reset to first card when mouse leaves the row
+    if (expandRow) {
+      expandRow.addEventListener('mouseleave', () => {
+        expandCards.forEach(c => c.classList.remove('is-active'));
+        if (expandCards[0]) expandCards[0].classList.add('is-active');
+      });
+    }
+
+    /* ── 11. HERO — subtle mouse tilt on card (only when not scrolled) ── */
     const heroSectionEl = document.getElementById('hero');
 
     if (heroSectionEl && heroFloatingCard) {
