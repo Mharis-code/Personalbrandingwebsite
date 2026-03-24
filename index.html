@@ -216,6 +216,35 @@
     .hero-firstname { animation: fadeUp 0.8s ease 4.9s forwards; }
     .hero-lastname  { animation: fadeUp 0.8s ease 5.0s forwards; margin-bottom: 28px; }
 
+    /* Pill boxes for label and tagline */
+    .hero-label-pill {
+      background: rgba(255,255,255,0.95);
+      color: var(--blue) !important;
+      padding: 8px 18px;
+      border-radius: 100px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 4.8s forwards;
+    }
+
+    .hero-tagline-pill {
+      background: rgba(255,255,255,0.95);
+      color: var(--blue) !important;
+      padding: 14px 20px;
+      border-radius: 16px;
+      text-shadow: none;
+    }
+
+    /* Divider line below portrait */
+    .hero-portrait-divider {
+      width: 100%;
+      height: 2px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+      margin-top: 18px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 5.2s forwards;
+    }
+
     /* Card wrapper — perspective for scroll flip */
     .hero-card-wrap {
       perspective: 900px;
@@ -1153,13 +1182,13 @@
       <!-- Left: name, tagline, stats -->
       <div class="hero-left">
         <div class="hero-labels">
-          <span class="hero-label">Solving Marketing Problems for Startups, Solopreneurs and Global Organizations</span>
+          <span class="hero-label hero-label-pill">Solving Marketing Problems for Startups, Solopreneurs and Global Organizations</span>
         </div>
 
         <h1 class="hero-firstname">Muhammad</h1>
         <h1 class="hero-lastname">Haris</h1>
 
-        <p class="hero-tagline">
+        <p class="hero-tagline hero-tagline-pill">
           A results-driven Marketing Expert with 12 years of experience in developing
           and executing digital marketing strategies that drive brand visibility, growth and revenue.
         </p>
@@ -1182,10 +1211,11 @@
 
       <!-- Right: portrait card -->
       <div class="hero-right">
-        <div class="hero-card-wrap">
+        <div class="hero-card-wrap" style="display:flex;flex-direction:column;align-items:center;">
           <div class="hero-card" id="heroFloatingCard">
             <img id="portrait" src="Portrait Photo.png" alt="Muhammad Haris" />
           </div>
+          <div class="hero-portrait-divider"></div>
         </div>
       </div>
 
