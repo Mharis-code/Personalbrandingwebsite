@@ -918,11 +918,11 @@
        MOBILE RESPONSIVE
     ───────────────────────────────────────────── */
     @media (max-width: 768px) {
-      #hero { padding: 80px 24px 100px; }
+      #hero { padding: 80px 20px 100px; }
 
       .hero-split {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
       }
 
       /* On mobile: portrait above, text below */
@@ -931,13 +931,25 @@
       .hero-left { align-items: center; text-align: center; }
 
       .hero-firstname,
-      .hero-lastname { text-align: center; font-size: clamp(2.8rem, 14vw, 5rem); }
+      .hero-lastname { text-align: center; font-size: clamp(2.6rem, 13vw, 5rem); }
 
       .hero-tagline { text-align: center; }
 
-      .hero-card { width: clamp(160px, 50vw, 240px); }
+      .hero-card { width: clamp(140px, 45vw, 220px); }
 
-      .hero-stats { gap: 24px; }
+      .hero-stats {
+        gap: 16px 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .stat-number { font-size: clamp(1.8rem, 7vw, 3rem); }
+
+      /* Skills section */
+      #skills { padding: 72px 20px 80px; }
+
+      /* Expertise section */
+      #expertise { padding: 72px 20px 80px; }
 
       .skills-stacking-layout {
         grid-template-columns: 1fr;
@@ -945,24 +957,63 @@
       }
       .skills-sticky-head {
         position: static;
-        margin-bottom: 48px;
+        margin-bottom: 40px;
         order: -1;
       }
-      /* Disable sticky stacking on small screens — just show cards normally */
+      .skills-sticky-head .section-title { color: var(--white); }
+
+      /* Disable sticky stacking on small screens — show as regular cards */
       .skill-stack-card { position: relative !important; top: auto !important; }
+
+      /* Projects, Experience, Education */
+      #projects { padding: 72px 20px; }
+      #experience { padding: 72px 20px; }
+      #education { padding: 72px 20px; }
+      #contact { padding: 72px 20px 80px; }
 
       .exp-item { grid-template-columns: 1fr; gap: 8px; }
       .exp-date { padding-top: 0; }
 
       .edu-grid { grid-template-columns: 1fr; }
 
-      #pill-nav { padding: 8px 12px; gap: 2px; }
-      #pill-nav a { font-size: 0.7rem; padding: 6px 10px; }
+      /* Nav */
+      #pill-nav {
+        padding: 8px 10px;
+        gap: 2px;
+        max-width: calc(100vw - 32px);
+      }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; }
+
+      /* Expand card active height — enough room for title + description */
+      .expand-card.is-active { flex: 0 0 210px !important; }
     }
 
     @media (max-width: 480px) {
       .hero-labels { display: none; }
-      section { padding: 72px 20px; }
+      section { padding: 64px 16px; }
+
+      /* Nav on very small screens */
+      #pill-nav {
+        padding: 7px 8px;
+        gap: 1px;
+        max-width: calc(100vw - 16px);
+      }
+      #pill-nav a {
+        font-size: 0.62rem;
+        padding: 5px 7px;
+        letter-spacing: 0.02em;
+      }
+
+      /* Hero name sizing */
+      .hero-firstname,
+      .hero-lastname { font-size: clamp(2.2rem, 12vw, 3.6rem); }
+
+      /* Stats bar */
+      .hero-stats { gap: 12px 20px; }
+      .stat-number { font-size: clamp(1.6rem, 6.5vw, 2.4rem); }
+
+      /* Expand card active height */
+      .expand-card.is-active { flex: 0 0 220px !important; }
     }
 
     /* ─────────────────────────────────────────────
@@ -1615,6 +1666,14 @@
        JAVASCRIPT
   ══════════════════════════════════════════ -->
   <script>
+    /* ── 0. VIDEO BACKGROUND — FALLBACK & MOBILE PLAY ── */
+    const heroBgVideo = document.querySelector('.hero-video-bg');
+    if (heroBgVideo) {
+      heroBgVideo.addEventListener('error', () => heroBgVideo.remove(), true);
+      // Ensure autoplay on iOS/Android after first touch
+      document.addEventListener('touchstart', () => heroBgVideo.play().catch(() => {}), { once: true });
+    }
+
     /* ── 1. PRELOADER ──────────────────────────── */
     const preloader = document.getElementById('preloader');
     // Remove from DOM after animation completes (2.8s delay + 0.6s duration)
@@ -1772,6 +1831,7 @@
     }
 
     window.addEventListener('scroll', updateStackDepth, { passive: true });
+    updateStackDepth();
 
     /* ── 6. PILL NAV — ACTIVE SECTION HIGHLIGHT ─── */
     const navLinks = document.querySelectorAll('#pill-nav a[href^="#"]');
@@ -1841,25 +1901,31 @@
       requestAnimationFrame(tick);
     }
 
+    // Hero stats: observer won't fire reliably (overflow:hidden ancestor + threshold issues)
+    // Run directly via setTimeout timed to match the CSS fade-in animation (3.8s)
+    document.querySelectorAll('#hero .stat-number').forEach(el => {
+      el.setAttribute('data-counted', '');
+      setTimeout(() => {
+        const parsed = parseStatValue(el.textContent);
+        if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
+      }, 3900);
+    });
+
+    // Non-hero stats: fire on scroll into view, threshold 0 = any intersection fires it
     const statObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          // Hero stats are visible immediately on load — delay to match their CSS animation (3.8s)
-          const inHero = el.closest('#hero');
-          const delay = inHero ? 3900 : 0;
-          setTimeout(() => {
-            const parsed = parseStatValue(el.textContent);
-            if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
-          }, delay);
+          const parsed = parseStatValue(el.textContent);
+          if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
           statObserver.unobserve(el);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0 });
 
     document.querySelectorAll('.stat-number').forEach(el => {
       el.setAttribute('data-counted', '');
-      statObserver.observe(el);
+      if (!el.closest('#hero')) statObserver.observe(el);
     });
 
     /* ── 10. EXPERTISE — EXPAND CARDS ─────────────
@@ -1874,12 +1940,8 @@
     }
 
     expandCards.forEach(card => {
-      // Desktop: hover
       card.addEventListener('mouseenter', () => activateCard(card));
-      // Mobile: tap toggle
-      card.addEventListener('click', () => {
-        if (window.innerWidth <= 768) activateCard(card);
-      });
+      card.addEventListener('click',      () => activateCard(card));
     });
 
     // Reset to first card when mouse leaves the row
