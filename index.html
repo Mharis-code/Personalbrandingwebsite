@@ -1160,6 +1160,48 @@
     .stat-number[data-counted] {
       display: inline-block;
     }
+
+    /* ─────────────────────────────────────────────
+       MAGIC TEXT SECTION
+    ───────────────────────────────────────────── */
+    #magic-statement {
+      background: #0d0d0d;
+      padding: 120px clamp(24px, 7vw, 140px);
+      position: relative;
+    }
+
+    .magic-statement-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .magic-para {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      margin-bottom: 52px;
+      line-height: 1;
+    }
+
+    .magic-para:last-child { margin-bottom: 0; }
+
+    .magic-word {
+      display: inline-block;
+      font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      color: #ffffff;
+      opacity: 0.12;
+      margin-right: 0.28em;
+      margin-bottom: 0.18em;
+      line-height: 1.35;
+      will-change: opacity;
+    }
+
+    @media (max-width: 768px) {
+      #magic-statement { padding: 80px clamp(20px, 5vw, 40px); }
+      .magic-para { margin-bottom: 36px; }
+      .magic-word { font-size: clamp(1.25rem, 5vw, 1.7rem); }
+    }
   </style>
 </head>
 <body>
@@ -1254,6 +1296,19 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MAGIC TEXT STATEMENT
+  ══════════════════════════════════════════ -->
+  <section id="magic-statement" aria-label="About my approach">
+    <div class="magic-statement-inner">
+      <p class="magic-para" data-magic>Too often, marketing becomes a mix of scattered tactics, unclear messaging, and inconsistent execution.</p>
+      <p class="magic-para" data-magic>I know how frustrating that can be, especially when you are investing time and budget without seeing the traction you expected.</p>
+      <p class="magic-para" data-magic>I help solve that by combining strategy, storytelling, design, and systems into marketing that is clear, intentional, and growth-focused.</p>
+      <p class="magic-para" data-magic>That means less noise, smarter execution, and a brand that communicates its value with confidence.</p>
+      <p class="magic-para" data-magic>The outcome is better visibility, stronger trust, and marketing that drives meaningful results.</p>
     </div>
   </section>
 
@@ -2056,6 +2111,45 @@
         if (window.scrollY <= 60) heroFloatingCard.style.transform = '';
       });
     }
+
+    /* ── MAGIC TEXT SCROLL REVEAL ───────────────────
+       Split each [data-magic] paragraph into word spans,
+       then light them up progressively as the user scrolls
+       through each paragraph (mirrors framer-motion offset
+       ["start 0.85", "start 0.15"]).
+    ─────────────────────────────────────────────────── */
+    document.querySelectorAll('[data-magic]').forEach(para => {
+      const words = para.textContent.trim().split(/\s+/);
+      para.innerHTML = words
+        .map(w => `<span class="magic-word">${w}</span>`)
+        .join('');
+    });
+
+    function updateMagicText() {
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-magic]').forEach(para => {
+        const words   = para.querySelectorAll('.magic-word');
+        const total   = words.length;
+        const rect    = para.getBoundingClientRect();
+        const startPx = vh * 0.85;   // animation begins
+        const endPx   = vh * 0.15;   // animation ends
+        const progress = Math.max(0, Math.min(1,
+          (startPx - rect.top) / (startPx - endPx)
+        ));
+
+        words.forEach((word, i) => {
+          const wStart = i / total;
+          const wEnd   = wStart + 1 / total;
+          const wProg  = Math.max(0, Math.min(1,
+            (progress - wStart) / (wEnd - wStart)
+          ));
+          word.style.opacity = 0.12 + wProg * 0.88;
+        });
+      });
+    }
+
+    window.addEventListener('scroll', updateMagicText, { passive: true });
+    updateMagicText();
   </script>
 
 </body>
