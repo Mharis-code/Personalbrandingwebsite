@@ -40,7 +40,7 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      animation: preloaderFadeOut 0.6s ease 2.8s forwards;
+      animation: preloaderFadeOut 0.5s ease 3.5s forwards;
     }
 
     #preloader.hidden { display: none; }
@@ -51,7 +51,12 @@
       letter-spacing: 0.35em;
       color: #fff;
       text-align: center;
-      animation: preloaderTextIn 1.2s ease 0.3s both;
+      animation: preloaderTextIn 0.4s ease 0.1s both;
+    }
+
+    #preloader-word {
+      display: block;
+      transition: opacity 0.06s ease;
     }
 
     .preloader-text span {
@@ -196,7 +201,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.2s forwards;
+      animation: fadeUp 0.7s ease 2.8s forwards;
     }
 
     /* Name — left-aligned, stacked */
@@ -212,14 +217,14 @@
       display: block;
       opacity: 0;
     }
-    .hero-firstname { animation: fadeUp 0.9s ease 3.3s forwards; }
-    .hero-lastname  { animation: fadeUp 0.9s ease 3.4s forwards; margin-bottom: 28px; }
+    .hero-firstname { animation: fadeUp 0.8s ease 2.9s forwards; }
+    .hero-lastname  { animation: fadeUp 0.8s ease 3.0s forwards; margin-bottom: 28px; }
 
     /* Card wrapper — perspective for scroll flip */
     .hero-card-wrap {
       perspective: 900px;
       opacity: 0;
-      animation: fadeUp 0.9s ease 3.5s forwards;
+      animation: fadeUp 0.8s ease 3.1s forwards;
     }
 
     /* Portrait card — larger as a standalone feature */
@@ -269,7 +274,7 @@
       align-items: center;
       gap: 6px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.6s forwards;
+      animation: fadeUp 0.7s ease 3.2s forwards;
     }
 
     .hero-location::before {
@@ -290,7 +295,7 @@
       line-height: 1.7;
       margin-top: 16px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.7s forwards;
+      animation: fadeUp 0.7s ease 3.3s forwards;
     }
 
     /* Stats bar */
@@ -301,7 +306,7 @@
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.8s forwards;
+      animation: fadeUp 0.7s ease 3.4s forwards;
     }
 
     .stat-item { text-align: center; }
@@ -1121,7 +1126,7 @@
   ══════════════════════════════════════════ -->
   <div id="preloader">
     <div class="preloader-text">
-      أهلاً وسهلاً
+      <span id="preloader-word">مرحباً</span>
       <span>Welcome</span>
     </div>
   </div>
@@ -1676,10 +1681,42 @@
 
     /* ── 1. PRELOADER ──────────────────────────── */
     const preloader = document.getElementById('preloader');
-    // Remove from DOM after animation completes (2.8s delay + 0.6s duration)
     preloader.addEventListener('animationend', () => {
       preloader.classList.add('hidden');
     });
+
+    /* ── 1b. WELCOME WORD CYCLE ─────────────────── */
+    (function () {
+      const words = [
+        'مرحباً',        // Arabic
+        'خوش آمدید',     // Urdu
+        'Bienvenido',    // Spanish
+        'Bienvenue',     // French
+        '欢迎',           // Chinese
+        'ようこそ',        // Japanese
+        '환영합니다',      // Korean
+        'Willkommen',    // German
+        'Bem-vindo',     // Portuguese
+        'स्वागत',         // Hindi
+        'Hoş geldiniz',  // Turkish
+        'Benvenuto',     // Italian
+        'Добро пожаловать', // Russian
+        'مرحباً',        // Arabic (end on Arabic)
+      ];
+      const el = document.getElementById('preloader-word');
+      let i = 0;
+      // Start cycling after text fades in (~200ms), cycle every 230ms for ~3.1s
+      const cycleInterval = setInterval(() => {
+        i++;
+        if (i >= words.length) { clearInterval(cycleInterval); return; }
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.textContent = words[i];
+          el.style.opacity = '1';
+        }, 80);
+      }, 230);
+      setTimeout(() => clearInterval(cycleInterval), 3200);
+    })();
 
     /* ── 2. INTERSECTION OBSERVER — REVEAL ─────── */
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1908,7 +1945,7 @@
       setTimeout(() => {
         const parsed = parseStatValue(el.textContent);
         if (parsed) runCountUp(el, parsed.num, parsed.suffix, 1600);
-      }, 3900);
+      }, 3500);
     });
 
     // Non-hero stats: fire on scroll into view, threshold 0 = any intersection fires it
