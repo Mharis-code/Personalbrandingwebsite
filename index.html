@@ -118,9 +118,9 @@
     #hero {
       min-height: 100svh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 80px clamp(24px, 5vw, 80px) 100px;
+      padding: 48px clamp(24px, 5vw, 80px) 40px;
       position: relative;
       background: var(--navy);
       overflow: hidden;
@@ -214,7 +214,7 @@
         0 0 80px rgba(27, 108, 168, 0.3);
     }
     .hero-firstname { animation: fadeUp 0.8s ease 4.9s forwards; }
-    .hero-lastname  { animation: fadeUp 0.8s ease 5.0s forwards; margin-bottom: 28px; }
+    .hero-lastname  { animation: fadeUp 0.8s ease 5.0s forwards; margin-bottom: 20px; }
 
     /* Pill boxes for label and tagline */
     .hero-label-pill {
@@ -319,16 +319,26 @@
       color: rgba(255,255,255,0.97);
       text-shadow: 0 1px 12px rgba(0,0,0,0.65);
       line-height: 1.7;
-      margin-top: 16px;
+      margin-top: 12px;
       opacity: 0;
       animation: fadeUp 0.7s ease 5.3s forwards;
+    }
+
+    /* Hero CTA buttons */
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 5.5s forwards;
     }
 
     /* Stats bar */
     .hero-stats {
       display: flex;
       gap: 40px;
-      margin-top: 44px;
+      margin-top: 28px;
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
@@ -949,11 +959,11 @@
        MOBILE RESPONSIVE
     ───────────────────────────────────────────── */
     @media (max-width: 768px) {
-      #hero { padding: 80px 20px 100px; }
+      #hero { padding: 36px 20px 32px; }
 
       .hero-split {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 16px;
       }
 
       /* On mobile: portrait above, text below */
@@ -962,19 +972,26 @@
       .hero-left { align-items: center; text-align: center; }
 
       .hero-firstname,
-      .hero-lastname { text-align: center; font-size: clamp(2.6rem, 13vw, 5rem); }
+      .hero-lastname { text-align: center; font-size: clamp(2.4rem, 12vw, 4.5rem); }
 
-      .hero-tagline { text-align: center; }
+      .hero-lastname { margin-bottom: 14px; }
 
-      .hero-card { width: clamp(140px, 45vw, 220px); }
+      .hero-tagline { text-align: center; margin-top: 8px; }
+
+      .hero-card { width: clamp(90px, 28vw, 140px); }
 
       .hero-stats {
-        gap: 16px 24px;
+        gap: 12px 20px;
         justify-content: center;
         flex-wrap: wrap;
+        margin-top: 16px;
       }
 
-      .stat-number { font-size: clamp(1.8rem, 7vw, 3rem); }
+      .stat-number { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+
+      .hero-cta { justify-content: center; margin-top: 18px; gap: 10px; }
+
+      .hero-cta .btn { padding: 12px 20px; font-size: 0.82rem; }
 
       /* Skills section */
       #skills { padding: 72px 20px 80px; }
@@ -1206,6 +1223,24 @@
             <div class="stat-number">16</div>
             <div class="stat-label">Years in Design</div>
           </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="mailto:hello@muhammadharis.com" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            Send Me an Email
+          </a>
+          <a href="https://www.linkedin.com/in/imuhammadharis/" target="_blank" rel="noopener" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            Connect on LinkedIn
+          </a>
         </div>
       </div>
 
