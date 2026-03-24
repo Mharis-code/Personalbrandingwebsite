@@ -12,6 +12,45 @@
     ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ─────────────────────────────────────────────
+       PRELOADER
+    ───────────────────────────────────────────── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    #preloader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .preloader-inner {
+      text-align: center;
+      user-select: none;
+    }
+    #preloader-hello {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 14px;
+      transition: opacity 0.1s ease;
+    }
+    #preloader-welcome {
+      font-size: clamp(0.75rem, 1.8vw, 1rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
     :root {
       --blue:    #1B6CA8;
       --navy:    #1a1a1a;
@@ -153,7 +192,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       opacity: 0;
-      animation: fadeUp 0.7s ease 2.8s forwards;
+      animation: fadeUp 0.7s ease 4.8s forwards;
     }
 
     /* Name — left-aligned, stacked */
@@ -169,14 +208,14 @@
       display: block;
       opacity: 0;
     }
-    .hero-firstname { animation: fadeUp 0.8s ease 2.9s forwards; }
-    .hero-lastname  { animation: fadeUp 0.8s ease 3.0s forwards; margin-bottom: 28px; }
+    .hero-firstname { animation: fadeUp 0.8s ease 4.9s forwards; }
+    .hero-lastname  { animation: fadeUp 0.8s ease 5.0s forwards; margin-bottom: 28px; }
 
     /* Card wrapper — perspective for scroll flip */
     .hero-card-wrap {
       perspective: 900px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 3.1s forwards;
+      animation: fadeUp 0.8s ease 5.1s forwards;
     }
 
     /* Portrait card — larger as a standalone feature */
@@ -226,7 +265,7 @@
       align-items: center;
       gap: 6px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.2s forwards;
+      animation: fadeUp 0.7s ease 5.2s forwards;
     }
 
     .hero-location::before {
@@ -247,7 +286,7 @@
       line-height: 1.7;
       margin-top: 16px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.3s forwards;
+      animation: fadeUp 0.7s ease 5.3s forwards;
     }
 
     /* Stats bar */
@@ -258,7 +297,7 @@
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: fadeUp 0.7s ease 3.4s forwards;
+      animation: fadeUp 0.7s ease 5.4s forwards;
     }
 
     .stat-item { text-align: center; }
@@ -1073,6 +1112,16 @@
 </head>
 <body>
 
+  <!-- ══════════════════════════════════════════
+       PRELOADER
+  ══════════════════════════════════════════ -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div id="preloader-hello">Hello</div>
+      <div id="preloader-welcome">Welcome</div>
+    </div>
+  </div>
+
 
   <!-- ══════════════════════════════════════════
        FLOATING PILL NAVBAR
@@ -1614,6 +1663,47 @@
        JAVASCRIPT
   ══════════════════════════════════════════ -->
   <script>
+    /* ── PRELOADER ──────────────────────────────────── */
+    (function () {
+      const preloader = document.getElementById('preloader');
+      const helloEl   = document.getElementById('preloader-hello');
+
+      const languages = [
+        'Bonjour', 'Hola', 'Ciao', 'Hallo', 'Olá',
+        'مرحبا', 'नमस्ते', 'こんにちは', '안녕하세요',
+        'Merhaba', 'Привет', 'Sawubona', 'Hello'
+      ];
+
+      document.body.style.overflow = 'hidden';
+
+      let idx = 0;
+
+      function cycleNext() {
+        helloEl.style.opacity = '0';
+        setTimeout(() => {
+          helloEl.textContent = languages[idx];
+          helloEl.style.opacity = '1';
+          idx++;
+          if (idx < languages.length) {
+            setTimeout(cycleNext, 200);
+          } else {
+            setTimeout(dismissPreloader, 300);
+          }
+        }, 100);
+      }
+
+      function dismissPreloader() {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 500);
+      }
+
+      // Phase 1: static "Hello" for 2 seconds, then cycle
+      setTimeout(cycleNext, 2000);
+    })();
+
     /* ── 0. VIDEO BACKGROUND — FALLBACK & MOBILE PLAY ── */
     const heroBgVideo = document.querySelector('.hero-video-bg');
     if (heroBgVideo) {
