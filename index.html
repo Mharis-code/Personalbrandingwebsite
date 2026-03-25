@@ -345,6 +345,18 @@
       animation: fadeUp 0.7s ease 5.4s forwards;
     }
 
+    /* Fast-load overrides when preloader is skipped (return navigation) */
+    body.no-preloader .hero-label,
+    body.no-preloader .hero-label-pill    { animation-delay: 0.05s; }
+    body.no-preloader .hero-firstname     { animation-delay: 0.1s;  }
+    body.no-preloader .hero-lastname      { animation-delay: 0.15s; }
+    body.no-preloader .hero-card-wrap     { animation-delay: 0.1s;  }
+    body.no-preloader .hero-portrait-divider { animation-delay: 0.2s; }
+    body.no-preloader .hero-location      { animation-delay: 0.2s;  }
+    body.no-preloader .hero-tagline       { animation-delay: 0.2s;  }
+    body.no-preloader .hero-stats         { animation-delay: 0.25s; }
+    body.no-preloader .hero-cta           { animation-delay: 0.3s;  }
+
     .stat-item { text-align: center; }
 
     .stat-number {
@@ -1868,6 +1880,7 @@
       // Skip preloader on return visits within the same browser session
       if (sessionStorage.getItem('preloaderShown')) {
         preloader.style.display = 'none';
+        document.body.classList.add('no-preloader');
         return;
       }
 
