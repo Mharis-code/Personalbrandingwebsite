@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────────
+       FLOATING PILL NAVBAR
+    ───────────────────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ─────────────────────────────────────────────
+       PAGE HEADER
+    ───────────────────────────────────────────── */
+    #portfolio-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #portfolio-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .header-subtitle {
+      margin-top: 24px;
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      line-height: 1.7;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    /* ─────────────────────────────────────────────
+       FILTER TABS
+    ───────────────────────────────────────────── */
+    #filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 48px clamp(24px, 6vw, 100px) 0;
+      max-width: calc(1100px + clamp(24px, 6vw, 100px) * 2);
+      margin: 0 auto;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1.5px solid rgba(26,26,26,0.18);
+      background: transparent;
+      color: rgba(26,26,26,0.55);
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+
+    /* ─────────────────────────────────────────────
+       PORTFOLIO GRID
+    ───────────────────────────────────────────── */
+    #portfolio-grid {
+      padding: 40px clamp(24px, 6vw, 100px) 140px;
+      max-width: calc(1100px + clamp(24px, 6vw, 100px) * 2);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    /* ─────────────────────────────────────────────
+       PORTFOLIO CARD
+    ───────────────────────────────────────────── */
+    .portfolio-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .portfolio-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.13);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #e8ecf1 0%, #d0d7e0 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-thumb-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(26,26,26,0.28);
+    }
+
+    .card-thumb-placeholder svg { opacity: 0.5; }
+
+    .card-thumb-placeholder span {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .card-category-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(26,26,26,0.75);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    .card-body {
+      padding: 24px 26px 28px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.845rem;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--gray-bg);
+      color: rgba(26,26,26,0.6);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: gap 0.2s ease;
+    }
+
+    .card-link:hover { gap: 10px; }
+
+    /* ─────────────────────────────────────────────
+       EMPTY STATE
+    ───────────────────────────────────────────── */
+    #empty-state {
+      display: none;
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 24px;
+      color: rgba(26,26,26,0.35);
+    }
+
+    #empty-state p {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────────
+       MOBILE
+    ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      #portfolio-header { padding: 80px 20px 60px; }
+      #filter-bar       { padding: 36px 20px 0; }
+      #portfolio-grid   { padding: 28px 20px 120px; gap: 20px; grid-template-columns: 1fr; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="index.html#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       PAGE HEADER
+  ══════════════════════════════════════════ -->
+  <header id="portfolio-header">
+    <div class="header-inner">
+      <p class="header-label">Selected Work</p>
+      <h1 class="header-title">Portfolio</h1>
+      <p class="header-subtitle">A collection of campaigns, brand work, and digital projects built across industries and channels.</p>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       FILTER BAR
+  ══════════════════════════════════════════ -->
+  <div id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="digital-marketing">Digital Marketing</button>
+    <button class="filter-btn" data-filter="content">Content &amp; Copy</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+    <button class="filter-btn" data-filter="strategy">Strategy</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PORTFOLIO GRID
+  ══════════════════════════════════════════ -->
+  <main id="portfolio-grid">
+
+    <article class="portfolio-card" data-category="digital-marketing">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m3 9 9-6 9 6"/><path d="M9 21V12h6v9"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Digital Marketing</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">LinkedIn Growth — 0 to 30K Followers</h2>
+        <p class="card-desc">Organically scaled a B2B LinkedIn presence from zero to 30,000 followers through consistent content strategy, thought leadership posts, and community engagement.</p>
+        <div class="card-tags">
+          <span class="card-tag">LinkedIn</span>
+          <span class="card-tag">Content Strategy</span>
+          <span class="card-tag">B2B</span>
+          <span class="card-tag">Organic Growth</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="portfolio-card" data-category="branding">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l4 4"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Branding</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Brand Identity System</h2>
+        <p class="card-desc">Developed a full visual identity for a healthcare startup — logo, typography, colour palette, brand guidelines, and a suite of marketing collateral.</p>
+        <div class="card-tags">
+          <span class="card-tag">Identity Design</span>
+          <span class="card-tag">Brand Guidelines</span>
+          <span class="card-tag">Healthcare</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="portfolio-card" data-category="strategy">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Strategy</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Go-to-Market Strategy — SaaS Launch</h2>
+        <p class="card-desc">Built and executed a full GTM strategy for a SaaS product launch — positioning, messaging framework, channel mix, and a 90-day content calendar.</p>
+        <div class="card-tags">
+          <span class="card-tag">GTM Strategy</span>
+          <span class="card-tag">SaaS</span>
+          <span class="card-tag">Positioning</span>
+          <span class="card-tag">Launch</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="portfolio-card" data-category="content">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Content &amp; Copy</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Newsletter — 2,000+ Enrollments</h2>
+        <p class="card-desc">Launched and grew an email newsletter that drove over 2,000 LMS course enrollments through a structured content funnel and segmented email sequences.</p>
+        <div class="card-tags">
+          <span class="card-tag">Email Marketing</span>
+          <span class="card-tag">Newsletter</span>
+          <span class="card-tag">Copywriting</span>
+          <span class="card-tag">Funnel</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="portfolio-card" data-category="design">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Design</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Social Media Creative System</h2>
+        <p class="card-desc">Designed a scalable social media template system for a global brand — 40+ modular assets across Instagram, LinkedIn, and Twitter that maintained brand consistency at speed.</p>
+        <div class="card-tags">
+          <span class="card-tag">Graphic Design</span>
+          <span class="card-tag">Social Media</span>
+          <span class="card-tag">Templates</span>
+          <span class="card-tag">Brand Consistency</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="portfolio-card" data-category="digital-marketing">
+      <div class="card-thumb">
+        <div class="card-thumb-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span>Project Image</span>
+        </div>
+        <span class="card-category-badge">Digital Marketing</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">SEO Content Strategy — 3× Organic Traffic</h2>
+        <p class="card-desc">Rebuilt a brand's content strategy around SEO fundamentals — keyword clustering, topical authority, and pillar pages — tripling organic traffic in under 6 months.</p>
+        <div class="card-tags">
+          <span class="card-tag">SEO</span>
+          <span class="card-tag">Content Marketing</span>
+          <span class="card-tag">Analytics</span>
+          <span class="card-tag">Growth</span>
+        </div>
+        <a href="#" class="card-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <div id="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin:0 auto;display:block;opacity:0.3"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <p>No projects in this category yet.</p>
+    </div>
+
+  </main>
+
+  <script>
+    /* ── FILTER LOGIC ─────────────────────────── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards      = document.querySelectorAll('.portfolio-card');
+    const emptyState = document.getElementById('empty-state');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visible = 0;
+
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    /* ── SCROLL REVEAL ────────────────────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+
+</body>
+</html>
