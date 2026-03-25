@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lana Starchuck LinkedIn Branding — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="../../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    #project-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #project-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.05s forwards;
+    }
+
+    .back-link:hover { color: #fff; }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.25s forwards;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .header-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── CONTENT ──────────────────────────────── */
+    .project-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px clamp(24px, 6vw, 100px) 160px;
+    }
+
+    /* ── OVERVIEW ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .overview-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .overview-text p:last-child { margin-bottom: 0; }
+
+    .overview-sidebar {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-item:first-child { padding-top: 0; }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ── BANNER SHOWCASE ──────────────────────── */
+    .banner-section {
+      margin-bottom: 80px;
+    }
+
+    .banner-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .banner-showcase {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .banner-showcase:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .banner-showcase img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── DELIVERABLES ─────────────────────────── */
+    .deliverables-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .deliverable-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(27,108,168,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+
+    .deliverable-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .deliverable-desc {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── KEYFRAMES ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ───────────────────────────────── */
+    @media (max-width: 768px) {
+      #project-header { padding: 80px 20px 60px; }
+      .project-content { padding: 48px 20px 120px; }
+      .overview-grid { grid-template-columns: 1fr; gap: 40px; }
+      .deliverables-grid { grid-template-columns: 1fr 1fr; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+
+    @media (max-width: 480px) {
+      .deliverables-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+    <a href="/#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header id="project-header">
+    <div class="header-inner">
+      <a href="/portfolio/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="header-label">LinkedIn Branding</p>
+      <h1 class="header-title">Lana Starchuck</h1>
+      <div class="header-meta">
+        <span class="header-tag">LinkedIn</span>
+        <span class="header-tag">Branding</span>
+        <span class="header-tag">Personal Brand</span>
+        <span class="header-tag">Visual Identity</span>
+        <span class="header-tag">Social Media</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- OVERVIEW -->
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Project Overview</h2>
+        <p>Lana Starchuck is a Speaker, Author, and Skydiver who helps high-impact leaders achieve strategic clarity. With a powerful story and a compelling message, she needed a LinkedIn presence that could match her authority and stop people mid-scroll.</p>
+        <p>The challenge was translating her unique positioning — "Strategic Clarity for High-Impact Leaders, Trusted by Purpose-Driven Teams" — into a visual identity that felt bold, credible, and unmistakably hers. Her existing LinkedIn profile wasn't reflecting the level of the rooms she was operating in.</p>
+        <p>I led the full LinkedIn branding process: defining her visual language, crafting the banner design, refining her profile positioning, and building a consistent brand aesthetic that communicates trust and authority at a glance. The banner design draws on dramatic aerial imagery — a nod to her skydiving identity — while keeping the typography and messaging sharp and professional.</p>
+        <p>The result is a LinkedIn presence that commands attention, communicates her value proposition instantly, and positions Lana as a premium thought leader in her space.</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-label">Client</div>
+          <div class="sidebar-value">Lana Starchuck</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Deliverable</div>
+          <div class="sidebar-value">LinkedIn Brand Identity</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Category</div>
+          <div class="sidebar-value">Personal Branding · Social Media</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">My Role</div>
+          <div class="sidebar-value">Brand Strategist · Designer</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Platform</div>
+          <div class="sidebar-value">LinkedIn</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER SHOWCASE -->
+    <div class="banner-section">
+      <h2>LinkedIn Banner Design</h2>
+      <div class="banner-showcase" onclick="openLightbox('../../Lana Starchuck LinkedIn Branding.jpg')">
+        <img src="../../Lana Starchuck LinkedIn Branding.jpg" alt="Lana Starchuck LinkedIn Banner Design" />
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="deliverables-section">
+      <h2>What Was Delivered</h2>
+      <div class="deliverables-grid">
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <div class="deliverable-title">LinkedIn Banner Design</div>
+          <div class="deliverable-desc">Custom banner using bold aerial imagery, clear typography, and professional layout sized for LinkedIn's cover dimensions.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l4 4"/></svg>
+          </div>
+          <div class="deliverable-title">Brand Positioning</div>
+          <div class="deliverable-desc">Defined and refined Lana's core value proposition — "Strategic Clarity for High-Impact Leaders" — for consistent use across her profile.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="deliverable-title">Visual Language</div>
+          <div class="deliverable-desc">Established a consistent colour palette, typography pairing, and visual style that can extend across all of Lana's social content.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="deliverable-title">Profile Optimisation</div>
+          <div class="deliverable-desc">Strategic guidance on headline, about section framing, and profile structure to maximise first-impression impact and profile searchability.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
