@@ -1777,6 +1777,12 @@
       const preloader = document.getElementById('preloader');
       const helloEl   = document.getElementById('preloader-hello');
 
+      // Skip preloader on return visits within the same browser session
+      if (sessionStorage.getItem('preloaderShown')) {
+        preloader.style.display = 'none';
+        return;
+      }
+
       const languages = [
         'Bonjour', 'Hola', 'Ciao', 'Hallo', 'Olá',
         'مرحبا', 'नमस्ते', 'こんにちは', '안녕하세요',
@@ -1803,6 +1809,7 @@
 
       function dismissPreloader() {
         preloader.classList.add('fade-out');
+        sessionStorage.setItem('preloaderShown', '1');
         setTimeout(() => {
           preloader.style.display = 'none';
           document.body.style.overflow = '';
