@@ -611,6 +611,16 @@
     }, { threshold: 0.08 });
 
     cards.forEach(card => observer.observe(card));
+
+    /* ── WHOLE-CARD CLICK ─────────────────────── */
+    cards.forEach(card => {
+      const link = card.querySelector('.card-link');
+      if (!link || link.getAttribute('href') === '#') return;
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // let real link clicks pass through
+        window.location.href = link.href;
+      });
+    });
   </script>
 
 </body>
