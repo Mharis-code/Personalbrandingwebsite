@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ron Monteiro Website Design — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="../../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    #project-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #project-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.05s forwards;
+    }
+
+    .back-link:hover { color: #fff; }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.25s forwards;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .header-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── CONTENT ──────────────────────────────── */
+    .project-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px clamp(24px, 6vw, 100px) 160px;
+    }
+
+    /* ── OVERVIEW ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .overview-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .overview-text p:last-child { margin-bottom: 0; }
+
+    .overview-sidebar {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-item:first-child { padding-top: 0; }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat-pill {
+      background: rgba(27,108,168,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-pill-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-pill-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 0.06em;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* ── IMAGE GALLERY ────────────────────────── */
+    .gallery-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #e8ecf1;
+    }
+
+    .gallery-item:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.14);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item:first-child img {
+      max-height: 520px;
+      object-fit: cover;
+    }
+
+    .gallery-item:not(:first-child) img {
+      aspect-ratio: 4/3;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── KEYFRAMES ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ───────────────────────────────── */
+    @media (max-width: 768px) {
+      #project-header { padding: 80px 20px 60px; }
+      .project-content { padding: 48px 20px 120px; }
+      .overview-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: 1; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+    <a href="/#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header id="project-header">
+    <div class="header-inner">
+      <a href="/portfolio/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="header-label">Website Design</p>
+      <h1 class="header-title">Ron Monteiro</h1>
+      <div class="header-meta">
+        <span class="header-tag">Web Design</span>
+        <span class="header-tag">Personal Brand</span>
+        <span class="header-tag">UX / UI</span>
+        <span class="header-tag">Conversion Optimisation</span>
+        <span class="header-tag">Aug – Nov 2025</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- OVERVIEW -->
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Project Overview</h2>
+        <p>Ron Monteiro is a high-performance coach and solopreneur who needed a personal brand website that could do more than just look good — it had to convert visitors into clients, communicate authority, and make a strong first impression in a competitive coaching market.</p>
+        <p>The brief was clear: build a site that reflects Ron's energy, expertise, and results-driven personality. That meant bold typography, a confident visual hierarchy, and a user experience designed to move people from "browsing" to "booking" as efficiently as possible.</p>
+        <p>I led the full design process — from initial wireframes and information architecture through to final visual design and hand-off. Every section was crafted with a specific goal: the hero captures attention, the about section builds trust, the services section drives consideration, and the contact section removes friction from the conversion path.</p>
+        <p>The result was a site that felt premium, personal, and purposeful — delivering a 40% increase in inquiry submissions, a 45% lift in video watch time, and a 69% improvement in overall conversion rates.</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-label">Client</div>
+          <div class="sidebar-value">Ron Monteiro</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Deliverable</div>
+          <div class="sidebar-value">Full Website Design</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Timeline</div>
+          <div class="sidebar-value">Aug – Nov 2025</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">My Role</div>
+          <div class="sidebar-value">Lead Designer · Brand Strategist</div>
+        </div>
+
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="stat-pill-num">40%</div>
+            <div class="stat-pill-label">More<br>Inquiries</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">45%</div>
+            <div class="stat-pill-label">Video<br>Watch Time</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">69%</div>
+            <div class="stat-pill-label">Conversion<br>Rate ↑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="gallery-section">
+      <h2>Design Screens</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('../../ROn Monteiro Website 1.jpg')">
+          <img src="../../ROn Monteiro Website 1.jpg" alt="Ron Monteiro Website — Hero Section" loading="lazy" />
+        </div>
+        <div class="gallery-item" onclick="openLightbox('../../ROn Monteiro Website 2.jpg')">
+          <img src="../../ROn Monteiro Website 2.jpg" alt="Ron Monteiro Website — About Section" loading="lazy" />
+        </div>
+        <div class="gallery-item" onclick="openLightbox('../../ROn Monteiro Website 3.jpg')">
+          <img src="../../ROn Monteiro Website 3.jpg" alt="Ron Monteiro Website — Services Section" loading="lazy" />
+        </div>
+        <div class="gallery-item" onclick="openLightbox('../../ROn Monteiro Website 4.jpg')">
+          <img src="../../ROn Monteiro Website 4.jpg" alt="Ron Monteiro Website — Contact Section" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
