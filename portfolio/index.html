@@ -339,9 +339,57 @@
       #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
       #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
     }
+
+    /* ── PORTFOLIO PRELOADER ──────────────────── */
+    #portfolio-preloader {
+      position: fixed;
+      inset: 0;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    #portfolio-preloader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #portfolio-preloader.hidden {
+      display: none;
+    }
+    .portfolio-preloader-inner {
+      text-align: center;
+      user-select: none;
+    }
+    #preloader-welcome-text {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 7vw, 5rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: preloaderFadeUp 0.5s ease 0.15s forwards;
+    }
+    #preloader-welcome-text span {
+      color: #E8A020;
+    }
+    @keyframes preloaderFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
+
+  <!-- PRELOADER -->
+  <div id="portfolio-preloader">
+    <div class="portfolio-preloader-inner">
+      <div id="preloader-welcome-text">Welcome to<br><span>my world.</span></div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════════
        NAVBAR
@@ -596,6 +644,16 @@
   </main>
 
   <script>
+    /* ── PORTFOLIO PRELOADER ──────────────────── */
+    (function () {
+      const el = document.getElementById('portfolio-preloader');
+      // Show for 1.5s then fade out over 0.5s
+      setTimeout(function () {
+        el.classList.add('fade-out');
+        setTimeout(function () { el.classList.add('hidden'); }, 500);
+      }, 1500);
+    })();
+
     /* ── FILTER LOGIC ─────────────────────────── */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards      = document.querySelectorAll('.portfolio-card');
