@@ -1072,8 +1072,19 @@
       /* Disable sticky stacking on small screens — show as regular cards */
       .skill-stack-card { position: relative !important; top: auto !important; }
 
+      /* Hide portrait image on mobile */
+      #portrait-landing { display: none !important; }
+
       /* Projects, Experience, Education */
       #projects { padding: 72px 20px; }
+
+      /* Force single-column card grid on mobile */
+      .projects-grid { grid-template-columns: 1fr; margin-top: 40px; }
+
+      .project-card-visual .project-card-body { padding: 22px 20px 24px; }
+
+      .project-stat-row { gap: 10px; }
+      .project-stat-num { font-size: 1.4rem; }
       #experience { padding: 72px 20px; }
       #education { padding: 72px 20px; }
       #contact { padding: 72px 20px 80px; }
