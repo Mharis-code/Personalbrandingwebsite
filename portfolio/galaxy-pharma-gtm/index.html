@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Go-to-Market Strategy — Galaxy Pharma — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="../../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    #project-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #project-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.05s forwards;
+    }
+
+    .back-link:hover { color: #fff; }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.25s forwards;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .header-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── CONTENT ──────────────────────────────── */
+    .project-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px clamp(24px, 6vw, 100px) 160px;
+    }
+
+    /* ── OVERVIEW ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .overview-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .overview-text p:last-child { margin-bottom: 0; }
+
+    .overview-sidebar {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-item:first-child { padding-top: 0; }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat-pill {
+      background: rgba(27,108,168,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-pill-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-pill-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 0.06em;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* ── DELIVERABLES ─────────────────────────── */
+    .deliverables-section {
+      margin-bottom: 80px;
+    }
+
+    .deliverables-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .deliverable-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(27,108,168,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+
+    .deliverable-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .deliverable-desc {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── PARTNERS STRIP ───────────────────────── */
+    .partners-section {
+      margin-bottom: 80px;
+    }
+
+    .partners-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .partner-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .partner-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .partner-desc {
+      font-size: 0.78rem;
+      color: #999;
+      line-height: 1.5;
+    }
+
+    /* ── KEYFRAMES ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ───────────────────────────────── */
+    @media (max-width: 768px) {
+      #project-header { padding: 80px 20px 60px; }
+      .project-content { padding: 48px 20px 120px; }
+      .overview-grid { grid-template-columns: 1fr; gap: 40px; }
+      .deliverables-grid { grid-template-columns: 1fr 1fr; }
+      .partners-grid { grid-template-columns: 1fr 1fr; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+
+    @media (max-width: 480px) {
+      .deliverables-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+    <a href="/#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header id="project-header">
+    <div class="header-inner">
+      <a href="/portfolio/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="header-label">Go-to-Market Strategy</p>
+      <h1 class="header-title">Galaxy Pharma</h1>
+      <div class="header-meta">
+        <span class="header-tag">GTM Strategy</span>
+        <span class="header-tag">Product Launch</span>
+        <span class="header-tag">Pharma</span>
+        <span class="header-tag">Pakistan &amp; UAE</span>
+        <span class="header-tag">$10M Revenue Impact</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- OVERVIEW -->
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Project Overview</h2>
+        <p>Galaxy Pharma is a pharmaceutical company operating across Pakistan and the UAE, focused on bringing high-quality international pharmaceutical products to market. The mandate was to lead end-to-end go-to-market strategy for multiple new product launches — working in close collaboration with global partners including LG Chem (South Korea), Besins Healthcare, and Lo.LI Pharma International.</p>
+        <p>Each product launch began with deep market research to surface unmet clinical needs — identifying the therapeutic gaps that neither local nor competing international brands were addressing. This research informed every downstream decision: product positioning, target physician profiles, channel strategy, and messaging frameworks tailored to the regulatory and cultural realities of each market.</p>
+        <p>Cross-functional collaboration was central to the work. Coordinating between regional commercial teams in Pakistan and the UAE and global product and medical affairs teams across multiple time zones required clear communication, structured processes, and the ability to translate complex clinical data into compelling market narratives that resonated with local healthcare professionals.</p>
+        <p>The result was a series of successful product launches that added $10 million in revenue — expanding Galaxy Pharma's commercial footprint and establishing new therapeutic categories in both markets.</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-label">Client</div>
+          <div class="sidebar-value">Galaxy Pharma</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Markets</div>
+          <div class="sidebar-value">Pakistan &amp; UAE</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Partners</div>
+          <div class="sidebar-value">LG Chem · Besins Healthcare · Lo.LI Pharma International</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">My Role</div>
+          <div class="sidebar-value">GTM Strategy &amp; Product Launch Lead</div>
+        </div>
+
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="stat-pill-num">$10M</div>
+            <div class="stat-pill-label">Revenue<br>Added</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">3</div>
+            <div class="stat-pill-label">International<br>Partners</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">2</div>
+            <div class="stat-pill-label">Markets<br>Launched</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERNATIONAL PARTNERS -->
+    <div class="partners-section">
+      <h2>International Partners</h2>
+      <div class="partners-grid">
+
+        <div class="partner-card">
+          <div class="partner-name">LG Chem</div>
+          <div class="partner-desc">Global chemical and life sciences leader based in South Korea — partnered on pharmaceutical product development and market entry for Pakistan and UAE.</div>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-name">Besins Healthcare</div>
+          <div class="partner-desc">International specialty pharma company focused on hormonal therapies — collaborated on launch strategy, clinical positioning, and physician engagement.</div>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-name">Lo.LI Pharma International</div>
+          <div class="partner-desc">Italian pharmaceutical company specialising in women's health and reproductive medicine — partnered on GTM execution and market access strategy.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="deliverables-section">
+      <h2>What Was Delivered</h2>
+      <div class="deliverables-grid">
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <div class="deliverable-title">Market Research &amp; Clinical Needs Assessment</div>
+          <div class="deliverable-desc">Conducted comprehensive primary and secondary research across Pakistan and UAE to identify unmet clinical needs, map competitive landscapes, and size market opportunities for each new product.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="deliverable-title">Cross-Regional Team Collaboration</div>
+          <div class="deliverable-desc">Coordinated with regional commercial teams and global medical affairs and product teams at LG Chem, Besins Healthcare, and Lo.LI Pharma to align on strategy, timelines, and regulatory requirements.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg>
+          </div>
+          <div class="deliverable-title">Go-to-Market Strategy Development</div>
+          <div class="deliverable-desc">Built comprehensive GTM strategies for each product covering market segmentation, target physician profiling, channel mix, pricing frameworks, and market-specific messaging.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="deliverable-title">Product Positioning &amp; Messaging</div>
+          <div class="deliverable-desc">Translated complex clinical data into clear, compelling product narratives — positioning each product against local and international competitors with differentiated value propositions for physicians and patients.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="deliverable-title">Launch Planning &amp; Execution</div>
+          <div class="deliverable-desc">Managed end-to-end launch timelines for multiple product introductions — coordinating regulatory, marketing, sales, and medical teams to ensure on-time, on-strategy market entry across both Pakistan and UAE.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="deliverable-title">$10M Revenue Impact</div>
+          <div class="deliverable-desc">Delivered measurable commercial outcomes — successful product launches across Pakistan and UAE contributed $10 million in combined revenue, expanding Galaxy Pharma's market presence and therapeutic portfolio.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /* no lightbox needed on this page */
+  </script>
+
+</body>
+</html>
