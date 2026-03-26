@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Skills Assessment Tool — KICT Inc. — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="../../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    #project-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #project-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.05s forwards;
+    }
+
+    .back-link:hover { color: #fff; }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.25s forwards;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .header-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── CONTENT ──────────────────────────────── */
+    .project-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px clamp(24px, 6vw, 100px) 160px;
+    }
+
+    /* ── OVERVIEW ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .overview-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .overview-text p:last-child { margin-bottom: 0; }
+
+    .overview-sidebar {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-item:first-child { padding-top: 0; }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat-pill {
+      background: rgba(27,108,168,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-pill-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-pill-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 0.06em;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* ── SCREENSHOTS ──────────────────────────── */
+    .screenshot-section {
+      margin-bottom: 80px;
+    }
+
+    .screenshot-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .screenshot-grid .screenshot-main {
+      grid-column: 1 / -1;
+    }
+
+    .screenshot-showcase {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .screenshot-showcase:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .screenshot-showcase img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── DELIVERABLES ─────────────────────────── */
+    .deliverables-section {
+      margin-bottom: 80px;
+    }
+
+    .deliverables-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .deliverable-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(27,108,168,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+
+    .deliverable-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .deliverable-desc {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── KEYFRAMES ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ───────────────────────────────── */
+    @media (max-width: 768px) {
+      #project-header { padding: 80px 20px 60px; }
+      .project-content { padding: 48px 20px 120px; }
+      .overview-grid { grid-template-columns: 1fr; gap: 40px; }
+      .deliverables-grid { grid-template-columns: 1fr 1fr; }
+      .screenshot-grid { grid-template-columns: 1fr; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+
+    @media (max-width: 480px) {
+      .deliverables-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+    <a href="/#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header id="project-header">
+    <div class="header-inner">
+      <a href="/portfolio/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="header-label">AI Automation</p>
+      <h1 class="header-title">Finance Skills<br>Assessment Tool</h1>
+      <div class="header-meta">
+        <span class="header-tag">AI Automation</span>
+        <span class="header-tag">Skills Assessment</span>
+        <span class="header-tag">L&amp;D</span>
+        <span class="header-tag">Data Analytics</span>
+        <span class="header-tag">KICT Inc.</span>
+        <span class="header-tag">March 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- OVERVIEW -->
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Project Overview</h2>
+        <p>KICT Inc. delivers professional finance training programs to corporate teams — but they faced a persistent challenge: training was being delivered the same way to everyone, regardless of where individuals actually stood in their skills. Trainers had no reliable way to understand each learner's starting point, which meant personalisation was guesswork and satisfaction scores reflected it.</p>
+        <p>The brief was to build a tool that could collect meaningful data on both soft skills and technical finance skills at the individual level — then make that data actionable for trainers. The tool needed to benchmark each participant against their team and company average so gaps became visible at a glance, not buried in spreadsheets.</p>
+        <p>I designed and built an AI-powered Finance Skills Assessment Tool that captured granular individual data across a structured set of soft and technical competencies. The tool automatically compared each participant's scores to their team average and organisation-wide benchmarks, generating clear insight reports for trainers to act on before a single session began.</p>
+        <p>The result was a step-change in how KICT's trainers approached program design. Instead of delivering one-size-fits-all content, they could identify which teams needed foundational technical work, which individuals were strong in soft skills but weak in technical execution, and where to focus time for the greatest impact. Companies also gained a clearer picture of their team's actual capability — not just what they assumed. Training satisfaction improved measurably as sessions became more targeted and relevant to each organisation's real needs.</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-label">Client</div>
+          <div class="sidebar-value">KICT Inc.</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Category</div>
+          <div class="sidebar-value">AI Automation &amp; L&amp;D</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Timeline</div>
+          <div class="sidebar-value">March 2026</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">My Role</div>
+          <div class="sidebar-value">AI Automation Specialist</div>
+        </div>
+
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="stat-pill-num">2x</div>
+            <div class="stat-pill-label">Faster Trainer<br>Prep Time</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">↑</div>
+            <div class="stat-pill-label">Training<br>Satisfaction</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">100%</div>
+            <div class="stat-pill-label">Personalised<br>Insights</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshot-section">
+      <h2>Tool Walkthrough</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot-showcase screenshot-main" onclick="openLightbox('../../FPA 1.jpg')">
+          <img src="../../FPA 1.jpg" alt="Finance Assessment Tool — Overview" loading="lazy" />
+        </div>
+        <div class="screenshot-showcase" onclick="openLightbox('../../FPA 2.jpg')">
+          <img src="../../FPA 2.jpg" alt="Finance Assessment Tool — Individual Skill Breakdown" loading="lazy" />
+        </div>
+        <div class="screenshot-showcase" onclick="openLightbox('../../FPA 3.jpg')">
+          <img src="../../FPA 3.jpg" alt="Finance Assessment Tool — Team vs Company Benchmark" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="deliverables-section">
+      <h2>What Was Delivered</h2>
+      <div class="deliverables-grid">
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="deliverable-title">Individual Skills Assessment</div>
+          <div class="deliverable-desc">Built a structured assessment capturing both soft skills (communication, leadership, adaptability) and technical finance competencies for each participant individually.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg>
+          </div>
+          <div class="deliverable-title">Team &amp; Company Benchmarking</div>
+          <div class="deliverable-desc">Automated comparison of individual scores against team averages and company-wide benchmarks, surfacing skill gaps clearly for every participant.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="deliverable-title">Trainer Insight Reports</div>
+          <div class="deliverable-desc">Generated clear, actionable reports for trainers before each session — showing exactly where to focus, who needs what, and how to personalise content per team.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="deliverable-title">Automated Data Collection</div>
+          <div class="deliverable-desc">Designed the full data collection workflow using AI automation — removing manual data entry and ensuring consistent, reliable inputs across all participants.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="deliverable-title">Org-Level Capability Mapping</div>
+          <div class="deliverable-desc">Gave companies a clear view of their team's actual skill landscape — enabling smarter hiring, training investment, and workforce development decisions.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2 12 12"/></svg>
+          </div>
+          <div class="deliverable-title">Personalised Training Output</div>
+          <div class="deliverable-desc">Enabled trainers to tailor session content, pacing, and focus areas to each organisation's specific profile — resulting in higher satisfaction scores and better learning outcomes.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
