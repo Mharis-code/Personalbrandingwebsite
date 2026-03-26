@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sutra Tech Inc. — Marketing Automation & Email Marketing — Muhammad Haris</title>
+  <link rel="icon" type="image/png" href="../../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-bg: #f5f5f5;
+      --gold:    #E8A020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    #pill-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    #pill-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+    #pill-nav a.cta {
+      background: var(--blue);
+      color: #fff;
+      margin-left: 6px;
+    }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    #project-header {
+      background: var(--navy);
+      padding: 100px clamp(24px, 6vw, 100px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #project-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gray-bg));
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.05s forwards;
+    }
+
+    .back-link:hover { color: #fff; }
+
+    .header-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .header-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.25s forwards;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .header-tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── CONTENT ──────────────────────────────── */
+    .project-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px clamp(24px, 6vw, 100px) 160px;
+    }
+
+    /* ── OVERVIEW ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .overview-text h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .overview-text p:last-child { margin-bottom: 0; }
+
+    .overview-sidebar {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .sidebar-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-item:first-child { padding-top: 0; }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat-pill {
+      background: rgba(27,108,168,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-pill-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-pill-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 0.06em;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* ── SCREENSHOT ───────────────────────────── */
+    .screenshot-section {
+      margin-bottom: 80px;
+    }
+
+    .screenshot-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .screenshot-showcase {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .screenshot-showcase:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .screenshot-showcase img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── DELIVERABLES ─────────────────────────── */
+    .deliverables-section {
+      margin-bottom: 80px;
+    }
+
+    .deliverables-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .deliverable-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(27,108,168,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+
+    .deliverable-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .deliverable-desc {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── KEYFRAMES ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ───────────────────────────────── */
+    @media (max-width: 768px) {
+      #project-header { padding: 80px 20px 60px; }
+      .project-content { padding: 48px 20px 120px; }
+      .overview-grid { grid-template-columns: 1fr; gap: 40px; }
+      .deliverables-grid { grid-template-columns: 1fr 1fr; }
+
+      #pill-nav { padding: 8px 10px; gap: 1px; max-width: calc(100vw - 16px); }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; letter-spacing: 0.02em; }
+    }
+
+    @media (max-width: 480px) {
+      .deliverables-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+    <a href="/#contact" class="cta">Contact Me</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header id="project-header">
+    <div class="header-inner">
+      <a href="/portfolio/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="header-label">Marketing Automation</p>
+      <h1 class="header-title">Sutra Tech Inc.</h1>
+      <div class="header-meta">
+        <span class="header-tag">Kajabi</span>
+        <span class="header-tag">Marketing Automation</span>
+        <span class="header-tag">Email Marketing</span>
+        <span class="header-tag">Jan – Oct 2025</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- OVERVIEW -->
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Project Overview</h2>
+        <p>Sutra Tech Inc. operates Sutra Academy, an online learning platform certifying IT and IS auditors as AI Auditing Experts. With a growing course library and an expanding subscriber base, they needed a marketing infrastructure that could work automatically — nurturing leads, onboarding new students, and re-engaging existing ones without manual effort every time.</p>
+        <p>The brief was to build a full marketing automation system inside Kajabi and back it up with email marketing sequences that actually converted. That meant going beyond basic email blasts and building intelligent pipelines: the right message, to the right person, at the right moment in their journey.</p>
+        <p>I architected and built out the complete Kajabi automation setup — pipelines, triggers, tags, and conditional logic — designed to move subscribers from first contact through to paid enrollment with minimal friction. Every automation was mapped against the student journey, from awareness and consideration all the way to purchase and post-enrolment engagement.</p>
+        <p>On the email side, I wrote and structured segmented sequences tailored to where each subscriber was in the funnel. Welcome flows, nurture sequences, launch campaigns, and re-engagement series — all built to perform. The results spoke for themselves: a 42% email open rate and a 35% boost in course enrollments driven directly through email campaigns.</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <div class="sidebar-item">
+          <div class="sidebar-label">Client</div>
+          <div class="sidebar-value">Sutra Tech Inc.</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Platform</div>
+          <div class="sidebar-value">Sutra Academy (Kajabi)</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">Timeline</div>
+          <div class="sidebar-value">Jan – Oct 2025</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-label">My Role</div>
+          <div class="sidebar-value">Marketing Automation Specialist</div>
+        </div>
+
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="stat-pill-num">42%</div>
+            <div class="stat-pill-label">Email<br>Open Rate</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">35%</div>
+            <div class="stat-pill-label">Enrollment<br>Boost</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill-num">65%</div>
+            <div class="stat-pill-label">Sign-up<br>Increase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOT -->
+    <div class="screenshot-section">
+      <h2>Platform Overview</h2>
+      <div class="screenshot-showcase" onclick="openLightbox('../../Sutra Academy.jpg')">
+        <img src="../../Sutra Academy.jpg" alt="Sutra Academy Platform" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="deliverables-section">
+      <h2>What Was Delivered</h2>
+      <div class="deliverables-grid">
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="deliverable-title">Kajabi Pipeline Architecture</div>
+          <div class="deliverable-desc">Built end-to-end automation pipelines in Kajabi covering lead capture, nurture, purchase, and post-enrolment flows with conditional branching logic.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="deliverable-title">Trigger & Tag System</div>
+          <div class="deliverable-desc">Designed a structured tagging and trigger framework so the right automations fire based on subscriber behaviour, purchase history, and engagement signals.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="deliverable-title">Welcome & Nurture Sequences</div>
+          <div class="deliverable-desc">Wrote and configured automated welcome flows and multi-step nurture sequences to warm up new subscribers and guide them toward enrollment.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="deliverable-title">Segmented Email Campaigns</div>
+          <div class="deliverable-desc">Built audience segments based on behaviour and intent, then crafted targeted email campaigns for each segment to maximise relevance and open rates.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="deliverable-title">Re-engagement Series</div>
+          <div class="deliverable-desc">Created automated re-engagement sequences to win back inactive subscribers and lapsed leads with time-sensitive offers and personalised messaging.</div>
+        </div>
+
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg>
+          </div>
+          <div class="deliverable-title">Performance Tracking</div>
+          <div class="deliverable-desc">Set up tracking and reporting inside Kajabi to monitor open rates, click-throughs, pipeline conversions, and enrollment attribution across all campaigns.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
