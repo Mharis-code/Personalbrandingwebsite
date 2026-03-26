@@ -1364,11 +1364,13 @@
   ══════════════════════════════════════════ -->
   <section id="magic-statement" aria-label="About my approach">
     <div class="magic-statement-inner">
-      <p class="magic-para" data-magic>Too often, marketing becomes a mix of scattered tactics, unclear messaging, and inconsistent execution.</p>
-      <p class="magic-para" data-magic>I know how frustrating that can be, especially when you are investing time and budget without seeing the traction you expected.</p>
-      <p class="magic-para" data-magic>I help solve that by combining strategy, storytelling, design, and systems into marketing that is clear, intentional, and growth-focused.</p>
-      <p class="magic-para" data-magic>That means less noise, smarter execution, and a brand that communicates its value with confidence.</p>
-      <p class="magic-para" data-magic>The outcome is better visibility, stronger trust, and marketing that drives meaningful results.</p>
+      <p class="magic-para" data-magic>Oh boy, here we are…</p>
+      <p class="magic-para" data-magic>Marketing starts with a plan. Then it turns into a mix of scattered tactics, unclear messaging, and "let's try this too."</p>
+      <p class="magic-para" data-magic>Before you know it, you are investing time and budget, but the results feel… underwhelming.</p>
+      <p class="magic-para" data-magic>I get it. It is frustrating to do all the right-looking things and still not see real traction.</p>
+      <p class="magic-para" data-magic>That is where I come in. I bring strategy, storytelling, design, and systems together so your marketing actually makes sense and works as one.</p>
+      <p class="magic-para" data-magic>So instead of more noise, you get clarity. Instead of random execution, you get focused action. And instead of guessing, you get direction.</p>
+      <p class="magic-para" data-magic>The result is a brand that communicates clearly, builds trust faster, and marketing that finally pulls its weight.</p>
     </div>
   </section>
 
@@ -2245,9 +2247,10 @@
 
     /* ── MAGIC TEXT SCROLL REVEAL ───────────────────
        Split each [data-magic] paragraph into word spans,
-       then light them up progressively as the user scrolls
-       through each paragraph (mirrors framer-motion offset
-       ["start 0.85", "start 0.15"]).
+       then light up ALL words sequentially as one continuous
+       stream driven by scroll progress through the entire section.
+       First word lights when the section enters the viewport;
+       last word lights when the section bottom reaches 15% vh.
     ─────────────────────────────────────────────────── */
     document.querySelectorAll('[data-magic]').forEach(para => {
       const words = para.textContent.trim().split(/\s+/);
@@ -2257,25 +2260,26 @@
     });
 
     function updateMagicText() {
-      const vh = window.innerHeight;
-      document.querySelectorAll('[data-magic]').forEach(para => {
-        const words   = para.querySelectorAll('.magic-word');
-        const total   = words.length;
-        const rect    = para.getBoundingClientRect();
-        const startPx = vh * 0.85;   // animation begins
-        const endPx   = vh * 0.15;   // animation ends
-        const progress = Math.max(0, Math.min(1,
-          (startPx - rect.top) / (startPx - endPx)
-        ));
+      const section  = document.getElementById('magic-statement');
+      const allWords = Array.from(section.querySelectorAll('.magic-word'));
+      const total    = allWords.length;
+      if (!total) return;
 
-        words.forEach((word, i) => {
-          const wStart = i / total;
-          const wEnd   = wStart + 1 / total;
-          const wProg  = Math.max(0, Math.min(1,
-            (progress - wStart) / (wEnd - wStart)
-          ));
-          word.style.opacity = 0.12 + wProg * 0.88;
-        });
+      const vh       = window.innerHeight;
+      const rect     = section.getBoundingClientRect();
+      // progress = 0 when section top hits 85% of viewport height
+      // progress = 1 when section bottom hits 15% of viewport height
+      const scrolledIn  = vh * 0.85 - rect.top;
+      const totalRange  = vh * 0.70 + rect.height;
+      const progress    = Math.max(0, Math.min(1, scrolledIn / totalRange));
+
+      allWords.forEach((word, i) => {
+        const wStart = i / total;
+        const wEnd   = (i + 1) / total;
+        const wProg  = Math.max(0, Math.min(1,
+          (progress - wStart) / (wEnd - wStart)
+        ));
+        word.style.opacity = 0.12 + wProg * 0.88;
       });
     }
 
