@@ -205,26 +205,25 @@
       animation: fadeUp 0.7s ease 4.8s forwards;
     }
 
-    /* Name — left-aligned, stacked */
-    .hero-firstname,
-    .hero-lastname {
-      font-size: clamp(3.2rem, 8vw, 8rem);
+    /* Heading — replaces stacked name */
+    .hero-heading {
+      font-size: clamp(2.2rem, 4.8vw, 5rem);
       font-weight: 900;
-      line-height: 0.88;
+      line-height: 1.0;
       letter-spacing: -0.03em;
       text-align: left;
       color: var(--white);
       text-transform: uppercase;
       display: block;
       opacity: 0;
+      animation: fadeUp 0.8s ease 4.9s forwards;
+      margin-bottom: 20px;
       text-shadow:
         0 0 8px rgba(27, 108, 168, 0.9),
         0 0 20px rgba(27, 108, 168, 0.7),
         0 0 40px rgba(27, 108, 168, 0.5),
         0 0 80px rgba(27, 108, 168, 0.3);
     }
-    .hero-firstname { animation: fadeUp 0.8s ease 4.9s forwards; }
-    .hero-lastname  { animation: fadeUp 0.8s ease 5.0s forwards; margin-bottom: 20px; }
 
     /* Pill boxes for label and tagline */
     .hero-label-pill {
@@ -260,6 +259,19 @@
       perspective: 900px;
       opacity: 0;
       animation: fadeUp 0.8s ease 5.1s forwards;
+      margin-top: -70px;
+    }
+
+    .hero-portrait-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-top: 14px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 5.25s forwards;
     }
 
     /* Portrait card — larger as a standalone feature */
@@ -367,8 +379,7 @@
     /* Fast-load overrides when preloader is skipped (return navigation) */
     body.no-preloader .hero-label,
     body.no-preloader .hero-label-pill    { animation-delay: 0.05s; }
-    body.no-preloader .hero-firstname     { animation-delay: 0.1s;  }
-    body.no-preloader .hero-lastname      { animation-delay: 0.15s; }
+    body.no-preloader .hero-heading        { animation-delay: 0.1s;  }
     body.no-preloader .hero-card-wrap     { animation-delay: 0.1s;  }
     body.no-preloader .hero-portrait-divider { animation-delay: 0.2s; }
     body.no-preloader .hero-location      { animation-delay: 0.2s;  }
@@ -1056,7 +1067,7 @@
        CONTACT CTA
     ───────────────────────────────────────────── */
     #contact {
-      background: var(--navy);
+      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
       text-align: center;
       padding: 120px 24px 160px;
     }
@@ -1337,7 +1348,7 @@
        MAGIC TEXT SECTION
     ───────────────────────────────────────────── */
     #magic-statement {
-      background: #0d0d0d;
+      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
       padding: 120px clamp(24px, 7vw, 140px);
       position: relative;
     }
@@ -1454,7 +1465,7 @@
        POINT OF VIEW
     ───────────────────────────────────────────── */
     #pov {
-      background: var(--navy);
+      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
       padding: 100px 24px;
     }
 
@@ -1735,8 +1746,7 @@
           <span class="hero-label hero-label-pill">AI Expert for Solopreneurs</span>
         </div>
 
-        <h1 class="hero-firstname">Muhammad</h1>
-        <h1 class="hero-lastname">Haris</h1>
+        <h1 class="hero-heading">AI Operating Systems<br>for Solopreneurs</h1>
 
         <p class="hero-tagline hero-tagline-pill">
           Build an AI team. Without hiring one.
@@ -1772,6 +1782,7 @@
             <img id="portrait" src="mharis_without_bg.png" alt="Muhammad Haris" />
           </div>
           <div class="hero-portrait-divider"></div>
+          <p class="hero-portrait-name">Muhammad Haris</p>
         </div>
       </div>
 
@@ -2108,7 +2119,7 @@
   <section id="about">
     <div class="about-mini-inner">
       <div class="about-mini-photo">
-        <img src="mharis_without_bg.png" alt="Muhammad Haris" />
+        <img src="mharis_pic.png" alt="Muhammad Haris" />
       </div>
       <div class="about-mini-text">
         <p class="section-label">About</p>
