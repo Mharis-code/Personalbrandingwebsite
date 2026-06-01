@@ -13,7 +13,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Haris — Marketing and AI Automation</title>
+  <title>Muhammad Haris — AI Expert for Solopreneurs</title>
   <link rel="icon" type="image/png" href="MH Favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -1374,6 +1374,325 @@
       .magic-para { margin-bottom: 36px; }
       .magic-word { font-size: clamp(1.25rem, 5vw, 1.7rem); }
     }
+
+    /* ─────────────────────────────────────────────
+       HERO SUB-HEADLINE
+    ───────────────────────────────────────────── */
+    .hero-sub {
+      max-width: 480px;
+      font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-top: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 5.45s forwards;
+    }
+    body.no-preloader .hero-sub { animation-delay: 0.25s; }
+
+    /* ─────────────────────────────────────────────
+       WHO THIS IS FOR
+    ───────────────────────────────────────────── */
+    #skills {
+      background: var(--white);
+      padding: 100px 24px 80px;
+    }
+
+    .qualify-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 40px 0 32px;
+      max-width: 680px;
+    }
+
+    .qualify-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1.05rem;
+      color: var(--navy);
+      line-height: 1.55;
+    }
+
+    .qualify-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(27,108,168,0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%231B6CA8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 11px;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 2px;
+    }
+
+    .qualify-close {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue);
+      max-width: 680px;
+    }
+
+    /* ─────────────────────────────────────────────
+       PUBLIC PROOF — SUBLABEL
+    ───────────────────────────────────────────── */
+    .proof-sublabel {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+      margin-top: 16px;
+    }
+
+    /* ─────────────────────────────────────────────
+       POINT OF VIEW
+    ───────────────────────────────────────────── */
+    #pov {
+      background: var(--navy);
+      padding: 100px 24px;
+    }
+
+    .pov-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .pov-body {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pov-para {
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────────────
+       FREE RESOURCES + EMAIL CAPTURE
+    ───────────────────────────────────────────── */
+    #resources {
+      background: var(--gray-bg);
+      padding: 100px 24px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 48px auto 0;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border-radius: 20px;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .resource-card-empty {
+      border: 2px dashed #e0e0e0;
+      background: transparent;
+    }
+
+    .resource-card-placeholder {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .email-capture {
+      max-width: 540px;
+      margin: 64px auto 0;
+      text-align: center;
+    }
+
+    .email-capture-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .email-capture-sub {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 28px;
+    }
+
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .email-input {
+      padding: 14px 20px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--navy);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-input:focus { border-color: var(--blue); }
+    .email-input::placeholder { color: #bbb; }
+
+    .email-form .btn { width: 100%; justify-content: center; }
+
+    /* ─────────────────────────────────────────────
+       ABOUT MINI
+    ───────────────────────────────────────────── */
+    #about {
+      background: var(--white);
+      padding: 100px 24px;
+    }
+
+    .about-mini-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-mini-photo {
+      width: 200px;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .about-mini-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .about-mini-text .section-label {
+      margin-bottom: 16px;
+    }
+
+    .about-mini-bio {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .about-mini-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      margin-top: 8px;
+      transition: gap 0.2s ease;
+    }
+    .about-mini-link:hover { gap: 10px; }
+
+    /* ─────────────────────────────────────────────
+       FINAL CTA GRID
+    ───────────────────────────────────────────── */
+    .final-cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 700px;
+      margin: 44px auto 0;
+    }
+
+    .final-cta-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .final-cta-card-primary {
+      background: rgba(27,108,168,0.18);
+      border-color: rgba(27,108,168,0.4);
+    }
+
+    .final-cta-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .final-cta-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .final-cta-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* ─────────────────────────────────────────────
+       MOBILE — NEW SECTIONS
+    ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-sub { text-align: center; }
+
+      #skills { padding: 72px 20px 60px; }
+      .qualify-list li { font-size: 0.95rem; }
+
+      #pov { padding: 72px 20px; }
+
+      #resources { padding: 72px 20px; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .email-form { gap: 10px; }
+
+      #about { padding: 72px 20px; }
+      .about-mini-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+        justify-items: center;
+      }
+      .about-mini-photo { width: 140px; }
+      .about-mini-link { justify-content: center; }
+
+      .final-cta-grid { grid-template-columns: 1fr; max-width: 400px; }
+    }
+
+    @media (max-width: 480px) {
+      #pov { padding: 60px 16px; }
+      #resources { padding: 60px 16px; }
+      #about { padding: 60px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1393,11 +1712,10 @@
        FLOATING PILL NAVBAR
   ══════════════════════════════════════════ -->
   <nav id="pill-nav" aria-label="Primary navigation">
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="/portfolio/">Portfolio</a>
-    <a href="#contact" class="cta">Contact Me</a>
+    <a href="#about">About</a>
+    <a href="#projects">Proof</a>
+    <a href="#resources">Resources</a>
+    <a href="#contact" class="cta">Work With Me</a>
   </nav>
 
   <!-- ══════════════════════════════════════════
@@ -1411,51 +1729,38 @@
     <div class="hero-feather"></div>
     <div class="hero-split">
 
-      <!-- Left: name, tagline, stats -->
+      <!-- Left: name, tagline, CTAs -->
       <div class="hero-left">
         <div class="hero-labels">
-          <span class="hero-label hero-label-pill">Solving Marketing Problems for Startups, Solopreneurs and Global Organizations</span>
+          <span class="hero-label hero-label-pill">AI Expert for Solopreneurs</span>
         </div>
 
         <h1 class="hero-firstname">Muhammad</h1>
         <h1 class="hero-lastname">Haris</h1>
 
         <p class="hero-tagline hero-tagline-pill">
-          A results-driven Marketing Expert with 12 years of experience in developing
-          and executing digital marketing strategies that drive brand visibility, growth and revenue.
+          Build an AI team. Without hiring one.
         </p>
 
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">Projects</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">12</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">16</div>
-            <div class="stat-label">Years in Design</div>
-          </div>
-        </div>
+        <p class="hero-sub">
+          I teach solopreneurs how to use AI agents to do the work a small team usually handles. No overhead. No management. No burnout. I am building my own AI Operating System in public. Follow along, or get yours built.
+        </p>
 
         <div class="hero-cta">
-          <a href="https://audit.mharis.ca" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="#resources" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
             </svg>
-            Free Marketing Audit
+            Join the newsletter
           </a>
-          <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
+          <a href="https://www.linkedin.com/in/mharis1/" target="_blank" rel="noopener" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
             </svg>
-            Book a Strategy Call
+            Follow on LinkedIn
           </a>
         </div>
       </div>
@@ -1479,243 +1784,83 @@
   <div class="marquee-strip" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-inner">
-        <span class="marquee-item">Digital Marketing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Content Strategy</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">SEO &amp; Analytics</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Email Marketing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Brand Building</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Graphic Design</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Copywriting</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Video Editing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI Workflows</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Operating System</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Solopreneurs</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Build in Public</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Agents</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">No Overhead</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">One Person</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">System Not Tools</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI OS</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Work On Your Business</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">No Management</span><span class="marquee-sep">◆</span>
       </div>
       <!-- duplicate for seamless loop -->
       <div class="marquee-inner">
-        <span class="marquee-item">Digital Marketing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Content Strategy</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">SEO &amp; Analytics</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Email Marketing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Brand Building</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Graphic Design</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Marketing Automation</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Copywriting</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Video Editing</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI Workflows</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Operating System</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Solopreneurs</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Build in Public</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI Agents</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">No Overhead</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">One Person</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">System Not Tools</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">AI OS</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Work On Your Business</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">No Management</span><span class="marquee-sep">◆</span>
       </div>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════════
-       SKILLS
+       WHO THIS IS FOR
   ══════════════════════════════════════════ -->
   <section id="skills">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">What I Bring</p>
-      <h2 class="section-title reveal">Core Skills</h2>
-      <p class="section-subtitle reveal">A decade-plus of hands-on expertise across every major marketing discipline.</p>
+    <div style="max-width:860px;margin:0 auto;">
+      <p class="section-label reveal">Is this for you?</p>
+      <h2 class="section-title reveal">This is for you if...</h2>
 
-      <div class="expand-cards-row">
+      <ul class="qualify-list reveal">
+        <li>You run your business alone and want to keep it that way</li>
+        <li>You use AI tools but they have not saved you real time yet</li>
+        <li>You are drowning in admin, emails, and tasks you repeat every single week</li>
+        <li>You are not technical, and you should not have to be</li>
+      </ul>
 
-        <!-- 1. Graphic Design -->
-        <div class="expand-card is-active" style="--card-accent:#A78BFA;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">01</span>
-            <span class="expand-card-label-vert">Design</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">01 — Visual</span>
-            <div class="expand-card-title">Graphic Design</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">16 years crafting visual identities, marketing materials, and brand assets.</p>
-          </div>
-        </div>
-
-        <!-- 2. Writing & Copywriting -->
-        <div class="expand-card" style="--card-accent:#34D399;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">02</span>
-            <span class="expand-card-label-vert">Writing</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">02 — Copy</span>
-            <div class="expand-card-title">Writing &amp;<br>Copywriting</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">12 years writing articles, email sequences, landing pages, and social copy that converts.</p>
-          </div>
-        </div>
-
-        <!-- 3. Content Creation & Marketing -->
-        <div class="expand-card" style="--card-accent:#60A5FA;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">03</span>
-            <span class="expand-card-label-vert">Content</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">03 — Strategy</span>
-            <div class="expand-card-title">Content<br>Marketing</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">10 years building full content strategies and execution pipelines across every major channel.</p>
-          </div>
-        </div>
-
-        <!-- 4. Web, SEO & Analytics -->
-        <div class="expand-card" style="--card-accent:#FBBF24;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">04</span>
-            <span class="expand-card-label-vert">SEO</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">04 — Growth</span>
-            <div class="expand-card-title">Web, SEO &amp;<br>Analytics</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">8 years driving organic growth with GA4, Search Console, and data-led optimisation.</p>
-          </div>
-        </div>
-
-        <!-- 5. Marketing Automation & CRM -->
-        <div class="expand-card" style="--card-accent:#F87171;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">05</span>
-            <span class="expand-card-label-vert">CRM</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">05 — Automation</span>
-            <div class="expand-card-title">Marketing<br>Automation &amp; CRM</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">8 years building automated funnels and CRM workflows in HubSpot, Salesforce, and Kajabi.</p>
-          </div>
-        </div>
-
-        <!-- 6. Email Marketing -->
-        <div class="expand-card" style="--card-accent:#F472B6;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">06</span>
-            <span class="expand-card-label-vert">Email</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">06 — Campaigns</span>
-            <div class="expand-card-title">Email<br>Marketing</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Designing, segmenting, and optimising campaigns in Mailchimp and Klaviyo.</p>
-          </div>
-        </div>
-
-        <!-- 7. Video Editing -->
-        <div class="expand-card" style="--card-accent:#38BDF8;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">07</span>
-            <span class="expand-card-label-vert">Video</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">07 — Production</span>
-            <div class="expand-card-title">Video<br>Editing</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Engaging short and long-form video using Adobe Premiere, CapCut, and Opus Clips.</p>
-          </div>
-        </div>
-
-        <!-- 8. AI Workflows -->
-        <div class="expand-card" style="--card-accent:#4ADE80;">
-          <div class="expand-card-side">
-            <span class="expand-card-num">08</span>
-            <span class="expand-card-label-vert">AI</span>
-          </div>
-          <div class="expand-card-content">
-            <span class="expand-card-cat">08 — Systems</span>
-            <div class="expand-card-title">AI<br>Workflows</div>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">Automation systems and prompt engineering pipelines that multiply marketing output.</p>
-          </div>
-        </div>
-
-      </div>
+      <p class="qualify-close reveal">If that sounds like your week, you are in the right place.</p>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       EXPERTISE
-  ══════════════════════════════════════════ -->
-  <section id="expertise">
-    <div class="skills-stacking-layout">
-
-      <!-- Stacking tool cards (left column) -->
-      <div class="skill-stack-area">
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">01</span>
-          <h3 class="skill-stack-title">Design</h3>
-          <p class="skill-stack-desc">Canva · Adobe Illustrator · Adobe Photoshop · Figma · Midjourney</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">02</span>
-          <h3 class="skill-stack-title">Newsletter &amp; Publishing</h3>
-          <p class="skill-stack-desc">LinkedIn · Kit · Substack</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">03</span>
-          <h3 class="skill-stack-title">Web &amp; Analytics</h3>
-          <p class="skill-stack-desc">Google Analytics GA4 · Google Search Console</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">04</span>
-          <h3 class="skill-stack-title">Automation &amp; CRM</h3>
-          <p class="skill-stack-desc">HubSpot · Salesforce · Kajabi</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">05</span>
-          <h3 class="skill-stack-title">Email Marketing</h3>
-          <p class="skill-stack-desc">Mailchimp · Klaviyo · HubSpot · Salesforce Marketing Cloud</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">06</span>
-          <h3 class="skill-stack-title">Video Editing</h3>
-          <p class="skill-stack-desc">Adobe Premiere · CapCut · Opus Clips · Filmora</p>
-        </div>
-
-        <div class="skill-stack-card">
-          <span class="skill-stack-num">07</span>
-          <h3 class="skill-stack-title">AI</h3>
-          <p class="skill-stack-desc">ChatGPT · Claude · Gemini · Grok · Midjourney · NanoBanana · Notebook LM</p>
-        </div>
-
-      </div>
-
-      <!-- Sticky section heading (right column) -->
-      <div class="skills-sticky-head">
-        <h2 class="section-title">Tool<br>Stack</h2>
-        <p class="section-subtitle">The platforms and tools I work with every day.</p>
-        <div id="portrait-landing">
-          <img src="Portrait Photo.png" alt="Muhammad Haris" style="width:100%;height:100%;object-fit:contain;object-position:bottom center;" />
-        </div>
-      </div>
-
-    </div>
-  </section>
+  <!-- portrait-landing kept as hidden anchor for hero card animation -->
+  <div id="portrait-landing" style="display:none;"></div>
 
   <!-- ══════════════════════════════════════════
-       PROJECTS
+       PUBLIC PROOF
   ══════════════════════════════════════════ -->
   <section id="projects">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">Case Studies</p>
-      <h2 class="section-title reveal">Recent Projects</h2>
-      <p class="section-subtitle reveal">Real results for real clients.</p>
+      <p class="section-label reveal">Public Proof</p>
+      <h2 class="section-title reveal">Results &amp; Builds</h2>
+      <p class="section-subtitle reveal">Every project documented. The decisions, the process, what worked, and what did not.</p>
 
+      <!-- Client Results -->
+      <p class="proof-sublabel reveal">Client Results</p>
       <div class="projects-grid">
 
-        <!-- Website Design — Ron Monteiro -->
+        <!-- Ron Monteiro -->
         <div class="project-card project-card-visual reveal">
           <div class="project-card-img">
-            <img src="ROn Monteiro Website 1.jpg" alt="Ron Monteiro Website Design" loading="lazy" />
-            <span class="project-card-img-badge">Web Design</span>
+            <img src="ROn Monteiro Website 1.jpg" alt="Ron Monteiro — Personal Brand Website" loading="lazy" />
+            <span class="project-card-img-badge">Solopreneur</span>
           </div>
           <div class="project-card-body">
             <span class="project-tag">Aug – Nov 2025</span>
-            <div class="project-client">Website Design — Ron Monteiro</div>
-            <div class="project-role">Solopreneur · Personal Brand Website</div>
+            <div class="project-client">Ron Monteiro</div>
+            <div class="project-role">Personal brand website — built for conversion</div>
             <ul class="project-results">
-              <li>Designed full website from wireframe to final screens</li>
-              <li>Bold, conversion-focused visual design and UX</li>
+              <li>Full website from wireframe to final screens</li>
               <li>69% lift in conversion rates post-launch</li>
               <li>40% increase in inquiry submissions</li>
+              <li>45% increase in video watch time</li>
             </ul>
             <div class="project-stat-row">
               <div class="project-stat">
@@ -1732,27 +1877,27 @@
               </div>
             </div>
             <a href="/portfolio/ron-monteiro-website/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-              View Design Work
+              View breakdown
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
         </div>
 
-        <!-- LinkedIn Branding — Lana Starchuck -->
-        <div class="project-card project-card-visual reveal" style="transition-delay:0.15s">
+        <!-- Lana Starchuck -->
+        <div class="project-card project-card-visual reveal" style="transition-delay:0.1s">
           <div class="project-card-img">
-            <img src="Lana Starchuck LinkedIn Branding.jpg" alt="Lana Starchuck LinkedIn Branding" loading="lazy" />
-            <span class="project-card-img-badge">Branding</span>
+            <img src="Lana Starchuck LinkedIn Branding.jpg" alt="Lana Starchuck — LinkedIn Brand Identity" loading="lazy" />
+            <span class="project-card-img-badge">Solopreneur</span>
           </div>
           <div class="project-card-body">
             <span class="project-tag">LinkedIn Branding</span>
-            <div class="project-client">LinkedIn Branding — Lana Starchuck</div>
-            <div class="project-role">Speaker · Author · Skydiver</div>
+            <div class="project-client">Lana Starchuck</div>
+            <div class="project-role">LinkedIn identity for a speaker and author</div>
             <ul class="project-results">
-              <li>Designed full LinkedIn brand identity and banner</li>
-              <li>Crafted positioning as a thought leader in strategic clarity</li>
-              <li>Bold visual language tailored for high-impact leaders</li>
-              <li>Consistent brand presence across LinkedIn touchpoints</li>
+              <li>Full LinkedIn brand identity and banner</li>
+              <li>Thought leader positioning for strategic clarity niche</li>
+              <li>Bold visual language built for high-impact leaders</li>
+              <li>Consistent brand presence across all LinkedIn touchpoints</li>
             </ul>
             <div class="project-stat-row">
               <div class="project-stat">
@@ -1769,28 +1914,27 @@
               </div>
             </div>
             <a href="/portfolio/lana-starchuck-linkedin/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-              View Branding Work
+              View breakdown
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
         </div>
 
-
         <!-- Sutra Tech Inc. -->
-        <div class="project-card project-card-visual reveal" style="transition-delay:0.45s">
+        <div class="project-card project-card-visual reveal" style="transition-delay:0.2s">
           <div class="project-card-img">
-            <img src="Sutra Academy.jpg" alt="Sutra Tech Inc. — Marketing Automation" loading="lazy" />
-            <span class="project-card-img-badge">Marketing Automation</span>
+            <img src="Sutra Academy.jpg" alt="Sutra Tech — Marketing Automation" loading="lazy" />
+            <span class="project-card-img-badge">Automation</span>
           </div>
           <div class="project-card-body">
             <span class="project-tag">Jan – Oct 2025</span>
             <div class="project-client">Sutra Tech Inc.</div>
-            <div class="project-role">Startup · Marketing Automation & Email Marketing</div>
+            <div class="project-role">Marketing automation system for an EdTech startup</div>
             <ul class="project-results">
-              <li>Built full Kajabi marketing automation from scratch</li>
+              <li>Built full Kajabi automation from scratch</li>
               <li>Designed pipelines, triggers, and tagging framework</li>
-              <li>Achieved 42% email open rate</li>
-              <li>Drove 35% enrollment boost through campaigns</li>
+              <li>42% email open rate across campaigns</li>
+              <li>35% enrollment boost, 65% sign-up increase</li>
             </ul>
             <div class="project-stat-row">
               <div class="project-stat">
@@ -1807,7 +1951,44 @@
               </div>
             </div>
             <a href="/portfolio/sutra-tech/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-              View Automation Work
+              View breakdown
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- KICT Finance Assessment Tool -->
+        <div class="project-card project-card-visual reveal" style="transition-delay:0.3s">
+          <div class="project-card-img">
+            <img src="FPA 1.jpg" alt="KICT — AI Finance Assessment Tool" loading="lazy" />
+            <span class="project-card-img-badge">AI Automation</span>
+          </div>
+          <div class="project-card-body">
+            <span class="project-tag">March 2026</span>
+            <div class="project-client">KICT Inc.</div>
+            <div class="project-role">AI-powered skills assessment tool</div>
+            <ul class="project-results">
+              <li>Built an AI finance assessment tool from scratch</li>
+              <li>AI benchmarking against industry standards</li>
+              <li>Personalized learning paths from results</li>
+              <li>Trainer insights dashboard</li>
+            </ul>
+            <div class="project-stat-row">
+              <div class="project-stat">
+                <div class="project-stat-num">AI</div>
+                <div class="project-stat-label">Benchmarking</div>
+              </div>
+              <div class="project-stat">
+                <div class="project-stat-num">100%</div>
+                <div class="project-stat-label">Automated</div>
+              </div>
+              <div class="project-stat">
+                <div class="project-stat-num">↑</div>
+                <div class="project-stat-label">Insights</div>
+              </div>
+            </div>
+            <a href="/portfolio/kict-finance-assessment/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
+              View breakdown
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
@@ -1815,9 +1996,51 @@
 
       </div>
 
+      <!-- Building in Public -->
+      <p class="proof-sublabel reveal" style="margin-top:64px;">Building in Public</p>
+      <div class="projects-grid">
+
+        <!-- This Website Rebuild -->
+        <div class="project-card reveal">
+          <span class="project-tag">In Progress</span>
+          <div class="project-client">This Website</div>
+          <div class="project-role">Rebuilding mharis.ca as a credibility hub</div>
+          <ul class="project-results">
+            <li>Tearing down a generic marketing portfolio</li>
+            <li>Rebuilding for AI consultant positioning</li>
+            <li>Every strategic decision documented</li>
+          </ul>
+        </div>
+
+        <!-- AI Content Creation System -->
+        <div class="project-card reveal" style="transition-delay:0.1s">
+          <span class="project-tag">In Progress</span>
+          <div class="project-client">AI Content System</div>
+          <div class="project-role">Multi-platform content engine built on Claude Code</div>
+          <ul class="project-results">
+            <li>One research session feeds multiple platforms</li>
+            <li>LinkedIn, Skool, short-form covered</li>
+            <li>Built entirely in public</li>
+          </ul>
+        </div>
+
+        <!-- Claude Code Second Brain -->
+        <div class="project-card reveal" style="transition-delay:0.2s">
+          <span class="project-tag">In Progress</span>
+          <div class="project-client">Claude Code Second Brain</div>
+          <div class="project-role">AI executive assistant built on Claude Code</div>
+          <ul class="project-results">
+            <li>Manages priorities and context across sessions</li>
+            <li>Runs recurring workflows automatically</li>
+            <li>The AI OS being built in public</li>
+          </ul>
+        </div>
+
+      </div>
+
       <div style="text-align:center;margin-top:56px;" class="reveal">
         <a href="/portfolio/" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">
-          View My Portfolio
+          View all work
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
@@ -1825,211 +2048,114 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       WORK EXPERIENCE
-  ══════════════════════════════════════════ -->
-  <section id="experience">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">Career Path</p>
-      <h2 class="section-title reveal">Work Experience</h2>
-    </div>
-
-    <div class="experience-list">
-
-      <div class="exp-item">
-        <div class="exp-date">July 2024 – Present</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Marketing Manager</div>
-          <div class="exp-company">Dalton Pharma Services</div>
-          <ul class="exp-bullets">
-            <li>100% engagement rate increase across digital channels</li>
-            <li>Drove 15% new business growth through targeted campaigns</li>
-            <li>Achieved 69% conversion rate improvement</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Aug 2023 – June 2024</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Marketing &amp; Administration Coordinator</div>
-          <div class="exp-company">Dalton Pharma Services</div>
-          <ul class="exp-bullets">
-            <li>Supported full-funnel marketing operations and cross-functional coordination</li>
-            <li>Managed content calendars, email campaigns, and reporting dashboards</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Nov 2022 – July 2023</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Associate Brand Manager</div>
-          <div class="exp-company">United West</div>
-          <ul class="exp-bullets">
-            <li>Developed and executed integrated brand campaigns</li>
-            <li>Managed creative production and agency relationships</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Jan 2020 – Sep 2022</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Business Unit Manager</div>
-          <div class="exp-company">Galaxy Pharma</div>
-          <ul class="exp-bullets">
-            <li>Scaled LinkedIn presence from 0 to 30,000 followers organically</li>
-            <li>Generated 2,000+ LMS enrollments through content marketing</li>
-            <li>Oversaw cross-functional P&amp;L and go-to-market strategy</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Sep 2017 – Dec 2019</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Group Product Manager</div>
-          <div class="exp-company">Galaxy Pharma</div>
-          <ul class="exp-bullets">
-            <li>Led portfolio strategy across multiple product lines</li>
-            <li>Managed cross-functional teams and stakeholder communications</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Nov 2015 – Aug 2017</div>
-        <div class="exp-body" data-materialize>
-          <div class="exp-role">Product Manager</div>
-          <div class="exp-company">Galaxy Pharma</div>
-          <ul class="exp-bullets">
-            <li>Delivered 40% cost savings through vendor negotiations and process optimization</li>
-            <li>Increased lead conversion by 55% through targeted outreach programs</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════════
-       EDUCATION & CERTIFICATIONS
+       POINT OF VIEW
   ══════════════════════════════════════════ -->
-  <section id="education">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">Learning</p>
-      <h2 class="section-title reveal">Education &amp; Certifications</h2>
+  <section id="pov">
+    <div class="pov-inner">
+      <p class="section-label reveal" style="color:var(--gold);">The Big Idea</p>
+      <h2 class="section-title reveal" style="color:var(--white);">One person can now run what used to require ten.</h2>
 
-      <div class="edu-grid">
-
-        <div class="edu-block reveal">
-          <div class="edu-block-title">Education</div>
-
-          <div class="edu-item">
-            <div class="edu-degree">Social Media &amp; Web Marketing</div>
-            <div class="edu-school">CDI College</div>
-            <div class="edu-year">2023 – 2024</div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-degree">Doctor of Pharmacy (Pharm-D)</div>
-            <div class="edu-school">Ziauddin Medical University</div>
-            <div class="edu-year">2009 – 2013</div>
-          </div>
-        </div>
-
-        <div class="edu-block reveal" style="transition-delay:0.15s">
-          <div class="edu-block-title">Certifications</div>
-
-          <div class="cert-item">
-            <div class="cert-name">The LinkedIn Operating System</div>
-            <div class="cert-issuer">Justin Welsh</div>
-            <div class="cert-year">2024</div>
-          </div>
-
-          <div class="cert-item">
-            <div class="cert-name">Content Marketing</div>
-            <div class="cert-issuer">HubSpot Academy</div>
-            <div class="cert-year">2024</div>
-          </div>
-
-          <div class="cert-item">
-            <div class="cert-name">Foundations of Digital Marketing &amp; Ecommerce</div>
-            <div class="cert-issuer">Google</div>
-            <div class="cert-year">2023</div>
-          </div>
-
-          <div class="cert-item">
-            <div class="cert-name">Write to Ignite – Copywriting</div>
-            <div class="cert-issuer">Udemy</div>
-            <div class="cert-year">2022</div>
-          </div>
-        </div>
-
+      <div class="pov-body">
+        <p class="pov-para reveal">Most solopreneurs use AI the same way. They have ChatGPT open in one tab, a few automations running in the background, and a growing list of tools they paid for but barely use. They are not getting leverage. They are just getting more tabs.</p>
+        <p class="pov-para reveal">The shift happens when you stop adding tools and start building a system. An AI Operating System is not one app. It is a coordinated set of AI agents, each handling a specific job inside your business. Writing. Research. Scheduling. Client follow-up. Content. Operations. Each agent knows how you think, how you work, and what your business needs.</p>
+        <p class="pov-para reveal">When the system is built correctly, you stop being the bottleneck. The work that used to take your whole week gets handled. You focus on the decisions only you can make. You work on your business instead of in it.</p>
+        <p class="pov-para reveal">You do not need to be technical to have this. You need a system designed for how one person runs a business. That is what I build. And I am building my own in public so you can see exactly how it works.</p>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       OUTSIDE WORK HOURS
+       FREE RESOURCES + EMAIL CAPTURE
   ══════════════════════════════════════════ -->
-  <section id="outside-work">
+  <section id="resources">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="section-label reveal">Outside Work Hours</p>
-      <h2 class="section-title reveal">Because life shouldn't<br>stop at work.</h2>
+      <p class="section-label reveal">Learn</p>
+      <h2 class="section-title reveal">Learn AI the way I would teach a friend.</h2>
+      <p class="section-subtitle reveal">No jargon. No courses to buy. Just what I am learning and building, explained simply.</p>
 
-      <div class="volunteer-card reveal">
-        <div class="volunteer-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
+      <!-- Resource cards — populated as content publishes -->
+      <div class="resources-grid reveal">
+        <div class="resource-card resource-card-empty">
+          <div class="resource-card-placeholder">Coming soon</div>
         </div>
-        <div class="volunteer-body">
-          <div class="volunteer-role">Volunteer Mentor</div>
-          <div class="volunteer-org">Canada Startup Association</div>
-          <p class="volunteer-desc">
-            I work closely with early-stage startups, helping founders think clearly about where they're headed and how to get there. Sessions cover the fundamentals that most startups skip — validating demand before scaling, building a go-to-market that actually fits the market, and turning a good idea into a viable business.
-          </p>
-          <div class="volunteer-tags">
-            <span class="volunteer-tag">Product Market Fit</span>
-            <span class="volunteer-tag">Go-to-Market Strategy</span>
-            <span class="volunteer-tag">Commercialization</span>
-          </div>
+        <div class="resource-card resource-card-empty">
+          <div class="resource-card-placeholder">Coming soon</div>
         </div>
+        <div class="resource-card resource-card-empty">
+          <div class="resource-card-placeholder">Coming soon</div>
+        </div>
+      </div>
+
+      <!-- Email capture -->
+      <div class="email-capture reveal">
+        <h3 class="email-capture-title">Get notified when I publish.</h3>
+        <p class="email-capture-sub">No spam. Unsubscribe anytime.</p>
+        <!-- TODO: Replace form action with Kit/Mailchimp embed once email service is set up -->
+        <form class="email-form" action="#" method="post" onsubmit="return false;">
+          <input type="text" name="name" placeholder="Your name" class="email-input" required />
+          <input type="email" name="email" placeholder="Your email" class="email-input" required />
+          <button type="submit" class="btn btn-primary">Join the newsletter</button>
+        </form>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       CONTACT CTA
+       ABOUT MINI
+  ══════════════════════════════════════════ -->
+  <section id="about">
+    <div class="about-mini-inner">
+      <div class="about-mini-photo">
+        <img src="Portrait Photo.png" alt="Muhammad Haris" />
+      </div>
+      <div class="about-mini-text">
+        <p class="section-label">About</p>
+        <p class="about-mini-bio reveal">I spent 12 years building marketing systems for businesses. Then I started replacing parts of those systems with AI. Then all of them. Now I help solopreneurs build AI Operating Systems so they can finally run their business instead of being run by it.</p>
+        <p class="about-mini-bio reveal">I am based in Toronto. I am building this in public. Everything I figure out, I share.</p>
+        <a href="#contact" class="about-mini-link reveal">
+          Work with me
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MAGIC STATEMENT
+  ══════════════════════════════════════════ -->
+  <section id="magic-statement">
+    <div class="magic-statement-inner">
+      <p class="magic-para" data-magic>One person can now run what used to require ten.</p>
+      <p class="magic-para" data-magic>Not with more apps. With the right system. An AI Operating System designed for one.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FINAL CTA
   ══════════════════════════════════════════ -->
   <section id="contact">
-    <p class="section-label reveal">Let's Work Together</p>
-    <h2 class="section-title reveal">Ready to grow<br>your brand?</h2>
-    <p class="section-subtitle reveal">
-      Click the Audit button to get a free Marketing audit report for your business or Book a Strategy Call to discuss how you can achieve more revenue with your marketing without wasting time.
-    </p>
-    <div class="cta-group reveal">
-      <a href="https://audit.mharis.ca" target="_blank" rel="noopener" class="btn btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
-        </svg>
-        Free Marketing Audit
-      </a>
-      <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-outline">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        Book a Strategy Call
-      </a>
+    <p class="section-label reveal" style="color:var(--gold);">Two ways to move forward.</p>
+    <h2 class="section-title reveal" style="color:var(--white);max-width:700px;margin:0 auto 16px;">Ready when you are.</h2>
+
+    <div class="final-cta-grid reveal">
+      <div class="final-cta-card">
+        <div class="final-cta-num">01</div>
+        <h3 class="final-cta-title">Follow along</h3>
+        <p class="final-cta-desc">Get everything I learn as I build. Before it becomes a course.</p>
+        <a href="#resources" class="btn btn-outline" style="margin-top:auto;">
+          Join the newsletter
+        </a>
+      </div>
+      <div class="final-cta-card final-cta-card-primary">
+        <div class="final-cta-num" style="color:var(--gold);">02</div>
+        <h3 class="final-cta-title">Work with me</h3>
+        <p class="final-cta-desc">If you are ready to build your own AI Operating System, I work with solopreneurs directly.</p>
+        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:auto;">
+          Work with me
+        </a>
+      </div>
     </div>
   </section>
 
@@ -2135,7 +2261,7 @@
     let endTravelY  = null;
 
     function updateHeroCard() {
-      if (!heroFloatingCard || !heroEl || !heroCardWrap || window.innerWidth <= 768) return;
+      if (!heroFloatingCard || !heroEl || !heroCardWrap || !portraitLanding || window.innerWidth <= 768) return;
 
       const scrollY  = window.scrollY;
       const heroTop  = heroEl.offsetTop;
