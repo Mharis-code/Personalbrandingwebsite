@@ -180,6 +180,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      background: rgba(3, 8, 16, 0.58);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 40px 44px;
     }
 
     .hero-right {
@@ -207,7 +213,7 @@
 
     /* Heading — replaces stacked name */
     .hero-heading {
-      font-size: clamp(2.2rem, 4.8vw, 5rem);
+      font-size: clamp(1.8rem, 3.2vw, 3.5rem);
       font-weight: 900;
       line-height: 1.0;
       letter-spacing: -0.03em;
@@ -1742,10 +1748,6 @@
 
       <!-- Left: name, tagline, CTAs -->
       <div class="hero-left">
-        <div class="hero-labels">
-          <span class="hero-label hero-label-pill">AI Expert for Solopreneurs</span>
-        </div>
-
         <h1 class="hero-heading">AI Operating Systems<br>for Solopreneurs</h1>
 
         <p class="hero-tagline hero-tagline-pill">
@@ -1779,7 +1781,7 @@
       <div class="hero-right">
         <div class="hero-card-wrap" style="display:flex;flex-direction:column;align-items:center;">
           <div class="hero-card" id="heroFloatingCard">
-            <img id="portrait" src="mharis_without_bg.png" alt="Muhammad Haris" />
+            <img id="portrait" src="mharis_withoutbg.png" alt="Muhammad Haris" />
           </div>
           <div class="hero-portrait-divider"></div>
           <p class="hero-portrait-name">Muhammad Haris</p>
