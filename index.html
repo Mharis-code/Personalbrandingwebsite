@@ -280,6 +280,37 @@
       animation: fadeUp 0.6s ease 5.25s forwards;
     }
 
+    .hero-typewriter {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      margin-top: 6px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 5.35s forwards;
+      min-height: 1.3em;
+      user-select: none;
+    }
+
+    body.no-preloader .hero-typewriter { animation-delay: 0.28s; }
+
+    .hero-typewriter-cursor {
+      display: inline-block;
+      width: 1.5px;
+      height: 0.85em;
+      background: var(--blue);
+      margin-left: 1px;
+      vertical-align: middle;
+      animation: cursorBlink 0.7s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
     /* Portrait card — larger as a standalone feature */
     .hero-card {
       width: clamp(280px, 36vw, 480px);
@@ -390,6 +421,7 @@
     body.no-preloader .hero-portrait-divider { animation-delay: 0.2s; }
     body.no-preloader .hero-location      { animation-delay: 0.2s;  }
     body.no-preloader .hero-tagline       { animation-delay: 0.2s;  }
+    body.no-preloader .hero-portrait-name { animation-delay: 0.25s; }
     body.no-preloader .hero-stats         { animation-delay: 0.25s; }
     body.no-preloader .hero-cta           { animation-delay: 0.3s;  }
 
@@ -1785,6 +1817,9 @@
           </div>
           <div class="hero-portrait-divider"></div>
           <p class="hero-portrait-name">Muhammad Haris</p>
+          <div class="hero-typewriter">
+            <span id="typewriter-text"></span><span class="hero-typewriter-cursor"></span>
+          </div>
         </div>
       </div>
 
@@ -2565,6 +2600,41 @@
 
     window.addEventListener('scroll', updateMagicText, { passive: true });
     updateMagicText();
+
+    /* ── 12. HERO TYPEWRITER ─────────────────────── */
+    (function () {
+      const words = ['/AI Consultant', '/AI Educator', '/AI OS Builder', '/Building in Public', '/Solopreneur'];
+      const el = document.getElementById('typewriter-text');
+      if (!el) return;
+
+      let wordIndex = 0;
+      let charIndex = 0;
+      let deleting  = false;
+
+      function tick() {
+        const word = words[wordIndex];
+        if (deleting) {
+          charIndex--;
+          el.textContent = word.substring(0, charIndex);
+        } else {
+          charIndex++;
+          el.textContent = word.substring(0, charIndex);
+        }
+
+        let next = deleting ? 38 : 75;
+        if (!deleting && charIndex === word.length) {
+          next = 1800; deleting = true;
+        } else if (deleting && charIndex === 0) {
+          deleting  = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          next      = 400;
+        }
+        setTimeout(tick, next);
+      }
+
+      const startDelay = document.body.classList.contains('no-preloader') ? 500 : 5600;
+      setTimeout(tick, startDelay);
+    })();
   </script>
 
 </body>
