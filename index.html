@@ -1590,6 +1590,68 @@
       color: #bbb;
     }
 
+    .resource-card-live {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      min-height: 200px;
+      gap: 0;
+    }
+
+    .resource-card-live:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    .resource-card-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: #e8f1f9;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .resource-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .resource-card-desc {
+      font-size: 0.84rem;
+      color: #777;
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+
+    .resource-card-read {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: auto;
+      transition: gap 0.2s ease;
+    }
+
+    .resource-card-live:hover .resource-card-read {
+      gap: 8px;
+    }
+
     .email-capture {
       max-width: 540px;
       margin: 64px auto 0;
@@ -2310,9 +2372,12 @@
 
       <!-- Resource cards — populated as content publishes -->
       <div class="resources-grid reveal">
-        <div class="resource-card resource-card-empty">
-          <div class="resource-card-placeholder">Coming soon</div>
-        </div>
+        <a href="learn/ai-tools-breakdown/" class="resource-card resource-card-live">
+          <span class="resource-card-tag">Guide</span>
+          <h3 class="resource-card-title">EA, AI OS, OpenClaw, Hermes — The Complete Breakdown</h3>
+          <p class="resource-card-desc">Four tools explained side by side. Which one you need, when to use it, and the path that works for most people starting out.</p>
+          <span class="resource-card-read">Read &nbsp;→</span>
+        </a>
         <div class="resource-card resource-card-empty">
           <div class="resource-card-placeholder">Coming soon</div>
         </div>
