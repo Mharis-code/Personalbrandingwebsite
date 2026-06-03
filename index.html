@@ -1105,7 +1105,7 @@
        CONTACT CTA
     ───────────────────────────────────────────── */
     #contact {
-      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
+      background: var(--gray-bg);
       text-align: center;
       padding: 120px 24px 160px;
     }
@@ -1113,13 +1113,13 @@
     #contact .section-label { color: var(--gold); }
 
     #contact .section-title {
-      color: var(--white);
+      color: var(--navy);
       max-width: 700px;
       margin: 0 auto 16px;
     }
 
     #contact .section-subtitle {
-      color: rgba(255,255,255,0.5);
+      color: rgba(26,26,26,0.55);
       margin: 0 auto 44px;
       max-width: 480px;
     }
@@ -1764,8 +1764,8 @@
     }
 
     .final-cta-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #fff;
+      border: 1px solid rgba(26,26,26,0.1);
       border-radius: 20px;
       padding: 36px 32px;
       display: flex;
@@ -1774,26 +1774,31 @@
     }
 
     .final-cta-card-primary {
-      background: rgba(27,108,168,0.18);
-      border-color: rgba(27,108,168,0.4);
+      background: var(--blue);
+      border-color: var(--blue);
     }
+
+    .final-cta-card-primary .final-cta-num,
+    .final-cta-card-primary .final-cta-title,
+    .final-cta-card-primary .final-cta-desc { color: #fff; }
+    .final-cta-card-primary .final-cta-num { color: rgba(255,255,255,0.6); }
 
     .final-cta-num {
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.4);
+      color: rgba(26,26,26,0.35);
     }
 
     .final-cta-title {
       font-size: 1.2rem;
       font-weight: 700;
-      color: var(--white);
+      color: var(--navy);
     }
 
     .final-cta-desc {
       font-size: 0.88rem;
-      color: rgba(255,255,255,0.6);
+      color: rgba(26,26,26,0.6);
       line-height: 1.6;
       flex: 1;
     }
@@ -2603,7 +2608,7 @@
   ══════════════════════════════════════════ -->
   <section id="contact">
     <p class="section-label reveal" style="color:var(--gold);">Three ways to move forward.</p>
-    <h2 class="section-title reveal" style="color:var(--white);max-width:700px;margin:0 auto 16px;">Ready when you are.</h2>
+    <h2 class="section-title reveal" style="max-width:700px;margin:0 auto 16px;">Ready when you are.</h2>
 
     <div class="final-cta-grid reveal">
       <div class="final-cta-card">
@@ -2671,8 +2676,8 @@
         <div class="footer-col">
           <p class="footer-col-label">Work With Me</p>
           <ul class="footer-nav-list">
-            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">One Session &mdash; $150</a></li>
-            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Full Build &mdash; from $2,500</a></li>
+            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">One Session</a></li>
+            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Full Build</a></li>
             <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Free 15-min Call</a></li>
           </ul>
         </div>
@@ -2680,7 +2685,7 @@
 
       <hr class="footer-divider" />
 
-      <p class="footer-wordmark">MHARIS</p>
+      <p class="footer-wordmark">MUHAMMAD HARIS</p>
 
       <div class="footer-bottom">
         <span>&copy; 2026 Muhammad Haris &middot; mharis.ca</span>
