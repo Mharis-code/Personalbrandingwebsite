@@ -1990,6 +1990,143 @@
     }
     #scroll-top-btn:hover { background: #155a90; }
     #scroll-top-btn svg { display: block; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    #site-footer {
+      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
+      padding: 80px clamp(24px, 5vw, 80px) 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 64px;
+    }
+
+    .footer-col-label {
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+      margin-bottom: 20px;
+    }
+
+    .footer-col-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .footer-subscribe {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.22);
+      padding-bottom: 8px;
+      gap: 10px;
+    }
+
+    .footer-subscribe input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: #fff;
+    }
+
+    .footer-subscribe input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .footer-subscribe button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+      white-space: nowrap;
+      padding: 0;
+    }
+    .footer-subscribe button:hover { color: #fff; }
+
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .footer-nav-list a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.58);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav-list a:hover { color: #fff; }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 0;
+    }
+
+    .footer-wordmark {
+      text-align: center;
+      font-size: clamp(3.5rem, 12vw, 9.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.055);
+      text-transform: uppercase;
+      line-height: 1;
+      padding: 28px 0 0;
+      user-select: none;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 28px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.28);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 24px;
+      }
+      .footer-wordmark { font-size: clamp(2.8rem, 18vw, 5rem); }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
   </style>
 </head>
 <body>
@@ -2489,6 +2626,69 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer id="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-grid">
+        <!-- Col 1: Newsletter -->
+        <div class="footer-col">
+          <p class="footer-col-label">Stay Updated</p>
+          <p class="footer-col-desc">Building in public. Every system I build, every lesson I learn — in your inbox before it becomes a course.</p>
+          <div class="footer-subscribe">
+            <input type="email" placeholder="Email address" />
+            <button type="button">Subscribe &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigate -->
+        <div class="footer-col">
+          <p class="footer-col-label">Navigate</p>
+          <ul class="footer-nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Proof</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Follow -->
+        <div class="footer-col">
+          <p class="footer-col-label">Follow</p>
+          <ul class="footer-nav-list">
+            <li><a href="https://www.linkedin.com/in/mharis1/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Skool</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Work With Me -->
+        <div class="footer-col">
+          <p class="footer-col-label">Work With Me</p>
+          <ul class="footer-nav-list">
+            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">One Session &mdash; $150</a></li>
+            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Full Build &mdash; from $2,500</a></li>
+            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Free 15-min Call</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="footer-divider" />
+
+      <p class="footer-wordmark">MHARIS</p>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Muhammad Haris &middot; mharis.ca</span>
+        <span>Toronto, Canada</span>
+      </div>
+
+    </div>
+  </footer>
 
   <!-- ══════════════════════════════════════════
        JAVASCRIPT
