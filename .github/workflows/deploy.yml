@@ -27,7 +27,7 @@ jobs:
             set net:timeout 60
             set net:max-retries 3
             set net:reconnect-interval-base 5
-            open -u \"$SFTP_USER\",\"$SFTP_PASS\" sftp://$SFTP_HOST:22
+            open -u \"$SFTP_USER\",\"$SFTP_PASS\" sftp://$SFTP_HOST:65002
             mirror --reverse --only-newer --no-perms \
               --exclude-glob .git/ \
               --exclude-glob .github/ \
