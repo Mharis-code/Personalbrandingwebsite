@@ -1,0 +1,1098 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momentum — The Complete AI Business System for Solopreneurs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:     #1B6CA8;
+      --blue-lt:  #e8f1f9;
+      --blue-dk:  #1a3a5c;
+      --navy:     #1a1a1a;
+      --gold:     #E8A020;
+      --ink:      #111111;
+      --gray-bg:  #f5f5f5;
+      --gray-mid: #e8e8e8;
+      --gray-txt: #666666;
+      --white:    #FFFFFF;
+      --gradient-brand: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
+
+      /* Business Loop stage colors */
+      --offer:      #6366f1;
+      --attention:  #f97316;
+      --conversion: #22c55e;
+      --delivery:   #3b82f6;
+      --feedback:   #ec4899;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP STRIPE */
+    .top-stripe {
+      width: 100%;
+      height: 5px;
+      background: var(--gradient-brand);
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      border-bottom: 1px solid var(--gray-mid);
+      padding: 18px clamp(20px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .masthead-pub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .masthead-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .masthead-issue {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .masthead-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-txt);
+      text-decoration: none;
+    }
+    .masthead-link:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      background: var(--gradient-brand);
+      padding: 80px clamp(20px, 5vw, 80px) 72px;
+      text-align: center;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-command {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+    .hero-command code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #93c5fd;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    /* STATS ROW */
+    .stats-section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .stats-row {
+      display: flex;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .stat-cell {
+      flex: 1;
+      padding: 24px 20px;
+      text-align: center;
+      border-right: 1.5px solid var(--gray-mid);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gray-txt);
+    }
+
+    /* SECTION SHARED */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .section-num {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .section-divider-line {
+      width: 20px;
+      height: 1.5px;
+      background: var(--blue);
+      opacity: 0.4;
+      display: inline-block;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .section-intro {
+      font-size: 0.92rem;
+      color: var(--gray-txt);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* INTRO SECTION */
+    .intro-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      max-width: 700px;
+    }
+    .intro-text + .intro-text { margin-top: 16px; }
+
+    /* BUSINESS LOOP */
+    .loop-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin: 36px 0 24px;
+      row-gap: 12px;
+    }
+    .loop-stage {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .loop-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 9px 18px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+    .loop-arrow {
+      font-size: 0.9rem;
+      color: var(--gray-txt);
+      padding: 0 12px;
+      font-weight: 400;
+    }
+    .loop-badge.offer      { background: var(--offer); }
+    .loop-badge.attention  { background: var(--attention); }
+    .loop-badge.conversion { background: var(--conversion); }
+    .loop-badge.delivery   { background: var(--delivery); }
+    .loop-badge.feedback   { background: var(--feedback); }
+
+    .loop-meta {
+      font-size: 0.82rem;
+      color: var(--gray-txt);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* AGENT CARDS */
+    .agent-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .agent-card {
+      display: flex;
+      gap: 20px;
+      padding: 28px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 14px;
+      background: #fafafa;
+      page-break-inside: avoid;
+    }
+    .agent-card:hover { border-color: var(--blue); background: #fff; }
+    .agent-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .agent-avatar-box {
+      flex-shrink: 0;
+      width: 140px;
+      height: 158px;
+      background: linear-gradient(160deg, #1B6CA8 0%, #0e2a52 45%, #071422 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .agent-avatar-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 62%, transparent 28%, rgba(7,20,34,0.70) 100%);
+      pointer-events: none;
+    }
+    .agent-avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
+      display: block;
+    }
+    .agent-num-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 800;
+      border: 2.5px solid var(--white);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+    .hero-image-wrap {
+      margin-top: 52px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      filter: drop-shadow(0 24px 64px rgba(0,0,0,0.55));
+    }
+    @media (max-width: 640px) {
+      .agent-card { flex-direction: column; align-items: center; }
+      .agent-head { justify-content: center; flex-wrap: wrap; }
+    }
+    .agent-body { flex: 1; }
+    .agent-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .agent-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .agent-command {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .agent-stage-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .agent-stage-tag.offer      { background: var(--offer); }
+    .agent-stage-tag.attention  { background: var(--attention); }
+    .agent-stage-tag.conversion { background: var(--conversion); }
+    .agent-stage-tag.delivery   { background: var(--delivery); }
+    .agent-stage-tag.feedback   { background: var(--feedback); }
+    .agent-stage-tag.meta       { background: var(--navy); }
+
+    .agent-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .agent-output-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .agent-output {
+      font-size: 0.84rem;
+      color: var(--gray-txt);
+      line-height: 1.6;
+    }
+
+    /* EXTENDED AGENTS COMPACT */
+    .extended-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    .ext-card {
+      padding: 22px 24px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 12px;
+      background: #fafafa;
+      page-break-inside: avoid;
+    }
+    .ext-card:hover { border-color: var(--blue); background: #fff; }
+    .ext-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ext-name {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .ext-command {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .ext-desc {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #444;
+    }
+
+    /* FRAMEWORKS */
+    .framework-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .framework-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .framework-item:last-child { border-bottom: none; }
+    .framework-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .framework-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .framework-desc {
+      font-size: 0.85rem;
+      color: var(--gray-txt);
+      line-height: 1.55;
+    }
+
+    /* SETUP */
+    .setup-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .setup-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+    .step-text {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: #333;
+      padding-top: 5px;
+    }
+    .step-text code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 1px 7px;
+      border-radius: 5px;
+    }
+
+    .code-block {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    .code-comment { color: #64748b; }
+    .code-path { color: #93c5fd; }
+    .code-dir { color: #fbbf24; }
+    .code-arrow { color: #34d399; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--blue-lt);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+    .highlight-box p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--blue-dk);
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    .article-footer {
+      background: var(--gradient-brand);
+      padding: 72px clamp(20px, 5vw, 80px);
+      text-align: center;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .footer-inner { max-width: 560px; margin: 0 auto; }
+    .footer-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 14px;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .footer-sub {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .footer-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+    }
+    .btn-ghost-footer {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* TRADEMARK */
+    .trademark-note {
+      text-align: center;
+      padding: 24px clamp(20px, 5vw, 80px);
+      border-top: 1px solid var(--gray-mid);
+      font-size: 0.72rem;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    /* PRINT */
+    @media print {
+      .top-stripe { height: 5pt; }
+      body { font-size: 10pt; }
+      .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .article-footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .agent-card, .ext-card { page-break-inside: avoid; }
+      .agent-card:hover, .ext-card:hover { border-color: var(--gray-mid); background: #fafafa; }
+      @page { size: A4; margin: 18mm; }
+    }
+
+    @media (max-width: 600px) {
+      .loop-flow { gap: 0; row-gap: 10px; }
+      .extended-grid { grid-template-columns: 1fr; }
+      .stats-row { flex-direction: column; }
+      .stat-cell { border-right: none; border-bottom: 1.5px solid var(--gray-mid); }
+      .stat-cell:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP STRIPE -->
+  <div class="top-stripe"></div>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <span class="masthead-pub">Learn with Haris</span>
+    <div class="masthead-meta">
+      <span class="masthead-issue">System Overview &nbsp;·&nbsp; June 2026</span>
+    </div>
+    <a href="https://mharis.ca" class="masthead-link">mharis.ca</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Claude Code Agent System</p>
+    <h1 class="hero-title">Momentum</h1>
+    <p class="hero-tagline">The complete AI business system for solopreneurs. Built on Hormozi, Priestley, and Brunson. One command to start.</p>
+    <div class="hero-command">
+      Type <code>/momentum</code> &nbsp;·&nbsp; Answer 7 questions &nbsp;·&nbsp; Get a complete 90-day plan
+    </div>
+    <div class="hero-image-wrap">
+      <img src="../agents/all_agents_hero_image_2.png" alt="The 5 Momentum Agents" class="hero-img" />
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="container">
+    <div class="stats-section">
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="stat-num">11</div>
+          <div class="stat-label">Agents</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Loop Stages</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">14</div>
+          <div class="stat-label">Frameworks</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">90</div>
+          <div class="stat-label">Day Plan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT IT IS -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">01</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">What is Momentum</h2>
+      <p class="intro-text">
+        Momentum is a Claude Code agent that builds a complete business strategy for any 1-person service business. It runs 5 specialized agents in sequence, each one building on the last. The output of one becomes the input of the next.
+      </p>
+      <p class="intro-text" style="margin-top:16px;">
+        At the end of a single session, you get a branded 90-day action plan as an HTML file you can open in any browser, print, and work from immediately. No books to open. No frameworks to look up. Everything is embedded directly inside the agents.
+      </p>
+      <div class="highlight-box" style="margin-top:28px;">
+        <p>Built on frameworks from Alex Hormozi ($100M Offers, $100M Leads), Daniel Priestley (Oversubscribed, Key Person of Influence), and Russell Brunson (DotCom Secrets, Expert Secrets). Every concept is embedded inline. No external files or dependencies required beyond Claude.</p>
+      </div>
+    </div>
+
+    <!-- BUSINESS LOOP -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">02</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">The Business Loop</h2>
+      <p class="section-intro">Every 1-person service business runs the same loop. All 11 agents map to a stage. Run them in order from scratch, or jump to the stage you need.</p>
+
+      <div class="loop-flow">
+        <div class="loop-stage">
+          <span class="loop-badge offer">Offer</span>
+          <span class="loop-arrow">→</span>
+        </div>
+        <div class="loop-stage">
+          <span class="loop-badge attention">Attention</span>
+          <span class="loop-arrow">→</span>
+        </div>
+        <div class="loop-stage">
+          <span class="loop-badge conversion">Conversion</span>
+          <span class="loop-arrow">→</span>
+        </div>
+        <div class="loop-stage">
+          <span class="loop-badge delivery">Delivery</span>
+          <span class="loop-arrow">→</span>
+        </div>
+        <div class="loop-stage">
+          <span class="loop-badge feedback">Feedback</span>
+        </div>
+      </div>
+
+      <p class="loop-meta">The Business Loop is a framework created by Muhammad Haris. All rights reserved.</p>
+    </div>
+
+    <!-- CORE AGENTS -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">03</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">The Core 5 Agents</h2>
+      <p class="section-intro">The orchestrator runs all 5 in sequence. Each can also be run standalone at any time.</p>
+
+      <div class="agent-grid">
+
+        <div class="agent-card">
+          <div class="agent-avatar-box">
+            <img src="../agents/agent-01-hunter.png" alt="Hunter" />
+            <div class="agent-num-badge">01</div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-head">
+              <span class="agent-name">Hunter</span>
+              <span class="agent-command">/hunter</span>
+              <span class="agent-stage-tag offer">Offer</span>
+            </div>
+            <p class="agent-desc">Stress-tests whether the market is worth entering before you build anything. Applies Hormozi's 4-filter criteria: massive pain, purchasing power, targetability, and growth. Checks whether the niche is too broad or too thin, and builds a precise avatar using the exact words buyers use to describe their problem. Returns a green, amber, or red verdict. A red verdict stops the chain before you waste time building an offer for a dead market.</p>
+            <p class="agent-output-label">Output</p>
+            <p class="agent-output">Validated market, precise avatar, green / amber / red verdict</p>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar-box">
+            <img src="../agents/agent-02-alchemist-2.png" alt="Alchemist" />
+            <div class="agent-num-badge">02</div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-head">
+              <span class="agent-name">Alchemist</span>
+              <span class="agent-command">/alchemist</span>
+              <span class="agent-stage-tag offer">Offer</span>
+            </div>
+            <p class="agent-desc">Takes the validated market and builds an offer that cannot be compared to a competitor's price. Walks through Hormozi's 5-step process: dream outcome, obstacle list, solutions, delivery vehicles, and trim-and-stack. Assigns a dollar value to each component so the total value stack dwarfs the asking price. Drafts a conditional guarantee and generates 3 offer name options using the MAGIC formula.</p>
+            <p class="agent-output-label">Output</p>
+            <p class="agent-output">Named Grand Slam Offer, full value stack, guarantee, 3 name options</p>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar-box">
+            <img src="../agents/agent-03-amplifier.png" alt="Amplifier" />
+            <div class="agent-num-badge">03</div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-head">
+              <span class="agent-name">Amplifier</span>
+              <span class="agent-command">/amplifier</span>
+              <span class="agent-stage-tag attention">Attention</span>
+            </div>
+            <p class="agent-desc">Builds the daily system to get the offer in front of the right people. Applies Hormozi's Core Four priority order: warm outreach first, content second, cold outreach third, paid ads last. Designs a Rule of 100 daily rhythm (100 touches or 100 minutes of content per day). Writes 3 ACA DM templates and 3 Hook-Retain-Reward content units using the avatar's own pain language.</p>
+            <p class="agent-output-label">Output</p>
+            <p class="agent-output">Daily outreach rhythm, 3 DM templates, 3 content hooks, platform recommendation</p>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar-box">
+            <img src="../agents/agent-04-converter.png" alt="Converter" />
+            <div class="agent-num-badge">04</div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-head">
+              <span class="agent-name">Converter</span>
+              <span class="agent-command">/converter</span>
+              <span class="agent-stage-tag conversion">Conversion</span>
+            </div>
+            <p class="agent-desc">Turns conversations into closed clients. Builds a full CLOSER talk track written specifically for this offer, not a generic script. Applies the core reframe: diagnose before prescribing, lead with the prospect's pressure not the technology. Produces a pre-call brief template, a post-call follow-up email to send within 5 minutes of hanging up, and a same-day onboarding message to send the day you close.</p>
+            <p class="agent-output-label">Output</p>
+            <p class="agent-output">CLOSER talk track, pre-call brief, follow-up email, close-day message</p>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar-box">
+            <img src="../agents/agent-05-loop-engine.png" alt="Loop-Engine" />
+            <div class="agent-num-badge">05</div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-head">
+              <span class="agent-name">Loop Engine</span>
+              <span class="agent-command">/loop-engine</span>
+              <span class="agent-stage-tag feedback">Feedback</span>
+            </div>
+            <p class="agent-desc">Most revenue is lost in the silence after a sales conversation. Loop Engine closes that gap. Builds a closed-client sequence that captures testimonials and asks for referrals in 3 different ways. Creates a 4-message reactivation sequence at 7, 14, 30, and 90 days using Dean Jackson's 9-word email format. Builds a 3-step ghost bump sequence for prospects who went cold mid-conversation.</p>
+            <p class="agent-output-label">Output</p>
+            <p class="agent-output">Reactivation sequences, referral asks, ghost bump sequence, objection log template</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXTENDED AGENTS -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">04</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">The Extended 6 Agents</h2>
+      <p class="section-intro">Six additional agents that complete the full Solopreneur OS. Install alongside the core 5 by copying their skill folders into <code style="font-family:'Courier New',monospace;font-size:0.88rem;color:var(--blue);background:var(--blue-lt);padding:2px 7px;border-radius:5px;">.claude/skills/</code>.</p>
+
+      <div class="extended-grid">
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Brand Voice</span>
+            <span class="ext-command">/brand-voice</span>
+          </div>
+          <p class="ext-desc">Foundation for everything else. Builds your signature story, positioning one-liner, content pillars, platform bios, and tone guide. Run once before Content Engine or Funnel Architect.</p>
+        </div>
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Content Engine</span>
+            <span class="ext-command">/content-engine</span>
+          </div>
+          <p class="ext-desc">Takes one topic and produces a LinkedIn post, TikTok script, Instagram captions, Skool post, and a 30-day content calendar. Use any time you need platform-ready content.</p>
+        </div>
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Funnel Architect</span>
+            <span class="ext-command">/funnel-architect</span>
+          </div>
+          <p class="ext-desc">Builds the lead capture layer: lead magnet, landing page copy, 5-email welcome sequence, and booking page brief. Run after Amplifier when content is consistent.</p>
+        </div>
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Case Study</span>
+            <span class="ext-command">/case-study</span>
+          </div>
+          <p class="ext-desc">Turns a client result into proof before the memory fades. Produces a before/after one-pager, LinkedIn story post, DM proof piece, and a referral ask template.</p>
+        </div>
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Client Onboard</span>
+            <span class="ext-command">/client-onboard</span>
+          </div>
+          <p class="ext-desc">Builds the professional first 7 days after a client closes: welcome message, kick-off agenda, project brief, milestone checklist, and communication cadence.</p>
+        </div>
+
+        <div class="ext-card">
+          <div class="ext-head">
+            <span class="ext-name">Weekly Sprint</span>
+            <span class="ext-command">/weekly-sprint</span>
+          </div>
+          <p class="ext-desc">Reads the 90-day plan and builds a specific Mon-Fri schedule for the current week with Rule of 100 tracking and a Friday review. Run every Monday.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FRAMEWORKS -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">05</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">Frameworks Used</h2>
+      <p class="section-intro">Every framework below is embedded directly inside the relevant agent. No external references required.</p>
+
+      <ul class="framework-list">
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">4-Filter Market Test</p>
+            <p class="framework-desc">Validates whether a market is worth pursuing. Filters: massive pain, purchasing power, targetability, growth. Used in Hunter.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Grand Slam Offer Creation</p>
+            <p class="framework-desc">5-step process to build an offer that cannot be compared on price: dream outcome, obstacle list, solutions, delivery vehicles, trim-and-stack. Used in Alchemist.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Value Equation</p>
+            <p class="framework-desc">(Dream Outcome x Perceived Likelihood) / (Time Delay x Effort). Audits offer pricing. Used in Alchemist.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">MAGIC Naming Formula</p>
+            <p class="framework-desc">Magnetic reason why + Avatar callout + Goal + Interval + Container word. Names the offer. Used in Alchemist.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Core Four Advertising</p>
+            <p class="framework-desc">Priority order: warm outreach, content, cold outreach, paid ads. Prevents solopreneurs from going to paid too early. Used in Amplifier.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">ACA Framework</p>
+            <p class="framework-desc">Acknowledge, Compliment, Ask. Structure for warm DMs that do not feel like sales messages. Used in Amplifier.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Rule of 100</p>
+            <p class="framework-desc">100 outreach touches or 100 minutes of content per day. Creates a measurable daily standard. Used in Amplifier and Weekly Sprint.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Hook, Retain, Reward</p>
+            <p class="framework-desc">Content unit structure that earns attention, holds it, and gives the reader something worth keeping. Used in Amplifier and Content Engine.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">CLOSER Framework</p>
+            <p class="framework-desc">Clarify, Label, Overview, Sell the vacation, Explain away concerns, Reinforce the decision. Full sales call structure. Used in Converter.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Dean Jackson 9-Word Email</p>
+            <p class="framework-desc">Minimal reactivation format that reopens conversations without pressure. Used in Loop Engine at days 14 and 90.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Oversubscribed Positioning</p>
+            <p class="framework-desc">Engineer demand greater than supply deliberately. Three states: oversubscribed (profit), balanced (wages only), undersubscribed (losses). The goal is to ensure some people who want what you offer must miss out. Used in Alchemist and Brand Voice.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">7-11-4 Rule</p>
+            <p class="framework-desc">A buyer needs 7 hours of content consumption, 11 separate interactions, and exposure across 4 different locations before they trust you enough to buy. Determines content volume and platform strategy. Used in Funnel Architect and Content Engine.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Campaign-Driven Enterprise</p>
+            <p class="framework-desc">Cluster business development into campaigns rather than one-at-a-time selling. Weekly micro-campaigns, quarterly spotlight campaigns, annual big message. Used in Amplifier and Weekly Sprint.</p>
+          </div>
+        </li>
+        <li class="framework-item">
+          <div class="framework-dot"></div>
+          <div>
+            <p class="framework-name">Four Market Positions</p>
+            <p class="framework-desc">Innovation, Relationships, Convenience, Price. A business must pick one position and dominate it completely. Solo practitioners default to Relationships — the only position a single person can own. Used in Hunter and Brand Voice.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SETUP -->
+    <div class="section">
+      <div class="section-pill">
+        <span class="section-num">06</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <h2 class="section-heading">How to Install</h2>
+      <p class="section-intro">No external dependencies. No API keys beyond your Claude subscription. Works on any machine with Claude Code installed.</p>
+
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="step-num">1</div>
+          <p class="step-text">Clone or download the repo from <a href="https://github.com/Mharis-code/Momentum" style="color:var(--blue);font-weight:600;">github.com/Mharis-code/Momentum</a></p>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">2</div>
+          <p class="step-text">Copy the <code>.claude/skills/</code> folder into your Claude Code project's <code>.claude/skills/</code> directory</p>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">3</div>
+          <p class="step-text">Open your project in Claude Code</p>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">4</div>
+          <p class="step-text">Type <code>/momentum</code> to start</p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <span class="code-comment"># Project structure after install</span><br>
+        your-project/<br>
+        &nbsp;&nbsp;<span class="code-dir">.claude/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-dir">skills/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">momentum/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-arrow">← orchestrator</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">hunter/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">alchemist/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">amplifier/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">converter/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-path">loop-engine/</span>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer class="article-footer">
+    <div class="footer-inner">
+      <p class="footer-label">Get it now</p>
+      <h2 class="footer-title">Type /momentum. Answer 7 questions. Get a complete 90-day plan.</h2>
+      <p class="footer-sub">Free on GitHub. No dependencies. No setup beyond Claude Code.</p>
+      <div class="footer-btns">
+        <a href="https://github.com/Mharis-code/Momentum" class="btn-primary-footer">
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="https://mharis.ca" class="btn-ghost-footer">mharis.ca</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TRADEMARK + DISCLAIMER -->
+  <div class="trademark-note">
+    <p><strong>The Business Loop</strong> (Offer → Attention → Conversion → Delivery → Feedback) is a framework created by Muhammad Haris. All rights reserved.</p>
+    <p style="margin-top:6px;">This system is an independent educational tool. Not affiliated with or endorsed by Alex Hormozi / Acquisition.com, Daniel Priestley / Dent Global, or Russell Brunson / ClickFunnels. All referenced frameworks are drawn from publicly available books and content.</p>
+    <p style="margin-top:6px;">Created by <a href="https://mharis.ca" style="color:var(--blue);">Muhammad Haris</a> &nbsp;·&nbsp; Learn with Haris &nbsp;·&nbsp; June 2026</p>
+  </div>
+
+</body>
+</html>
