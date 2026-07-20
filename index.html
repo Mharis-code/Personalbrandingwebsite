@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muhammad Haris — AI Expert for Solopreneurs</title>
   <link rel="icon" type="image/png" href="MH Favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     /* ─────────────────────────────────────────────
        RESET & BASE
@@ -34,7 +34,7 @@
       justify-content: center;
       z-index: 99999;
       opacity: 1;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.3s ease;
     }
     #preloader.fade-out {
       opacity: 0;
@@ -1313,55 +1313,6 @@
     }
 
     /* ─────────────────────────────────────────────
-       MARQUEE TICKER STRIP
-    ───────────────────────────────────────────── */
-    .marquee-strip {
-      background: var(--navy);
-      padding: 17px 0;
-      overflow: hidden;
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marqueeScroll 32s linear infinite;
-    }
-
-    .marquee-track:hover { animation-play-state: paused; }
-
-    .marquee-inner {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .marquee-item {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      padding: 0 32px;
-      white-space: nowrap;
-      cursor: default;
-      transition: color 0.25s ease;
-    }
-
-    .marquee-item:hover { color: var(--gold); }
-
-    .marquee-sep {
-      color: var(--gold);
-      font-size: 0.55rem;
-      flex-shrink: 0;
-      opacity: 0.8;
-    }
-
-    @keyframes marqueeScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ─────────────────────────────────────────────
        BUTTON SLIDE-FILL HOVER (directional sweep)
     ───────────────────────────────────────────── */
     .btn {
@@ -1838,119 +1789,6 @@
     }
 
     /* ─────────────────────────────────────────────
-       SERVICES SECTION
-    ───────────────────────────────────────────── */
-    #services {
-      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
-      padding: 100px 24px;
-      text-align: center;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 900px;
-      margin: 48px auto 0;
-    }
-
-    .service-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 40px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      text-align: left;
-    }
-
-    .service-card-primary {
-      background: rgba(27,108,168,0.15);
-      border-color: rgba(27,108,168,0.45);
-    }
-
-    .service-tag {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
-    }
-
-    .service-tag-primary { color: var(--gold); }
-
-    .service-heading {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.2;
-      margin: 0;
-    }
-
-    .service-body {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.58);
-      line-height: 1.65;
-    }
-
-    .service-result-list {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .service-result-list li {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.75);
-      padding-left: 22px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .service-result-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--blue);
-      font-weight: 700;
-    }
-
-    .service-price {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.3);
-      margin-top: 4px;
-    }
-
-    .services-discovery {
-      margin-top: 36px;
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.4);
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .services-discovery a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color 0.2s;
-    }
-
-    .services-discovery a:hover { color: var(--white); }
-
-    @media (max-width: 768px) {
-      #services { padding: 72px 20px; }
-      .services-grid { grid-template-columns: 1fr; max-width: 460px; }
-    }
-
-    /* ─────────────────────────────────────────────
        SCROLL PROGRESS BAR
     ───────────────────────────────────────────── */
     #scroll-progress {
@@ -2133,6 +1971,77 @@
     @media (max-width: 480px) {
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
+    /* ─────────────────────────────────────────────
+       SECTION 2 · KEYNOTE-STYLE KINETIC TYPE
+    ───────────────────────────────────────────── */
+    .kws-section {
+      background: radial-gradient(ellipse at 28% 32%, #0e2a52 0%, #071422 52%, #06080c 100%);
+    }
+    .kws {
+      position: relative;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: clamp(72px, 11vw, 150px) clamp(20px, 5vw, 56px);
+      overflow: hidden;
+    }
+    .kws-top {
+      display: flex; align-items: center;
+      gap: clamp(16px, 4vw, 48px);
+      margin-bottom: clamp(36px, 6vw, 70px);
+    }
+    .kws-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.72rem, 1.3vw, 0.95rem);
+      font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(242,244,247,0.6); white-space: nowrap;
+    }
+    .kws-eyebrow strong { color: #f2f4f7; font-weight: 800; }
+    .kws-swoosh { flex: 1; height: 26px; min-width: 80px; overflow: hidden; }
+    .kws-swoosh svg { width: 100%; height: 100%; display: block; }
+    .kws-swoosh path { fill: #f2f4f7; transform: scaleX(0); transform-origin: left center; }
+    .kws.in .kws-swoosh path { animation: kwsSwoosh 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards; }
+    @keyframes kwsSwoosh { to { transform: scaleX(1); } }
+
+    .kws-lines { margin-bottom: clamp(40px, 6vw, 72px); }
+    .kws-line {
+      display: block; overflow: hidden;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.2rem, 8.5vw, 6.4rem);
+      line-height: 0.98; letter-spacing: -0.02em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .kws-line > span { display: inline-block; transform: translateY(110%); }
+    .kws.in .kws-line:nth-child(1) > span { animation: kwsUp 0.85s cubic-bezier(0.16,1,0.3,1) 0.30s forwards; }
+    .kws.in .kws-line:nth-child(2) > span { animation: kwsUp 0.85s cubic-bezier(0.16,1,0.3,1) 0.44s forwards; }
+    .kws.in .kws-line:nth-child(3) > span { animation: kwsUp 0.85s cubic-bezier(0.16,1,0.3,1) 0.58s forwards; }
+    @keyframes kwsUp { to { transform: translateY(0); } }
+    .kws-line:nth-child(2) { padding-left: clamp(24px, 9vw, 150px); }
+    .kws-line:nth-child(3) { padding-left: clamp(48px, 18vw, 300px); }
+    .kws-v { font-weight: 400; color: rgba(242,244,247,0.6); }
+    .kws-n { font-weight: 800; color: #f2f4f7; }
+    .kws-line:nth-child(3) .kws-n { color: #4FA3E3; }
+
+    .kws-speed { display: flex; flex-direction: column; gap: 7px; max-width: 420px; }
+    .kws-speed span {
+      height: 1px; width: 0;
+      background: linear-gradient(90deg, #4FA3E3, transparent);
+      transform: skewX(-24deg); transform-origin: left;
+    }
+    .kws.in .kws-speed span { animation: kwsSpeed 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .kws.in .kws-speed span:nth-child(1) { animation-delay: 0.70s; }
+    .kws.in .kws-speed span:nth-child(2) { animation-delay: 0.78s; }
+    .kws.in .kws-speed span:nth-child(3) { animation-delay: 0.86s; }
+    .kws.in .kws-speed span:nth-child(4) { animation-delay: 0.94s; }
+    .kws.in .kws-speed span:nth-child(5) { animation-delay: 1.02s; }
+    @keyframes kwsSpeed { to { width: 100%; } }
+    .kws-speed span:nth-child(2) { opacity: 0.8; }
+    .kws-speed span:nth-child(4) { opacity: 0.7; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kws-line > span { transform: none; }
+      .kws-swoosh path { transform: scaleX(1); }
+      .kws-speed span { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -2162,7 +2071,7 @@
     <a href="#about">About</a>
     <a href="#projects">Proof</a>
     <a href="#resources">Resources</a>
-    <a href="#services" class="cta">Work With Me</a>
+    <a href="work-with-me/" class="cta">Work With Me</a>
   </nav>
 
   <!-- ══════════════════════════════════════════
@@ -2178,14 +2087,10 @@
 
       <!-- Left: name, tagline, CTAs -->
       <div class="hero-left">
-        <h1 class="hero-heading">AI Operating Systems<br>for Solopreneurs</h1>
-
-        <p class="hero-tagline hero-tagline-pill">
-          Reclaim 15+ hours a week. Grow your revenue. Hire nobody.
-        </p>
+        <h1 class="hero-heading">AI Creator . Marketer . Educator</h1>
 
         <p class="hero-sub">
-          A solopreneur helping other solopreneurs operate like a 10-person team without hiring anyone. AI handles the work, you make the calls — and the revenue reflects it. Building my own AI OS in public and sharing every step of the journey.
+          Hi, I'm Haris. A marketer by trade, a teacher at heart, and a solopreneur just like you, creating AI systems that let one person do the work of ten, save hours, and grow revenue. I share it all in public, the wins and the failures both.
         </p>
 
         <div class="hero-cta">
@@ -2193,9 +2098,9 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
-            Get your Free AI Agent
+            Get your 90 Days Playbook Free
           </a>
-          <a href="#services" class="btn btn-outline">
+          <a href="work-with-me/" class="btn btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -2222,37 +2127,41 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       MARQUEE TICKER
+       SECTION 2 · SYSTEMS THAT DELIVER (kinetic type)
   ══════════════════════════════════════════ -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-inner">
-        <span class="marquee-item">AI Operating System</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Solopreneurs</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Build in Public</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI Agents</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">No Overhead</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">One Person</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">System Not Tools</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI OS</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Work On Your Business</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">No Management</span><span class="marquee-sep">◆</span>
+  <section class="kws-section">
+    <div class="kws" id="kws">
+      <div class="kws-top">
+        <p class="kws-eyebrow">Systems that <strong>deliver.</strong></p>
+        <div class="kws-swoosh" aria-hidden="true">
+          <svg viewBox="0 0 600 26" preserveAspectRatio="none">
+            <path d="M2 15 C 120 8, 240 6, 360 9 C 450 11, 540 13, 598 11 C 542 16, 470 18, 380 18 C 250 18, 120 19, 2 15 Z" />
+          </svg>
+        </div>
       </div>
-      <!-- duplicate for seamless loop -->
-      <div class="marquee-inner">
-        <span class="marquee-item">AI Operating System</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Solopreneurs</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Build in Public</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI Agents</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">No Overhead</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">One Person</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">System Not Tools</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">AI OS</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Work On Your Business</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">No Management</span><span class="marquee-sep">◆</span>
+
+      <div class="kws-lines">
+        <span class="kws-line"><span><span class="kws-v">Build </span><span class="kws-n">Systems</span></span></span>
+        <span class="kws-line"><span><span class="kws-v">Buy back </span><span class="kws-n">Time</span></span></span>
+        <span class="kws-line"><span><span class="kws-v">Grow </span><span class="kws-n">Revenue</span></span></span>
+      </div>
+
+      <div class="kws-speed" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       THE BIG IDEA
+  ══════════════════════════════════════════ -->
+  <section id="magic-statement">
+    <div class="magic-statement-inner">
+      <p class="section-label reveal" style="color:var(--gold);margin-bottom:32px;">The Big Idea</p>
+      <p class="magic-para" data-magic>One person can now run what used to require ten.</p>
+      <p class="magic-para" data-magic>Not with more apps. With the right system. An AI Operating System designed for one.</p>
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════════
        WHO THIS IS FOR
@@ -2320,43 +2229,6 @@
               </div>
             </div>
             <a href="/portfolio/ron-monteiro-website/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-              View breakdown
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Lana Starchuck -->
-        <div class="project-card project-card-visual reveal" style="transition-delay:0.1s">
-          <div class="project-card-img">
-            <img src="Lana Starchuck LinkedIn Branding.jpg" alt="Lana Starchuck — LinkedIn Brand Identity" loading="lazy" />
-            <span class="project-card-img-badge">Solopreneur</span>
-          </div>
-          <div class="project-card-body">
-            <span class="project-tag">LinkedIn Branding</span>
-            <div class="project-client">Lana Starchuck</div>
-            <div class="project-role">LinkedIn identity for a speaker and author</div>
-            <ul class="project-results">
-              <li>Full LinkedIn brand identity and banner</li>
-              <li>Thought leader positioning for strategic clarity niche</li>
-              <li>Bold visual language built for high-impact leaders</li>
-              <li>Consistent brand presence across all LinkedIn touchpoints</li>
-            </ul>
-            <div class="project-stat-row">
-              <div class="project-stat">
-                <div class="project-stat-num">100%</div>
-                <div class="project-stat-label">On-Brand</div>
-              </div>
-              <div class="project-stat">
-                <div class="project-stat-num">1</div>
-                <div class="project-stat-label">Cohesive Identity</div>
-              </div>
-              <div class="project-stat">
-                <div class="project-stat-num">↑</div>
-                <div class="project-stat-label">Visibility</div>
-              </div>
-            </div>
-            <a href="/portfolio/lana-starchuck-linkedin/" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;font-size:0.8rem;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:0.04em;transition:gap 0.2s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
               View breakdown
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -2493,17 +2365,6 @@
 
 
   <!-- ══════════════════════════════════════════
-       THE BIG IDEA
-  ══════════════════════════════════════════ -->
-  <section id="magic-statement">
-    <div class="magic-statement-inner">
-      <p class="section-label reveal" style="color:var(--gold);margin-bottom:32px;">The Big Idea</p>
-      <p class="magic-para" data-magic>One person can now run what used to require ten.</p>
-      <p class="magic-para" data-magic>Not with more apps. With the right system. An AI Operating System designed for one.</p>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
        FREE RESOURCES + EMAIL CAPTURE
   ══════════════════════════════════════════ -->
   <section id="resources">
@@ -2535,12 +2396,52 @@
       <div class="email-capture reveal">
         <h3 class="email-capture-title">Get notified when I publish.</h3>
         <p class="email-capture-sub">No spam. Unsubscribe anytime.</p>
-        <!-- TODO: Replace form action with Kit/Mailchimp embed once email service is set up -->
-        <form class="email-form" action="#" method="post" onsubmit="return false;">
+        <form class="email-form" id="lead-form" action="#" method="post">
           <input type="text" name="name" placeholder="Your name" class="email-input" required />
           <input type="email" name="email" placeholder="Your email" class="email-input" required />
+          <input type="text" name="company_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
           <button type="submit" class="btn btn-primary">Join the newsletter</button>
+          <p id="lead-form-msg" style="display:none;font-size:0.85rem;margin-top:4px;"></p>
         </form>
+        <script>
+          (function () {
+            // milo-bridge lead endpoint — set after worker deploy (see projects/milo/routines.md placeholders)
+            var MILO_LEAD_ENDPOINT = 'https://milo-bridge.mharis.workers.dev/api/lead';
+            var form = document.getElementById('lead-form');
+            var msg = document.getElementById('lead-form-msg');
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+              var btn = form.querySelector('button');
+              btn.disabled = true;
+              fetch(MILO_LEAD_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: form.name.value,
+                  email: form.email.value,
+                  company_website: form.company_website.value,
+                  source: 'Website',
+                  message: 'Newsletter signup from mharis.ca homepage'
+                })
+              }).then(function (r) {
+                msg.style.display = 'block';
+                if (r.ok) {
+                  msg.textContent = 'You are in. Check your inbox.';
+                  msg.style.color = '#7fbf7f';
+                  form.reset();
+                } else {
+                  throw new Error('bad status');
+                }
+              }).catch(function () {
+                msg.style.display = 'block';
+                msg.textContent = 'Something went wrong. Email me instead: dr.harisibrahim@gmail.com';
+                msg.style.color = '#c96a6a';
+              }).finally(function () {
+                btn.disabled = false;
+              });
+            });
+          })();
+        </script>
       </div>
     </div>
   </section>
@@ -2557,53 +2458,12 @@
         <p class="section-label">About</p>
         <p class="about-mini-bio reveal">I spent 12 years building marketing systems for businesses. Then I started replacing parts of those systems with AI. Then all of them. Now I help solopreneurs build AI Operating Systems so they can finally run their business instead of being run by it.</p>
         <p class="about-mini-bio reveal">I am based in Toronto. I am building this in public. Everything I figure out, I share.</p>
-        <a href="#services" class="about-mini-link reveal">
-          Work with me
+        <a href="story/" class="about-mini-link reveal">
+          Know more about me
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
     </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-       SERVICES
-  ══════════════════════════════════════════ -->
-  <section id="services">
-    <p class="section-label reveal" style="color:var(--gold);">How we work</p>
-    <h2 class="section-title reveal" style="color:var(--white);max-width:700px;margin:0 auto 8px;">Two ways to get your AI Operating System.</h2>
-    <p class="section-subtitle reveal" style="color:rgba(255,255,255,0.5);max-width:560px;margin:0 auto;">One gets you started today. One gets it done for you end to end. Both get results.</p>
-
-    <div class="services-grid">
-
-      <div class="service-card service-card-primary reveal">
-        <span class="service-tag service-tag-primary">One session</span>
-        <h3 class="service-heading">Stop doing it manually.</h3>
-        <p class="service-body">By the end of our 90 minutes, you have a real AI workflow running inside your actual business. Not a tutorial. Not a plan. A system that works while you sleep.</p>
-        <ul class="service-result-list">
-          <li>One repetitive task eliminated from your week</li>
-          <li>Your workflow live and tested before we hang up</li>
-          <li>You know how to extend it yourself after the call</li>
-        </ul>
-        <p class="service-price">Starting at $150 / session</p>
-        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;">Book a session</a>
-      </div>
-
-      <div class="service-card reveal">
-        <span class="service-tag">Full build</span>
-        <h3 class="service-heading">Your business, running without you in the room.</h3>
-        <p class="service-body">I audit every part of how you work, identify what to automate, build the systems, and hand them over documented and ready. You get an AI Operating System — not a list of suggestions.</p>
-        <ul class="service-result-list">
-          <li>5+ hours back every week, starting week one</li>
-          <li>Every repetitive workflow identified and automated</li>
-          <li>Full handover with walkthrough — you own it completely</li>
-        </ul>
-        <p class="service-price">Starting at $2,500</p>
-        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:8px;">Apply</a>
-      </div>
-
-    </div>
-
-    <p class="services-discovery reveal">Not sure which fits? <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Book a free 15-minute call</a> and I will tell you exactly which one makes sense for where you are.</p>
   </section>
 
   <!-- ══════════════════════════════════════════
@@ -2616,21 +2476,21 @@
     <div class="final-cta-grid reveal">
       <div class="final-cta-card">
         <div class="final-cta-num">01</div>
-        <h3 class="final-cta-title">Follow along</h3>
-        <p class="final-cta-desc">Get everything I learn as I build. Before it becomes a course.</p>
-        <a href="#resources" class="btn btn-outline" style="margin-top:auto;">Join the newsletter</a>
+        <h3 class="final-cta-title">Follow the journey</h3>
+        <p class="final-cta-desc">Free resources, tips, and tricks as I build my AI systems in public. Follow along and grab everything I share.</p>
+        <a href="https://www.linkedin.com/in/imuhammadharis/" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:auto;">Follow me on my socials</a>
       </div>
       <div class="final-cta-card final-cta-card-primary">
         <div class="final-cta-num" style="color:var(--gold);">02</div>
-        <h3 class="final-cta-title">One session</h3>
-        <p class="final-cta-desc">Your first AI workflow live in 90 minutes. Starting at $150.</p>
-        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:auto;">Book a session</a>
+        <h3 class="final-cta-title">Work with me</h3>
+        <p class="final-cta-desc">One session to get your first AI system running, or a full build done for you end to end.</p>
+        <a href="work-with-me/" class="btn btn-primary" style="margin-top:auto;">See how we work</a>
       </div>
       <div class="final-cta-card">
         <div class="final-cta-num">03</div>
-        <h3 class="final-cta-title">Full build</h3>
-        <p class="final-cta-desc">Your AI Operating System delivered and documented. Starting at $2,500.</p>
-        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:auto;">Apply</a>
+        <h3 class="final-cta-title">Speaking &amp; Training</h3>
+        <p class="final-cta-desc">Talks and team training on AI systems that drive real business results. For events and organizations.</p>
+        <a href="mailto:dr.harisibrahim@gmail.com?subject=Speaking%20and%20Training%20Inquiry" class="btn btn-outline" style="margin-top:auto;">Get in touch</a>
       </div>
     </div>
   </section>
@@ -2658,7 +2518,7 @@
           <ul class="footer-nav-list">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Proof</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="work-with-me/">Work With Me</a></li>
             <li><a href="#resources">Resources</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -2679,8 +2539,8 @@
         <div class="footer-col">
           <p class="footer-col-label">Work With Me</p>
           <ul class="footer-nav-list">
-            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">One Session</a></li>
-            <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Full Build</a></li>
+            <li><a href="work-with-me/">One Session</a></li>
+            <li><a href="work-with-me/">Full Build</a></li>
             <li><a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Free 15-min Call</a></li>
           </ul>
         </div>
@@ -2731,24 +2591,25 @@
           helloEl.style.opacity = '1';
           idx++;
           if (idx < languages.length) {
-            setTimeout(cycleNext, 80);
+            setTimeout(cycleNext, 45);
           } else {
-            setTimeout(dismissPreloader, 300);
+            setTimeout(dismissPreloader, 120);
           }
-        }, 40);
+        }, 20);
       }
 
       function dismissPreloader() {
         preloader.classList.add('fade-out');
         sessionStorage.setItem('preloaderShown', '1');
+        document.body.classList.add('no-preloader');
         setTimeout(() => {
           preloader.style.display = 'none';
           document.body.style.overflow = '';
-        }, 500);
+        }, 300);
       }
 
-      // Phase 1: static "Hello" for 2 seconds, then cycle
-      setTimeout(cycleNext, 2000);
+      // Phase 1: brief static "Hello", then fast cycle
+      setTimeout(cycleNext, 500);
     })();
 
     /* ── 0. VIDEO BACKGROUND — FALLBACK & MOBILE PLAY ── */
@@ -3142,6 +3003,18 @@
       btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    })();
+
+    /* Section 2 kinetic type: reveal when it scrolls into view */
+    (function () {
+      const kws = document.getElementById('kws');
+      if (!kws) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(kws);
     })();
   </script>
 

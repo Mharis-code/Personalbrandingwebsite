@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFE74DCKSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JFE74DCKSL');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work With Me — Muhammad Haris</title>
+  <meta name="description" content="Two ways to get your AI Operating System. One session to get started today, or a full build done for you end to end." />
+  <link rel="icon" type="image/png" href="../MH Favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1B6CA8;
+      --navy:    #1a1a1a;
+      --white:   #FFFFFF;
+      --gray-mid:#e8e8e8;
+      --gray-txt:#666666;
+      --gold:    #E8A020;
+      --ink:     #111111;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .top-stripe { width: 100%; height: 4px; background: var(--blue); }
+
+    .masthead {
+      border-bottom: 1px solid var(--gray-mid);
+      padding: 18px clamp(20px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .masthead-pub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .masthead-back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-txt);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .masthead-back:hover { color: var(--blue); }
+
+    /* ─── SERVICES (dark) ─── */
+    #services {
+      background: radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
+      padding: 100px 24px 110px;
+      text-align: center;
+      min-height: calc(100vh - 60px);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto 8px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 48px auto 0;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .service-card-primary {
+      background: rgba(27,108,168,0.15);
+      border-color: rgba(27,108,168,0.45);
+    }
+
+    .service-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .service-tag-primary { color: var(--gold); }
+
+    .service-heading {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .service-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.65;
+    }
+
+    .service-result-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-result-list li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .service-result-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .service-price {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      margin-top: 4px;
+    }
+
+    .services-discovery {
+      margin-top: 36px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.4);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-discovery a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .services-discovery a:hover { color: var(--white); }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      border: none;
+      align-self: flex-start;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(27,108,168,0.4);
+    }
+    .btn-primary:hover { background: #155a90; box-shadow: 0 10px 32px rgba(27,108,168,0.5); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.06); }
+
+    /* ─── FOOTER BAR ─── */
+    .page-footer {
+      background: #030609;
+      padding: 28px clamp(20px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .page-footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .page-footer a:hover { color: var(--white); }
+
+    @media (max-width: 768px) {
+      #services { padding: 72px 20px 84px; }
+      .services-grid { grid-template-columns: 1fr; max-width: 460px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-stripe"></div>
+
+  <header class="masthead">
+    <a href="../" class="masthead-pub">Muhammad Haris</a>
+    <a href="../" class="masthead-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to homepage
+    </a>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════════ -->
+  <section id="services">
+    <p class="section-label">How we work</p>
+    <h2 class="section-title">Two ways to get your AI Operating System.</h2>
+    <p class="section-subtitle">One gets you started today. One gets it done for you end to end. Both get results.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card service-card-primary">
+        <span class="service-tag service-tag-primary">One session</span>
+        <h3 class="service-heading">Stop doing it manually.</h3>
+        <p class="service-body">By the end of our 90 minutes, you have a real AI workflow running inside your actual business. Not a tutorial. Not a plan. A system that works while you sleep.</p>
+        <ul class="service-result-list">
+          <li>One repetitive task eliminated from your week</li>
+          <li>Your workflow live and tested before we hang up</li>
+          <li>You know how to extend it yourself after the call</li>
+        </ul>
+        <p class="service-price">Starting at $150 / session</p>
+        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;">Book a session</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-tag">Full build</span>
+        <h3 class="service-heading">Your business, running without you in the room.</h3>
+        <p class="service-body">I audit every part of how you work, identify what to automate, build the systems, and hand them over documented and ready. You get an AI Operating System — not a list of suggestions.</p>
+        <ul class="service-result-list">
+          <li>5+ hours back every week, starting week one</li>
+          <li>Every repetitive workflow identified and automated</li>
+          <li>Full handover with walkthrough — you own it completely</li>
+        </ul>
+        <p class="service-price">Starting at $2,500</p>
+        <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:8px;">Apply</a>
+      </div>
+
+    </div>
+
+    <p class="services-discovery">Not sure which fits? <a href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">Book a free 15-minute call</a> and I will tell you exactly which one makes sense for where you are.</p>
+  </section>
+
+  <footer class="page-footer">
+    <span>&copy; 2026 Muhammad Haris &middot; mharis.ca</span>
+    <a href="../">Back to homepage</a>
+  </footer>
+
+</body>
+</html>
