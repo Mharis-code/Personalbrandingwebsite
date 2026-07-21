@@ -115,6 +115,60 @@
     .masthead-back:hover { color: var(--paper); gap: 12px; }
 
     /* ═══════════════════════════════════════════
+       FLOATING PILL NAV (matches homepage)
+    ═══════════════════════════════════════════ */
+    #pill-nav {
+      position: fixed; bottom: 28px; left: 50%; z-index: 55;
+      transform: translateX(-50%);
+      background: rgba(6,8,12,0.85);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--hair);
+      border-radius: 100px;
+      padding: 10px 20px;
+      display: flex; align-items: center; gap: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    }
+    #pill-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+      padding: 7px 14px; border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    #pill-nav a:hover,
+    #pill-nav a.active { background: rgba(242,244,247,0.1); color: var(--paper); }
+    #pill-nav a.cta { background: var(--blue); color: var(--paper); margin-left: 6px; }
+    #pill-nav a.cta:hover { background: #155a90; }
+
+    @media (max-width: 768px) {
+      #pill-nav { padding: 8px 10px; gap: 2px; max-width: calc(100vw - 32px); overflow-x: auto; }
+      #pill-nav a { font-size: 0.68rem; padding: 6px 9px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL PROGRESS + BACK TO TOP (matches homepage)
+    ═══════════════════════════════════════════ */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--grad); z-index: 9999;
+      transition: width 0.1s linear; border-radius: 0 2px 2px 0;
+    }
+    #scroll-top-btn {
+      position: fixed; bottom: 32px; right: 28px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--blue); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9998; opacity: 0; transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+      pointer-events: none;
+      box-shadow: 0 4px 20px rgba(27,108,168,0.5);
+    }
+    #scroll-top-btn.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #scroll-top-btn:hover { background: #155a90; }
+    #scroll-top-btn svg { display: block; }
+
+    /* ═══════════════════════════════════════════
        HERO
     ═══════════════════════════════════════════ */
     #hero {
@@ -176,7 +230,7 @@
       position: relative;
       justify-self: center;
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       opacity: 0; animation: riseIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
     }
     /* light source behind the subject, matching the blue rim light in the photo */
@@ -1392,6 +1446,13 @@
   <div class="aura" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
+  <div id="scroll-progress"></div>
+  <button id="scroll-top-btn" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>
+    </svg>
+  </button>
+
   <header class="masthead">
     <a href="../" class="masthead-mark">Muhammad Haris</a>
     <a href="../" class="masthead-back">
@@ -1399,6 +1460,15 @@
       Back to homepage
     </a>
   </header>
+
+  <nav id="pill-nav" aria-label="Primary navigation">
+    <a href="../">Home</a>
+    <a href="../#about">About</a>
+    <a href="#hero" class="active">My Story</a>
+    <a href="../#projects">Proof</a>
+    <a href="../#resources">Resources</a>
+    <a href="../work-with-me/" class="cta">Work With Me</a>
+  </nav>
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section id="hero">
@@ -1414,13 +1484,14 @@
         </span>
         <span class="word"><span>starting</span></span>
         <span class="word"><span>over,</span></span>
-        <span class="word"><span>and</span></span>
         <span class="word"><span>choosing</span></span>
         <span class="word"><span>to</span></span>
         <span class="word"><span class="accent">build</span></span>
         <span class="word"><span class="accent">my</span></span>
         <span class="word"><span class="accent">own</span></span>
-        <span class="word"><span class="accent">opportunities.</span></span>
+        <span class="word"><span class="accent">opportunities</span></span>
+        <span class="word"><span class="accent">and</span></span>
+        <span class="word"><span class="accent">freedom!</span></span>
       </h1>
       <p class="hero-sub">I am a marketer who builds AI systems, for my own business and for solopreneurs like you. Still learning, still building the life I want, out loud.</p>
     </div>
@@ -1715,6 +1786,24 @@
         }, { threshold: 0.35 });
         sio.observe(sys);
       }
+    })();
+
+    /* scroll progress bar + back-to-top button */
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      var btn = document.getElementById('scroll-top-btn');
+      if (!bar || !btn) return;
+
+      window.addEventListener('scroll', function () {
+        var scrolled = window.scrollY;
+        var total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+        btn.classList.toggle('visible', scrolled > 300);
+      }, { passive: true });
+
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   </script>
 
