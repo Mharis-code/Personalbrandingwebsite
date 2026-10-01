@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro Deck — Muhammad Haris</title>
+  <meta name="description" content="I handle the marketing and AI side of your business, so you can focus on what you are the expert in and scale revenue. Services sorted by outcome: clarity, visibility, conversion and capacity." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://mharis.ca/introdeck/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mharis.ca/introdeck/" />
+  <meta property="og:title" content="Intro Deck — Muhammad Haris" />
+  <meta property="og:description" content="Marketing and AI for solopreneurs. A one person marketing agency." />
+  <meta property="og:image" content="https://mharis.ca/mharis_pic.png" />
+  <link rel="icon" type="image/png" href="../MH Favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFE74DCKSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JFE74DCKSL');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:      #1B6CA8;
+      --blue-lift: #2E8BD4;
+      --blue-pale: #6FA8DC;
+      --blue-deep: #123A5E;
+      --navy:      #0B1624;
+      --ink:       #111418;
+      --ink-soft:  #4A5361;
+      --paper:     #F6F7F9;
+      --card:      #FCFCFD;
+      --line:      #E3E7EC;
+      --snow:      #F4F6F9;
+      --mist:      #B8C4D6;
+      --grey:      #7F8FA6;
+      --gradient:  radial-gradient(ellipse at 28% 42%, #0e2a52 0%, #071422 48%, #030609 100%);
+      --r:         20px;
+      --r-lg:      24px;
+      --maxw:      1560px;
+
+      --eyebrow: clamp(11px, 1.05vw, 21px);
+      --h1:      clamp(36px, 5.9vw, 104px);
+      --h2:      clamp(27px, 3.9vw, 68px);
+      --h2-lg:   clamp(31px, 5.2vw, 92px);
+      --h3:      clamp(19px, 2.05vw, 40px);
+      --h3-sm:   clamp(18px, 1.72vw, 32px);
+      --lead:    clamp(16px, 1.95vw, 34px);
+      --body:    clamp(14.5px, 1.3vw, 24px);
+      --small:   clamp(13px, 1.15vw, 22px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+      background: var(--navy);
+      color: var(--snow);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .slide {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(20px, 2.6vw, 48px);
+      padding: clamp(48px, 6.6vw, 128px) clamp(20px, 6.6vw, 128px);
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+    .slide > * { width: 100%; max-width: var(--maxw); margin-inline: auto; }
+    .slide-light { background: var(--paper); color: var(--ink); }
+    .slide-dark  { background: var(--navy); }
+    .slide-grad  { background: var(--gradient); }
+    .slide-blue  { background: var(--blue); }
+
+    .eyebrow {
+      font-size: var(--eyebrow);
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue-pale);
+    }
+    .slide-light .eyebrow { color: var(--blue); }
+    .slide-blue .eyebrow  { color: #D6E6F5; }
+
+    h1, h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.1; }
+    h1 { font-size: var(--h1); font-weight: 800; letter-spacing: -0.02em; }
+    h2 { font-size: var(--h2); }
+    h3 { font-size: var(--h3); font-weight: 700; line-height: 1.22; }
+
+    .lead  { font-size: var(--lead); line-height: 1.45; color: var(--mist); max-width: 24ch; }
+    .rule  { width: clamp(64px, 7vw, 120px); height: 6px; background: var(--blue); border-radius: 3px; }
+    .stamp {
+      font-size: var(--small);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .head { display: flex; flex-direction: column; gap: clamp(10px, 1.3vw, 24px); }
+
+    /* ---------- Cover ---------- */
+    .cover { justify-content: center; }
+    .cover-portrait {
+      position: absolute;
+      right: 0; top: 0;
+      width: 44vw; height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+    .cover-fade {
+      position: absolute;
+      right: 38vw; top: 0;
+      width: 18vw; height: 100%;
+      background: linear-gradient(90deg, #050d18 0%, rgba(5,13,24,0) 100%);
+    }
+    .cover-inner { position: relative; display: flex; flex-direction: column; gap: clamp(16px, 2vw, 40px); }
+    .cover h1 { max-width: 13ch; }
+    .cover .lead { max-width: 26ch; }
+
+    /* ---------- Cards ---------- */
+    .cards { display: grid; gap: clamp(14px, 1.7vw, 34px); }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+    .cards-4 { grid-template-columns: repeat(4, 1fr); }
+    .cards-5 { grid-template-columns: repeat(5, 1fr); }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 0.9vw, 18px);
+      padding: clamp(20px, 2.4vw, 48px);
+      border-radius: var(--r-lg);
+      background: var(--card);
+      border: 2px solid var(--line);
+      color: var(--ink);
+    }
+    .card-blue { background: var(--blue); border-color: transparent; color: var(--snow); }
+    .card-glass {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(111,168,220,0.3);
+      color: var(--snow);
+    }
+    .card-live {
+      background: var(--blue-deep);
+      border: 3px solid var(--blue-lift);
+      box-shadow: 0 0 0 6px rgba(46,139,212,0.12);
+      color: var(--snow);
+    }
+    .card-quiet {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(143,159,178,0.25);
+      color: #AEBACA;
+    }
+    .card p { font-size: var(--body); line-height: 1.45; }
+    .card .card-copy { color: var(--ink-soft); }
+    .card-blue .card-copy, .card-live .card-copy { color: #E6EFF8; }
+    .card-glass .card-copy { color: var(--mist); }
+    .card-quiet .card-copy, .card-quiet h3 { color: #8A99AD; }
+    .card-quiet h3 { color: #AEBACA; }
+
+    .tag {
+      font-size: var(--small);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .card-blue .tag { color: #CFE2F3; }
+    .card-live .tag { color: #8EC2EC; }
+    .card-quiet .tag { color: var(--grey); }
+    .numeral {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(30px, 3.4vw, 64px);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--blue-pale);
+    }
+    .card-blue .numeral { color: var(--snow); }
+
+    .group { display: flex; flex-direction: column; gap: 10px; }
+    .group + .group { margin-top: clamp(6px, 0.8vw, 14px); }
+    .group-top { border-top: 2px solid var(--line); padding-top: clamp(12px, 1.3vw, 24px); }
+    .card-blue .group-top { border-top-color: rgba(255,255,255,0.35); }
+    .group-label {
+      font-size: var(--small);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .card-blue .group-label { color: #CFE2F3; }
+    .group ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .group li { font-size: var(--body); font-weight: 500; line-height: 1.45; }
+
+    /* ---------- Stats ---------- */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 44px); }
+    .stat { display: flex; flex-direction: column; gap: clamp(4px, 0.6vw, 14px); border-top: 4px solid var(--blue); padding-top: clamp(16px, 2.2vw, 44px); }
+    .stat-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(64px, 11vw, 200px);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--blue-pale);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label { font-size: clamp(15px, 1.95vw, 36px); font-weight: 600; line-height: 1.3; }
+
+    /* ---------- Loop footer line ---------- */
+    .loop-note {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.1vw, 20px);
+      border-top: 2px solid rgba(111,168,220,0.25);
+      padding-top: clamp(16px, 1.6vw, 28px);
+    }
+    .arrow-back { flex: none; color: var(--blue-lift); }
+    .loop-note p { font-size: var(--small); line-height: 1.45; color: var(--mist); }
+    .loop-note b { color: var(--snow); }
+
+    /* ---------- Quote slide ---------- */
+    .quote h2 { font-size: var(--h2-lg); font-style: italic; }
+    .quote .lead { color: #E6EFF8; max-width: 34ch; }
+
+    /* ---------- Close slide ---------- */
+    .close h2 { font-size: var(--h2-lg); font-weight: 800; }
+    .close .lead { max-width: 30ch; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: clamp(10px, 1.1vw, 20px); align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--small);
+      font-weight: 600;
+      text-decoration: none;
+      padding: clamp(12px, 1.2vw, 22px) clamp(22px, 2.3vw, 44px);
+      border-radius: 100px;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+    .btn-primary { background: var(--blue); color: var(--snow); }
+    .btn-primary:hover { background: var(--blue-lift); transform: translateY(-2px); }
+    .btn-ghost { color: var(--snow); border: 2px solid rgba(244,246,249,0.26); }
+    .btn-ghost:hover { border-color: var(--blue-pale); transform: translateY(-2px); }
+
+    /* ---------- Chrome ---------- */
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      height: 3px;
+      width: 0;
+      background: var(--blue-lift);
+      z-index: 50;
+      transition: width 0.12s linear;
+    }
+    .dots {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 50;
+    }
+    .dots a {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(143,159,178,0.4);
+      border: 1px solid transparent;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .dots a:hover { transform: scale(1.3); }
+    .dots a.on { background: var(--blue-lift); transform: scale(1.3); }
+    .dots a.on-light { background: var(--blue); }
+
+    .hint {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(18px, 2.4vw, 42px);
+      transform: translateX(-50%);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--grey);
+      animation: bob 2.6s ease-in-out infinite;
+    }
+    @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 7px); } }
+
+    .stamp-fixed { position: absolute; left: clamp(20px, 6.6vw, 128px); bottom: clamp(22px, 3vw, 64px); }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .cards-5 { grid-template-columns: repeat(3, 1fr); }
+      .cards-4 { grid-template-columns: repeat(2, 1fr); }
+      .cover-portrait { width: 40vw; }
+      .cover-fade { right: 34vw; width: 16vw; }
+      .dots { display: none; }
+    }
+
+    @media (max-width: 820px) {
+      html { scroll-snap-type: none; }
+      .slide { min-height: auto; padding: 56px 20px 60px; gap: 24px; scroll-snap-align: none; }
+      .cards-2, .cards-4, .cards-5 { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; gap: 26px; }
+      .stat-num { font-size: 74px; }
+      .lead, .cover .lead, .quote .lead, .close .lead { max-width: none; }
+
+      .cover { padding-top: 0; }
+      .cover-portrait {
+        position: relative;
+        width: calc(100% + 40px);
+        margin: 0 -20px 26px;
+        height: 310px;
+        object-position: center 16%;
+      }
+      .cover-fade { display: none; }
+      .stamp-fixed { position: static; margin-top: 22px; }
+      .hint { display: none; }
+      .loop-note { align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hint { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav class="dots" id="dots" aria-label="Slide navigation">
+  <a href="#cover" aria-label="Cover"></a>
+  <a href="#what" aria-label="What I do"></a>
+  <a href="#experience" aria-label="Experience"></a>
+  <a href="#agency" aria-label="What clients say"></a>
+  <a href="#loop" aria-label="The business loop"></a>
+  <a href="#services" aria-label="Services part one"></a>
+  <a href="#services-2" aria-label="Services part two"></a>
+  <a href="#steps" aria-label="Working with me"></a>
+  <a href="#close" aria-label="Next step"></a>
+</nav>
+
+<!-- 1. Cover -->
+<section class="slide slide-grad cover" id="cover">
+  <img class="cover-portrait" src="../mharis_pic.png" alt="Muhammad Haris" />
+  <div class="cover-fade"></div>
+  <div class="cover-inner">
+    <p class="eyebrow reveal">Marketing + AI for solopreneurs</p>
+    <h1 class="reveal">Hi, I am<br />Muhammad Haris.</h1>
+    <div class="rule reveal"></div>
+    <p class="lead reveal">I handle the marketing and AI side of your business, so you can focus on what you are the expert in and scale revenue.</p>
+  </div>
+  <p class="stamp stamp-fixed">mharis.ca</p>
+  <p class="hint">Scroll</p>
+</section>
+
+<!-- 2. What I do -->
+<section class="slide slide-light" id="what">
+  <div class="head reveal">
+    <p class="eyebrow">What I do</p>
+    <h2>You run the business.<br />I run the marketing and the AI behind it.</h2>
+  </div>
+  <div class="cards cards-2 reveal">
+    <div class="card">
+      <p class="tag" style="color:#666C75">You</p>
+      <h3>Do the work you are the expert in, and the work you love.</h3>
+    </div>
+    <div class="card card-blue">
+      <p class="tag">Me</p>
+      <h3>Brand, content, funnels and AI systems that scale your revenue.</h3>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Experience -->
+<section class="slide slide-dark" id="experience">
+  <div class="head reveal">
+    <p class="eyebrow">Experience</p>
+    <h2>Built over more than a decade.</h2>
+  </div>
+  <div class="stats reveal">
+    <div class="stat">
+      <p class="stat-num" data-count="16">16</p>
+      <p class="stat-label">years of design experience</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num" data-count="13">13</p>
+      <p class="stat-label">years of marketing experience</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num" data-count="3">3</p>
+      <p class="stat-label">years working hands-on with solopreneurs</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. What clients say -->
+<section class="slide slide-blue quote" id="agency">
+  <p class="eyebrow reveal">What my clients say</p>
+  <h2 class="reveal">"A One Person Marketing Agency."</h2>
+  <p class="lead reveal">That is what some of my customers call me. Because that is exactly who I am.</p>
+</section>
+
+<!-- 5. The business loop -->
+<section class="slide slide-dark" id="loop">
+  <div class="head reveal">
+    <p class="eyebrow">The business loop</p>
+    <h2>Every business runs on the same five steps.</h2>
+  </div>
+  <div class="cards cards-5 reveal">
+    <div class="card card-live">
+      <p class="tag">01</p>
+      <h3>Offer</h3>
+      <p class="card-copy">Something people want, priced so it is worth buying.</p>
+    </div>
+    <div class="card card-live">
+      <p class="tag">02</p>
+      <h3>Traffic</h3>
+      <p class="card-copy">The right people see you, again and again.</p>
+    </div>
+    <div class="card card-live">
+      <p class="tag">03</p>
+      <h3>Conversion</h3>
+      <p class="card-copy">Interest turns into booked calls and paid work.</p>
+    </div>
+    <div class="card card-quiet">
+      <p class="tag">04 &nbsp;·&nbsp; You own this</p>
+      <h3>Delivery</h3>
+      <p class="card-copy">You do the work you are the expert in.</p>
+    </div>
+    <div class="card card-quiet">
+      <p class="tag">05 &nbsp;·&nbsp; You own this</p>
+      <h3>Feedback</h3>
+      <p class="card-copy">Results and reviews make the next round easier.</p>
+    </div>
+  </div>
+  <div class="loop-note reveal">
+    <svg class="arrow-back" width="46" height="18" viewBox="0 0 46 18" fill="none" aria-hidden="true">
+      <path d="M45 9H3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+      <path d="M10 2L3 9l7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <p>Feedback feeds the offer and the loop starts again. <b>The first three steps are marketing. That is where I come in.</b></p>
+  </div>
+</section>
+
+<!-- 6. Services part 1 -->
+<section class="slide slide-light" id="services">
+  <div class="head reveal">
+    <p class="eyebrow">Services, part 1</p>
+    <h2>Sorted by the outcome you get, not the task I do.</h2>
+  </div>
+  <div class="cards cards-2 reveal">
+    <div class="card">
+      <p class="tag">Loop step 01 Offer</p>
+      <h3 style="font-family:'Playfair Display', Georgia, serif; font-size:var(--h3)">Clarity</h3>
+      <p class="card-copy">People get what you do and why it should be you, in seconds.</p>
+      <div class="group group-top">
+        <p class="group-label">Branding</p>
+        <ul>
+          <li>Brand Messaging (headline, bio, about page)</li>
+          <li>Brand Kit (logo, colors, fonts, templates)</li>
+          <li>LinkedIn Profile and Banner Design</li>
+          <li>Lead Magnet Design (PDF, guide, checklist)</li>
+        </ul>
+      </div>
+      <div class="group">
+        <p class="group-label">Design</p>
+        <ul>
+          <li>Website / Landing Page Design</li>
+          <li>Graphic Design</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <p class="tag">Loop step 02 Traffic</p>
+      <h3 style="font-family:'Playfair Display', Georgia, serif; font-size:var(--h3)">Visibility</h3>
+      <p class="card-copy">The right people see you every week and start to trust you.</p>
+      <div class="group group-top">
+        <p class="group-label">Content Creation</p>
+        <ul>
+          <li>Video Editing</li>
+          <li>Short-form Video (TikTok, Reels, Shorts)</li>
+          <li>Content Strategy and Calendar</li>
+          <li>Carousels and Static Posts</li>
+          <li>Thumbnail Design</li>
+          <li>Email Newsletter</li>
+          <li>Repurposing (one video into ten assets)</li>
+          <li>Podcast and Interview Clipping</li>
+          <li>Paid Ads (Meta, Google, LinkedIn)</li>
+          <li>Ad Creative Design</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Services part 2 -->
+<section class="slide slide-light" id="services-2">
+  <div class="head reveal">
+    <p class="eyebrow">Services, part 2</p>
+    <h2>Then turn attention into clients, and keep it running.</h2>
+  </div>
+  <div class="cards cards-2 reveal">
+    <div class="card">
+      <p class="tag">Loop step 03 Conversion</p>
+      <h3 style="font-family:'Playfair Display', Georgia, serif; font-size:var(--h3)">Conversion</h3>
+      <p class="card-copy">Attention turns into booked calls and paid clients.</p>
+      <div class="group group-top">
+        <p class="group-label">Website and Funnels</p>
+        <ul>
+          <li>Website / Landing Page Optimization</li>
+          <li>Funnel Design</li>
+          <li>CRM Setup</li>
+          <li>Lead Nurturing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-blue">
+      <p class="tag">Runs across all three steps</p>
+      <h3 style="font-family:'Playfair Display', Georgia, serif; font-size:var(--h3)">Capacity</h3>
+      <p class="card-copy">The loop keeps running while you deliver the work.</p>
+      <div class="group group-top">
+        <p class="group-label">Automation</p>
+        <ul>
+          <li>Marketing Automations</li>
+          <li>AI Systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Working with me -->
+<section class="slide slide-grad" id="steps">
+  <div class="head reveal">
+    <p class="eyebrow">Working with me</p>
+    <h2>Four steps. Start small, go as far as you want.</h2>
+  </div>
+  <div class="cards cards-4 reveal">
+    <div class="card card-glass">
+      <p class="numeral">1</p>
+      <h3>Free Assets</h3>
+      <p class="card-copy">Build trust and see exactly how I work, before you spend anything.</p>
+    </div>
+    <div class="card card-glass">
+      <p class="numeral">2</p>
+      <h3>One-off Project</h3>
+      <p class="card-copy">A landing page, a website, a LinkedIn banner or a video edit.</p>
+    </div>
+    <div class="card card-glass">
+      <p class="numeral">3</p>
+      <h3>Monthly Retainer</h3>
+      <p class="card-copy">Recurring work handled every month: content creation, video editing and more.</p>
+    </div>
+    <div class="card card-blue">
+      <p class="numeral">4</p>
+      <h3>AI Marketing Systems</h3>
+      <p class="card-copy">For people who really want to automate everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Next step -->
+<section class="slide slide-grad close" id="close">
+  <p class="eyebrow reveal">Next step</p>
+  <h2 class="reveal">Let me make marketing<br />the easy part of your business.</h2>
+  <p class="lead reveal">Start with a free asset. See how I work. Then decide.</p>
+  <div class="btn-row reveal">
+    <a class="btn btn-primary" href="https://calendly.com/marketing-with-mharis/strategy" target="_blank" rel="noopener">
+      Book a call
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+    </a>
+    <a class="btn btn-ghost" href="https://mharis.ca/">mharis.ca</a>
+  </div>
+  <p class="stamp stamp-fixed">Muhammad Haris</p>
+</section>
+
+<script>
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('.dots a'));
+    var progress = document.getElementById('progress');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Reveal on scroll */
+    if ('IntersectionObserver' in window && !reduce) {
+      var revealer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    /* Count-up stats */
+    function runCount(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      if (reduce) { el.textContent = target; return; }
+      var start = null;
+      el.textContent = '0';
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / 1500, 1);
+        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if ('IntersectionObserver' in window) {
+      var counter = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            runCount(entry.target);
+            counter.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll('[data-count]').forEach(function (el) { counter.observe(el); });
+    }
+
+    /* Active dot + progress bar */
+    function onScroll() {
+      var y = window.scrollY;
+      var max = document.body.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+
+      var current = 0;
+      slides.forEach(function (slide, i) {
+        if (slide.offsetTop <= y + window.innerHeight * 0.4) current = i;
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('on', i === current);
+        dot.classList.toggle('on-light', i === current && slides[current].classList.contains('slide-light'));
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    /* Keyboard navigation */
+    function currentIndex() {
+      var y = window.scrollY + window.innerHeight * 0.4;
+      var current = 0;
+      slides.forEach(function (slide, i) { if (slide.offsetTop <= y) current = i; });
+      return current;
+    }
+    function goTo(i) {
+      if (i < 0 || i >= slides.length) return;
+      slides[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault(); goTo(currentIndex() + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault(); goTo(currentIndex() - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault(); goTo(0);
+      } else if (e.key === 'End') {
+        e.preventDefault(); goTo(slides.length - 1);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
